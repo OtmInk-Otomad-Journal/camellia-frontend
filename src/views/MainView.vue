@@ -5,15 +5,19 @@ import MainRank from '../components/MainRank.vue'
 </script>
 
 <template>
+  <img
+    style="display: none"
+    src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp"
+  />
   <div class="main-board">
     <div class="left">
-      <div class="video-box card"></div>
+      <div class="video-box"></div>
       <MainInfo />
     </div>
     <div class="right">
       <MainRank />
       <MainCounts />
-      <div class="cover card"></div>
+      <div class="cover"></div>
     </div>
   </div>
 </template>
@@ -26,9 +30,13 @@ import MainRank from '../components/MainRank.vue'
   // height: 100vh;
   gap: 2rem;
   padding: 3.5rem 5rem;
+  background-image: url(https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp);
+  background-size: 100vw;
+  background-position: center;
 }
 
 .video-box {
+  @include card;
   width: auto;
   height: auto;
   aspect-ratio: 16 / 9;
@@ -37,6 +45,7 @@ import MainRank from '../components/MainRank.vue'
 }
 
 .cover {
+  @include card;
   width: auto;
   height: auto;
   aspect-ratio: 16 / 10;
@@ -44,14 +53,20 @@ import MainRank from '../components/MainRank.vue'
   flex-shrink: 0;
 }
 
-.left, .right {
+.left,
+.right {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   flex-grow: 1;
 }
 
+.left {
+  width: 0px;
+}
+
 .right {
+  flex-shrink: 0;
   max-width: 26.875rem;
 }
 </style>

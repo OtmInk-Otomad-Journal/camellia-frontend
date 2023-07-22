@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="main-info card">
-    <h1>哇哈哈哈这是一个标题哇哈哈哈这是一个标题</h1>
+  <div class="main-info">
+    <h1>哇哈哈哈这是一个标题哇哈哈哈这是一个标题哇哈哈哈这是一个标题哇哈哈哈这是一个标题</h1>
     <div class="details">
       <div class="left">
         <InfoChip>AVXXXXXX</InfoChip>
@@ -17,6 +17,7 @@
 
 <style lang="scss" scoped>
 .main-info {
+  @include card;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,6 +27,9 @@
 
   h1 {
     font-size: 2.5rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .details {

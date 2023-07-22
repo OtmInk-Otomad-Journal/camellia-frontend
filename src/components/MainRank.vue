@@ -1,5 +1,5 @@
 <template>
-  <div class="main-rank card">
+  <div class="main-rank">
     <span class="rank">#16</span>
     <span class="points">23333 POINTS</span>
   </div>
@@ -7,8 +7,10 @@
 
 <style lang="scss" scoped>
   .main-rank {
+    @include card;
     display: flex;
     flex-grow: 1;
+    flex-shrink: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;

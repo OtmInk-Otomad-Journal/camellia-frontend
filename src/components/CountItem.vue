@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="count-item card">
+  <div class="count-item">
     <div class="left">
       <Icon :name="icon" />
     </div>
@@ -20,6 +20,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .count-item {
+  @include card;
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
