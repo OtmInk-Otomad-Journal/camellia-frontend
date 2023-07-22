@@ -21,14 +21,16 @@ defineProps({
 <style lang="scss" scoped>
 .count-item {
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
   width: 100%;
-  padding: 1.5rem 1.875rem;
+  padding: 1.1rem 1.875rem;
 }
 
 .right {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-end;
 }
 

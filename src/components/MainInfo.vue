@@ -21,7 +21,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
-  gap: 4.75rem;
+  // gap: 4.75rem;
   padding: 1.5rem 1.75rem;
 
   h1 {

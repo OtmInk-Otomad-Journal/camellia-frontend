@@ -13,7 +13,7 @@ import MainRank from '../components/MainRank.vue'
     <div class="right">
       <MainRank />
       <MainCounts />
-      <div class="cover"></div>
+      <div class="cover card"></div>
     </div>
   </div>
 </template>
@@ -23,20 +23,34 @@ import MainRank from '../components/MainRank.vue'
   display: flex;
   width: 100vw;
   height: 100vh;
-  gap: 3rem;
-  padding: 2rem;
+  gap: 2rem;
+  padding: 3.5rem 5rem;
 }
 
 .video-box {
-  width: 100%;
+  width: auto;
+  height: auto;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cover {
+  width: auto;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .left, .right {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
   flex-grow: 1;
+}
+
+.right {
+  max-width: 26.875rem;
 }
 </style>

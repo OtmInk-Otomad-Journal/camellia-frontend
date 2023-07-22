@@ -8,6 +8,7 @@
 <style lang="scss" scoped>
   .main-rank {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
