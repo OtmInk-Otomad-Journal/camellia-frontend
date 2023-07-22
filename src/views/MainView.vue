@@ -20,9 +20,10 @@ import MainRank from '../components/MainRank.vue'
 
 <style lang="scss" scoped>
 .main-board {
+  aspect-ratio: 16 / 9;
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  // width: 100vw;
+  // height: 100vh;
   gap: 2rem;
   padding: 3.5rem 5rem;
 }
