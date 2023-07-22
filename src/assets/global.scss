@@ -1,0 +1,32 @@
+:root {
+  --c-accent: #fb7299;
+}
+
+html {
+  font-size: 16px;  // 用于rem计算
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.card {
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(16px);
+  // background-image: url(noise_asset.png);
+  background-blend-mode: overlay, normal;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
