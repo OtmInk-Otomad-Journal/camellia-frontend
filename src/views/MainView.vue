@@ -19,15 +19,12 @@ onMounted(()=>{
 </script>
 
 <template>
-  <img
-    style="display: none"
-    src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp"
-  />
+  <img style="display: none" src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" />
   <div class="main-board">
     <div class="left">
       <div class="video-box" ref="videoRef">
         <video class="video-inner">
-          <source :src="data.web_video_src">
+          <source :src="data.web_video_src" />
         </video>
       </div>
       <MainInfo />
@@ -66,6 +63,7 @@ onMounted(()=>{
   width: 100%;
   height: 100%;
 }
+
 .cover {
   @include card;
   width: auto;
