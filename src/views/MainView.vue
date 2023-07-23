@@ -2,6 +2,8 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
+import data from '../data/data.js';
+
 </script>
 
 <template>
@@ -15,9 +17,9 @@ import MainRank from '../components/MainRank.vue'
       <MainInfo />
     </div>
     <div class="right">
-      <MainRank rank="16" points="2.33" />
-      <MainCounts play-count="233" like-count="233" coin-count="233" star-count="233" />
-      <div class="cover"></div>
+      <MainRank />
+      <MainCounts />
+      <img class="cover" :src="data.cover_src" />
     </div>
   </div>
 </template>

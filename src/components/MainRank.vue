@@ -1,14 +1,11 @@
 <script setup>
-defineProps({
-  rank: Number,
-  points: Number
-})
+import data from "../data/data.js"
 </script>
 
 <template>
   <div class="main-rank">
-    <span class="rank">#{{ rank }}</span>
-    <span class="points">{{ points }} POINTS</span>
+    <span class="rank">#{{ data.ranking }}</span>
+    <span class="points">{{ data.score }} POINTS</span>
   </div>
 </template>
 
