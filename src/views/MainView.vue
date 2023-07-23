@@ -3,7 +3,7 @@ import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import data from '../data/data.js';
-
+import {TweenMax} from 'gasp'
 </script>
 
 <template>
@@ -13,7 +13,11 @@ import data from '../data/data.js';
   />
   <div class="main-board">
     <div class="left">
-      <div class="video-box"></div>
+      <div class="video-box">
+        <video class="video-inner">
+          <source :src="data.web_video_src">
+        </video>
+      </div>
       <MainInfo />
     </div>
     <div class="right">
@@ -46,6 +50,10 @@ import data from '../data/data.js';
   flex-shrink: 0;
 }
 
+.video-inner {
+  width: 100%;
+  height: 100%;
+}
 .cover {
   @include card;
   width: auto;

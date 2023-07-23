@@ -19,8 +19,8 @@ const data = ref({
     "start_time" :10,
     "end_time": 30,
     "video_src": "/video/12345.mp4",
-    "web_video_src": "http://localhost:7213/video/12345.mp4",
-    "cover_src": "http://localhost:7213/OtmInk Weekly Camellia/cover/12345.png"
+    "web_video_src": "http://localhost:7213/video/34567.mp4",
+    "cover_src": "http://localhost:7213/cover/12345.png"
   });
 function fun(obj){
     data.value = {
