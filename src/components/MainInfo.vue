@@ -8,7 +8,7 @@
   <div class="main-info">
     <h1>{{ data.title }}</h1>
     <div class="details">
-      <div class="left">
+      <div class="chips">
         <InfoChip>AV{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
@@ -39,7 +39,7 @@
     justify-content: space-between;
     align-items: flex-end;
 
-    .left {
+    .chips {
       display: flex;
       gap: 1rem;
     }
