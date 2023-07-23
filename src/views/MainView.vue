@@ -3,9 +3,19 @@ import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import data from '../data/data.js';
-import {gsap} from 'gsap'
+import { gsap } from 'gsap'
+import { onMounted, onUnmounted , ref } from 'vue';
 
 var tl = gsap.timeline();
+const videoRef = ref();
+
+onMounted(()=>{
+  gsap.from(videoRef.value,{
+    duration: 1.5,
+    rotationX: 90,
+    ease: "power3.out"
+  })
+})
 </script>
 
 <template>
@@ -15,7 +25,7 @@ var tl = gsap.timeline();
   />
   <div class="main-board">
     <div class="left">
-      <div class="video-box">
+      <div class="video-box" ref="videoRef">
         <video class="video-inner">
           <source :src="data.web_video_src">
         </video>
