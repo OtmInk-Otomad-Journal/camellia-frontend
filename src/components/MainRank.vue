@@ -4,7 +4,9 @@ import data from "../data/data.js"
 
 <template>
   <div class="main-rank">
-    <span class="rank">#{{ data.ranking }}</span>
+    <div>
+      <span class="rank">#{{ data.ranking }}</span>
+    </div>
     <span class="points">{{ data.score }} POINTS</span>
   </div>
 </template>
@@ -25,7 +27,8 @@ import data from "../data/data.js"
 
 .rank {
   font-size: 6rem;
-  font-weight: 400;
+  font-family: Montserrat, sans-serif;
+  font-weight: 600;
 }
 
 .points {

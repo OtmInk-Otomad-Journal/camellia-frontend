@@ -1,6 +1,7 @@
 <script setup>
-  import InfoChip from '../components/InfoChip.vue'
+  import InfoChip from './InfoChip.vue'
   import data from '../data/data.js';
+  import UploaderInfo from './UploaderInfo.vue';
 </script>
 
 <template>
@@ -11,7 +12,7 @@
         <InfoChip>AV{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
-      <Uploader>{{data.uploader}}</Uploader>
+      <UploaderInfo />
     </div>
   </div>
 </template>
@@ -36,6 +37,7 @@
   .details {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
     .left {
       display: flex;
