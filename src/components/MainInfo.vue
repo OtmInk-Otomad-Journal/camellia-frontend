@@ -1,16 +1,17 @@
 <script setup>
   import InfoChip from '../components/InfoChip.vue'
+  import data from '../data/data.js';
 </script>
 
 <template>
   <div class="main-info">
-    <h1>哇哈哈哈这是一个标题哇哈哈哈这是一个标题哇哈哈哈这是一个标题哇哈哈哈这是一个标题</h1>
+    <h1>{{ data.title }}</h1>
     <div class="details">
       <div class="left">
-        <InfoChip>AVXXXXXX</InfoChip>
-        <InfoChip>2023/04/04 23:48:37</InfoChip>
+        <InfoChip>{{ data.aid }}</InfoChip>
+        <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
-      <Uploader>虚无韵</Uploader>
+      <Uploader>{{data.uploader}}</Uploader>
     </div>
   </div>
 </template>

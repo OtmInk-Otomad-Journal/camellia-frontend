@@ -1,19 +1,14 @@
 <script setup>
 import CountItem from './CountItem.vue'
-defineProps({
-  playCount: Number,
-  likeCount: Number,
-  coinCount: Number,
-  starCount: Number
-})
+import data from '../data/data.js'
 </script>
 
 <template>
   <div class="main-counts">
-    <CountItem icon="play" title="播放" :count="playCount" />
-    <CountItem icon="like" title="点赞" :count="likeCount" />
-    <CountItem icon="coin" title="投币" :count="coinCount" />
-    <CountItem icon="star" title="收藏" :count="starCount" />
+    <CountItem icon="play" title="播放" :count="data.play" />
+    <CountItem icon="like" title="点赞" :count="data.like" />
+    <CountItem icon="coin" title="投币" :count="data.coin" />
+    <CountItem icon="star" title="收藏" :count="data.star" />
   </div>
 </template>
 
