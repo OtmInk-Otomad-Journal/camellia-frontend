@@ -8,7 +8,7 @@
     <h1>{{ data.title }}</h1>
     <div class="details">
       <div class="left">
-        <InfoChip>{{ data.aid }}</InfoChip>
+        <InfoChip>AV{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
       <Uploader>{{data.uploader}}</Uploader>
