@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import "@/assets/global.scss"
+import '@/assets/global.scss'
 </script>
 
 <template>

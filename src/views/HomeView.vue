@@ -35,12 +35,12 @@ nav a {
   transition: 0.2s;
 
   &:hover {
-    background-color: hsla(var(--c-otmink-h), var(--c-otmink-s), calc( var(--c-otmink-l) + 5% ), 1);
+    background-color: hsla(var(--c-otmink-h), var(--c-otmink-s), calc(var(--c-otmink-l) + 5%), 1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   &:active {
-    background-color: hsla(var(--c-otmink-h), var(--c-otmink-s), calc( var(--c-otmink-l) - 5% ), 1);
+    background-color: hsla(var(--c-otmink-h), var(--c-otmink-s), calc(var(--c-otmink-l) - 5%), 1);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
   }
 }

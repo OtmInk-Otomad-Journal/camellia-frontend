@@ -2,20 +2,17 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
-import data from '../data/data.js';
-import {TweenMax} from 'gsap'
+import data from '../data/data.js'
+import { TweenMax } from 'gsap'
 </script>
 
 <template>
-  <img
-    style="display: none"
-    src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp"
-  />
+  <img style="display: none" src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" />
   <div class="main-board">
     <div class="left">
       <div class="video-box">
         <video class="video-inner">
-          <source :src="data.web_video_src">
+          <source :src="data.web_video_src" />
         </video>
       </div>
       <MainInfo />
@@ -54,6 +51,7 @@ import {TweenMax} from 'gsap'
   width: 100%;
   height: 100%;
 }
+
 .cover {
   @include card;
   width: auto;

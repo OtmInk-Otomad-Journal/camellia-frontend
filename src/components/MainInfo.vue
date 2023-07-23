@@ -1,7 +1,7 @@
 <script setup>
-  import InfoChip from './InfoChip.vue'
-  import data from '../data/data.js';
-  import UploaderInfo from './UploaderInfo.vue';
+import InfoChip from './InfoChip.vue'
+import UploaderInfo from './UploaderInfo.vue'
+import data from '../data/data.js'
 </script>
 
 <template>
