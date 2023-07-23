@@ -4,6 +4,7 @@ import data from '../data/data.js'
 
 <template>
   <div class="uploader">
+    <div class="avatar"></div>
     <div class="text">
       <span class="name">{{ data.uploader }}</span>
       <div class="badge-repost">
@@ -16,17 +17,20 @@ import data from '../data/data.js'
         转载
       </div>
     </div>
-    <div class="avatar" style="background-image: {{ data.uploaderAvatar }}"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .uploader {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   flex-direction: row;
   gap: 1rem;
-  height: 4.375rem;
+  // height: 4rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .text {
@@ -52,8 +56,8 @@ import data from '../data/data.js'
 }
 
 .avatar {
-  width: 4.375rem;
-  height: 4.375rem;
+  width: 3rem;
+  height: 3rem;
   flex-shrink: 0;
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 100rem;
