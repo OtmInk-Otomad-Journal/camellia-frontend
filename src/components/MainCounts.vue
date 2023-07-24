@@ -1,5 +1,4 @@
 <script setup>
-import CountItem from './CountItem.vue'
 import data from '../data/data.js'
 </script>
 
