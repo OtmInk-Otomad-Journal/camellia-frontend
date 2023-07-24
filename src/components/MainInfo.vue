@@ -1,17 +1,18 @@
 <script setup>
-  import InfoChip from '../components/InfoChip.vue'
-  import data from '../data/data.js';
+import InfoChip from './InfoChip.vue'
+import UploaderInfo from './UploaderInfo.vue'
+import data from '../data/data.js'
 </script>
 
 <template>
   <div class="main-info">
     <h1>{{ data.title }}</h1>
     <div class="details">
-      <div class="left">
-        <InfoChip>{{ data.aid }}</InfoChip>
+      <div class="chips">
+        <InfoChip>AV{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
-      <Uploader>{{data.uploader}}</Uploader>
+      <UploaderInfo />
     </div>
   </div>
 </template>
@@ -36,8 +37,9 @@
   .details {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 
-    .left {
+    .chips {
       display: flex;
       gap: 1rem;
     }

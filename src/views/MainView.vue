@@ -4,19 +4,27 @@ import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import data from '../data/data.js';
 import gsap from 'gsap'
+import { onMounted, onUnmounted , ref } from 'vue';
 
+var tl = gsap.timeline();
+const videoRef = ref();
+
+onMounted(()=>{
+  gsap.from(videoRef.value,{
+    duration: 1.5,
+    rotationX: 90,
+    ease: "power3.out"
+  })
+})
 </script>
 
 <template>
-  <img
-    style="display: none"
-    src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp"
-  />
+  <img style="display: none" src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" />
   <div class="main-board">
     <div class="left">
-      <div class="video-box">
+      <div class="video-box" ref="videoRef">
         <video class="video-inner">
-          <source :src="data.web_video_src">
+          <source :src="data.web_video_src" />
         </video>
       </div>
       <MainInfo />
@@ -55,6 +63,7 @@ import gsap from 'gsap'
   width: 100%;
   height: 100%;
 }
+
 .cover {
   @include card;
   width: auto;

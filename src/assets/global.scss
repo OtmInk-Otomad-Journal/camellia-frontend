@@ -1,9 +1,12 @@
 :root {
-  --c-accent: #fb7299;
+  --c-accent: #f06e8e;
+  --c-otmink-h: 152;
+  --c-otmink-s: 79%;
+  --c-otmink-l: 38%;
 }
 
 html {
-  font-size: 16px;  // 用于rem计算
+  font-size: 16px; // 用于rem计算
 }
 
 *,
@@ -20,41 +23,4 @@ h5,
 h6,
 p {
   margin: 0;
-}
-
-@mixin card {
-  position: relative;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
-  background-color: rgba(255, 255, 255, 0.75);
-  background-blend-mode: overlay, normal;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  overflow: hidden;
-  z-index: 10;
-
-  &::before { // Acrylic Blur
-    content: '';
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    backdrop-filter: blur(16px);
-    z-index: -1;
-    border-radius: inherit;
-    background-blend-mode: exclusion;
-  }
-
-  &::after { // Acrylic Noise
-    content: '';
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    background-image: url(noise_asset.png);
-    z-index: -1;
-    opacity: 0.02;
-    border-radius: inherit;
-  }
 }
