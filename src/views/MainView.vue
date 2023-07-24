@@ -4,6 +4,7 @@ import data from '../data/data.js'
 
 let tl = gsap.timeline()
 const videoRef = ref()
+provide('vr', videoRef)
 onMounted(() => {
   gsap.from(videoRef.value, {
     duration: 1.5,

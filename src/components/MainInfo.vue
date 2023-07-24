@@ -1,8 +1,11 @@
 <script setup>
 import data from '../data/data.js'
+const aaa = inject('vr')
+console.log(aaa)
 </script>
 
 <template>
+  <div ref="aaa">aaa</div>
   <div class="main-info">
     <h1>{{ data.title }}</h1>
     <div class="details">
