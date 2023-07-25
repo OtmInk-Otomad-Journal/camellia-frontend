@@ -2,11 +2,12 @@
 import InfoChip from './InfoChip.vue'
 import UploaderInfo from './UploaderInfo.vue'
 import data from '../data/data.js'
+
 </script>
 
 <template>
-  <div class="main-info">
-    <h1>{{ data.title }}</h1>
+  <div class="main-info" ref="main_info_Ref">
+    <h1 class="main-title">{{ data.title }}</h1>
     <div class="details">
       <div class="chips">
         <InfoChip>AV{{ data.aid }}</InfoChip>

@@ -4,7 +4,9 @@ import data from '../data/data.js'
 
 <template>
   <div class="uploader">
-    <div class="avatar"></div>
+    <div class="avatar">
+      <img :src="data.avatar_src">
+    </div>
     <div class="text">
       <span class="name">{{ data.uploader }}</span>
       <div class="badge-repost">
@@ -60,6 +62,13 @@ import data from '../data/data.js'
   flex-shrink: 0;
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 100rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
 }
 
 .name {
