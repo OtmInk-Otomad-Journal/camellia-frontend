@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref } from 'vue'
 const data = ref({
   'ranking': 42,
   'score': 2.863,
@@ -28,8 +28,7 @@ function fun(obj) {
     ...obj
   }
 }
-window['inject'] = (obj) => { return (fun(obj)) }
-export default data;
-
-
-
+window['inject'] = (obj) => {
+  return fun(obj)
+}
+export default data

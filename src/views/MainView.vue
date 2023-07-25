@@ -108,11 +108,14 @@ window['seek_frame'] = (frame,fps,start_time) => { return (seek_frame(frame,fps,
 </script>
 
 <template>
-  <img style="display: none" src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" />
+  <img
+    style="display: none"
+    src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp"
+  />
   <div class="main-board">
     <div class="left">
       <div class="video-box">
-        <video class="video-inner" ref="videoRef">
+        <video class="video-inner" autoplay ref="videoRef">
           <source :src="data.web_video_src" />
         </video>
       </div>
