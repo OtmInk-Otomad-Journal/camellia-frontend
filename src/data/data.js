@@ -1,8 +1,6 @@
 import { ref } from 'vue'
 import { gsap } from 'gsap'
-
-let tl_1 = gsap.timeline()
-let tl_2 = gsap.timeline()
+import { seek_frame } from './utils'
 const data = ref({
   ranking: 42,
   score: 2.863,
@@ -31,14 +29,11 @@ function fun(obj) {
     ...obj
   }
 }
-function seek_frame(frame, fps, start_time) {
-  tl_1.seek(frame / fps)
-  tl_2.seek(frame / fps)
-  // videoRef.value.currentTime = start_time + frame / fps
-}
-
+// 动画 使用css选择器
 function repush() {
   //Identifier 'refresh' has already been declared
+  let tl_1 = gsap.timeline()
+  let tl_2 = gsap.timeline()
   tl_1.from('.video-box', {
     duration: 1,
     rotationX: 90,
@@ -168,10 +163,9 @@ function repush() {
         ease: 'expo.out'
       },
       0
-    ),
-    seek_frame(20, 60, 10)
+    )
+  //seek_frame(20, 60, 10)
 }
-
 // 全局函数 统一写在这
 window['seek_frame'] = (frame, fps, start_time) => {
   return seek_frame(frame, fps, start_time)
