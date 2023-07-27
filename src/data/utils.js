@@ -1,5 +1,5 @@
 import { gsap } from 'gsap'
-const tl = gsap.timeline
+const tl = gsap.timeline()
 function seek_frame(frame, fps, start_time) {
   tl.seek(frame / fps)
   return frame / fps

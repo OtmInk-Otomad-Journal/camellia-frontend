@@ -2,7 +2,7 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
-import data from '../data/data.js'
+import data from '../data/MainView_data.js'
 </script>
 
 <template>
