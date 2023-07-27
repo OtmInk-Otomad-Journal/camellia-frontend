@@ -17,7 +17,7 @@ export default defineConfig({
       }
     }),
     Components({
-      dirs: ['src/components'],
+      dirs: ['src/components', 'views'],
       extensions: ['vue'],
       deep: true,
       //我猜会用到
