@@ -12,7 +12,7 @@ import data from '../data/MainView_data.js'
   />
   <div class="main-board">
     <div class="left">
-      <div class="video-box">
+      <div class="video-box" :style="{ background: data.theme_color }">
         <video class="video-inner" autoplay>
           <source :src="data.web_video_src" />
         </video>

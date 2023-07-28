@@ -26,6 +26,8 @@
     "nextTick": true,
     "onActivated": true,
     "onBeforeMount": true,
+    "onBeforeRouteLeave": true,
+    "onBeforeRouteUpdate": true,
     "onBeforeUnmount": true,
     "onBeforeUpdate": true,
     "onDeactivated": true,
@@ -54,15 +56,13 @@
     "useAttrs": true,
     "useCssModule": true,
     "useCssVars": true,
+    "useLink": true,
+    "useRoute": true,
+    "useRouter": true,
     "useSlots": true,
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "onBeforeRouteLeave": true,
-    "onBeforeRouteUpdate": true,
-    "useLink": true,
-    "useRoute": true,
-    "useRouter": true
+    "watchSyncEffect": true
   }
 }

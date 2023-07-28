@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { gsap } from 'gsap'
+// 初始化
 const data = ref({
   ranking: 4,
   score: 4.147,
@@ -21,12 +22,13 @@ const data = ref({
   video_src: 'H:\\Code\\OtmInk Weekly Camellia\\video\\403625623.mp4',
   avatar_src: 'H:\\Code\\OtmInk Weekly Camellia\\avatar\\403625623.png',
   cover_src: 'H:\\Code\\OtmInk Weekly Camellia\\cover\\403625623.png',
-  theme_color: (61, 49, 47)
+  theme_color: '(61, 49, 47)'
 })
 function fun(obj) {
   data.value = {
     ...obj
   }
+  data.value.theme_color = String('rgb' + data.value.theme_color)
 }
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
@@ -179,7 +181,10 @@ window['seek_frame'] = (frame, fps, start_time) => {
   seek_frame(frame, fps, start_time)
 }
 window['inject'] = (obj) => {
+  console.log(data.value.theme_color)
   fun(obj)
   repush()
+  tl_1.restart(true)
+  tl_2.restart(true)
 }
 export default data
