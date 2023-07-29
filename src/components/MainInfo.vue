@@ -1,5 +1,5 @@
 <script setup>
-import data from '../data/MainView_data.js'
+import { data } from '../data/MainView_data.js'
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup>
-import data from '../data/MainView_data.js'
+import { data } from '../data/MainView_data.js'
 </script>
 
 <template>
@@ -21,7 +21,7 @@ import data from '../data/MainView_data.js'
   justify-content: center;
   align-items: center;
   padding: 0.25rem 1rem 1rem 1rem;
-  background-color: var(--c-accent);
+  background-color: v-bind('data.theme_color');
   color: white;
 }
 
