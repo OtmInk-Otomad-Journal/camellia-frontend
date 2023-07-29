@@ -30,8 +30,4 @@ function fun(obj) {
   data.value.theme_color = String('rgb' + data.value.theme_color)
 }
 
-window['inject'] = (obj) => {
-  fun(obj)
-}
-
 export { data, fun }

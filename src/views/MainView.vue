@@ -165,8 +165,6 @@ window['inject'] = (obj) => {
   tl_1.restart()
   tl_2.restart()
 }
-
-onMounted(animate())
 </script>
 
 <template>
