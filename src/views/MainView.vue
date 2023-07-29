@@ -152,6 +152,7 @@ function seek_frame(frame, fps, start_time) {
   tl_2.pause()
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
+  videoRef.value.currentTime = start_time + frame / fps
 }
 
 //// 全局函数 统一写在这
