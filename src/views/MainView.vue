@@ -4,7 +4,6 @@ import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
-import { onMounted } from 'vue'
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
@@ -144,12 +143,9 @@ function animate() {
       },
       0
     )
-  //seek_frame(20, 60, 10)
 }
 
 function seek_frame(frame, fps, start_time) {
-  tl_1.pause()
-  tl_2.pause()
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
   videoRef.value.currentTime = start_time + frame / fps
@@ -161,18 +157,20 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
+  tl_1.pause()
+  tl_2.pause()
   fun(obj)
   animate()
-  tl_1.restart()
-  tl_2.restart()
 }
+
+fun(data.value)
 </script>
 
 <template>
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">
-        <video class="video-inner" ref="videoRef">
+        <video class="video-inner" ref="videoRef" :key="data.video_src">
           <source :src="data.video_src" />
         </video>
       </div>
@@ -206,8 +204,13 @@ window['inject'] = (obj) => {
   top: 0;
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  transform: scale(1.5);
+  filter: blur(100px);
+  // mix-blend-mode: darken;
 }
-
 .video-box {
   @include card;
   width: auto;

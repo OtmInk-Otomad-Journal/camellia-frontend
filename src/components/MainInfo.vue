@@ -3,7 +3,7 @@ import { data } from '../data/MainView_data.js'
 </script>
 
 <template>
-  <div class="main-info" ref="main_info_Ref">
+  <div class="main-info" :class="data.theme_brightness" ref="main_info_Ref">
     <h1 class="main-title">{{ data.title }}</h1>
     <div class="details">
       <div class="chips">

@@ -1,4 +1,5 @@
 <script setup>
+import { data } from '../data/MainView_data.js'
 defineProps({
   icon: String,
   title: String,

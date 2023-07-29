@@ -1,33 +1,38 @@
 import { ref } from 'vue'
 // 初始化
 const data = ref({
-  ranking: 4,
-  score: 4.147,
-  aid: '403625623',
-  bvid: 'BV1jV411K7qq',
-  title: '♿退り役り♿',
-  uploader: '海绵宝宝宇月儿',
+  score: 3.373,
+  aid: '616084655',
+  bvid: 'BV1wh4y1L7mr',
+  title: '-冷吟閑酔-',
+  uploader: '芙兰厨陈YuYue',
   copyright: '1',
-  play: '9600',
-  like: '1044',
-  coin: '619',
-  star: '679',
-  pubtime: '2023-07-21 21:17:08',
+  play: '1898',
+  like: '573',
+  coin: '50',
+  star: '194',
+  pubtime: '2023-07-19 11:32:40',
   adjust_scale: '1',
   part: '1',
   duration: 20,
-  start_time: 62.9498125,
+  start_time: 56.9831565,
   full_time: 20,
-  video_src: 'http://localhost:7213\\video\\403625623.mp4',
-  avatar_src: 'http://localhost:7213\\avatar\\403625623.png',
-  cover_src: 'http://localhost:7213\\cover\\403625623.png',
-  theme_color: '(61, 49, 47)'
+  web_prefix: 'http://localhost:7213/',
+  video_src: './video/616084655.mp4',
+  avatar_src: './avatar/616084655.png',
+  cover_src: './cover/616084655.png',
+  theme_color: '(244, 240, 238)',
+  theme_brightness: 'light',
+  ranking: 11
 })
 function fun(obj) {
   data.value = {
     ...obj
   }
   data.value.theme_color = String('rgb' + data.value.theme_color)
+  data.value.video_src = String(data.value.web_prefix + data.value.video_src)
+  data.value.avatar_src = String(data.value.web_prefix + data.value.avatar_src)
+  data.value.cover_src = String(data.value.web_prefix + data.value.cover_src)
 }
 
 export { data, fun }
