@@ -9,6 +9,7 @@ import { gsap } from 'gsap'
 
 let tl_1 = gsap.timeline()
 let tl_2 = gsap.timeline()
+let tl_3 = gsap.timeline()
 const videoRef = ref()
 
 // 动画 使用css选择器
@@ -19,20 +20,12 @@ function animate() {
     ease: 'back.out(2)'
   }),
     tl_1.to(
-      '.video-box',
-      {
-        duration: 1,
-        rotationX: 90,
-        ease: 'power4.in'
-      },
-      data.value.full_time - 1
-    ),
-    tl_1.to(
       '.left',
       {
         duration: 1,
-        opacity: 0,
-        ease: 'power4.in'
+        x: -400,
+        rotationY: 90,
+        ease: 'expo.in'
       },
       data.value.full_time - 1
     ),
@@ -40,8 +33,9 @@ function animate() {
       '.right',
       {
         duration: 1,
-        opacity: 0,
-        ease: 'power4.in'
+        x: 200,
+        rotationY: 90,
+        ease: 'expo.in'
       },
       data.value.full_time - 1
     ),
@@ -50,7 +44,7 @@ function animate() {
       {
         duration: 0.8,
         y: 50,
-        opacity: 0,
+        rotationX: 90,
         ease: 'expo.out'
       },
       0
@@ -60,7 +54,7 @@ function animate() {
       {
         duration: 0.8,
         x: 50,
-        opacity: 0,
+        rotationX: 90,
         ease: 'expo.out'
       },
       0
@@ -70,7 +64,7 @@ function animate() {
       {
         duration: 0.8,
         x: 50,
-        opacity: 0,
+        rotationX: 90,
         ease: 'expo.out'
       },
       0
@@ -80,7 +74,7 @@ function animate() {
       {
         duration: 0.8,
         x: 50,
-        opacity: 0,
+        rotationY: 90,
         stagger: 0.08,
         ease: 'expo.out'
       },
@@ -91,7 +85,7 @@ function animate() {
       {
         duration: 0.8,
         y: 50,
-        opacity: 0,
+        rotationX: 90,
         ease: 'expo.out'
       },
       0
@@ -143,11 +137,21 @@ function animate() {
       },
       0
     )
+  tl_3.to(
+    '.main-progress',
+    {
+      duration: data.value.full_time,
+      width: '100%',
+      ease: 'linear'
+    },
+    0
+  )
 }
 
 function seek_frame(frame, fps, start_time) {
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
+  tl_3.seek(frame / fps)
   videoRef.value.currentTime = start_time + frame / fps
 }
 
@@ -157,8 +161,8 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  tl_1.pause()
-  tl_2.pause()
+  // tl_1.pause()
+  // tl_2.pause()
   fun(obj)
   animate()
 }

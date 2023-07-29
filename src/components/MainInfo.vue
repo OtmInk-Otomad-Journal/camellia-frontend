@@ -3,7 +3,7 @@ import { data } from '../data/MainView_data.js'
 </script>
 
 <template>
-  <div class="main-info" :class="data.theme_brightness" ref="main_info_Ref">
+  <div class="main-info" :class="data.theme_brightness">
     <h1 class="main-title">{{ data.title }}</h1>
     <div class="details">
       <div class="chips">
@@ -12,10 +12,21 @@ import { data } from '../data/MainView_data.js'
       </div>
       <UploaderInfo />
     </div>
+    <div class="main-progress"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.main-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: v-bind('data.theme_color');
+  opacity: 0.5;
+  height: 100%;
+  width: 0;
+  z-index: -1;
+}
 .main-info {
   @include card;
   display: flex;
