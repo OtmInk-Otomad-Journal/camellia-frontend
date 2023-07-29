@@ -26,7 +26,7 @@ function animate() {
         rotationX: 90,
         ease: 'power4.in'
       },
-      data.value.full_time
+      data.value.full_time - 1
     ),
     tl_1.to(
       '.left',
@@ -35,7 +35,7 @@ function animate() {
         opacity: 0,
         ease: 'power4.in'
       },
-      data.value.full_time
+      data.value.full_time - 1
     ),
     tl_1.to(
       '.right',
@@ -44,7 +44,7 @@ function animate() {
         opacity: 0,
         ease: 'power4.in'
       },
-      data.value.full_time
+      data.value.full_time - 1
     ),
     tl_2.from(
       '.main-info',
