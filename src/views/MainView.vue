@@ -161,8 +161,9 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  // tl_1.pause()
-  // tl_2.pause()
+  tl_1.pause()
+  tl_2.pause()
+  tl_3.pause()
   fun(obj)
   animate()
 }
