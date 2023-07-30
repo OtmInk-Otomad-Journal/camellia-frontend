@@ -7,7 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./components/InfoChip copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
+    ExtraInfoChip: typeof import('./components/ExtraInfoChip.vue')['default']
+    ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
     InfoChip: typeof import('./components/InfoChip.vue')['default']
     MainCounts: typeof import('./components/MainCounts.vue')['default']
     MainInfo: typeof import('./components/MainInfo.vue')['default']

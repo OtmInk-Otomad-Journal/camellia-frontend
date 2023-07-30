@@ -7,7 +7,7 @@ import { data } from '../data/MainView_data.js'
     <h1 class="main-title">{{ data.title }}</h1>
     <div class="details">
       <div class="chips">
-        <InfoChip>AV{{ data.aid }}</InfoChip>
+        <InfoChip>av{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
       </div>
       <UploaderInfo />
@@ -27,6 +27,7 @@ import { data } from '../data/MainView_data.js'
   width: 0;
   z-index: -1;
 }
+
 .main-info {
   @include card;
   display: flex;
