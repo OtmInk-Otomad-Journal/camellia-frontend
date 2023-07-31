@@ -3,47 +3,27 @@ import ExtraSingle from '../components/ExtraSingle.vue'
 import datas from '../data/ExtraView_data.js'
 import { gsap } from 'gsap'
 import { onMounted, ref } from 'vue'
-let tl_1 = gsap.timeline()
-let tl_2 = gsap.timeline()
-let tl_3 = gsap.timeline()
-let tl_4 = gsap.timeline()
+let tls = [gsap.timeline(), gsap.timeline(), gsap.timeline(), gsap.timeline()]
 
 window['e_inject'] = (obj) => {
   datas.value = obj
+  tls.forEach((ele) => {
+    ele.restart()
+  })
   animate()
 }
 function animate() {
-  tl_1.from('#es0', {
-    duration: 0.8,
-    x: -1500
-  })
-  tl_1.to('#es0', {
-    delay: 2.5,
-    x: 1500
-  })
-  tl_2.from('#es1', {
-    duration: 0.8,
-    x: -1500
-  })
-  tl_2.to('#es1', {
-    delay: 2.5,
-    x: 1500
-  })
-  tl_3.from('#es2', {
-    duration: 0.8,
-    x: -1500
-  })
-  tl_3.to('#es2', {
-    delay: 2.5,
-    x: 1500
-  })
-  tl_4.from('#es3', {
-    duration: 0.8,
-    x: -1500
-  })
-  tl_4.to('#es3', {
-    delay: 2.5,
-    x: 1500
+  tls.forEach((ele, index) => {
+    ele.from('#es' + index, {
+      x: 1500,
+      duration: 0.8,
+      ease: 'expo.out'
+    })
+    ele.to('#es' + index, {
+      x: -1500,
+      delay: 2.5,
+      ease: 'expo.in'
+    })
   })
 }
 
