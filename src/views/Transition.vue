@@ -4,88 +4,66 @@
     <div class="awindow" id="b">更精彩</div>
   </div>
   <div class="process"></div>
-  <img class="main-back" :src="data.cover_src" />
+  <img class="main-back" :src="data.cover_src" ref="backRef" />
 </template>
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { data } from '../data/MainView_data.js'
-import { onMounted } from 'vue'
-
+import data from '../data/Transition_data.js'
+import { onMounted, ref } from 'vue'
+const backRef = ref()
 let tl_1 = gsap.timeline()
 let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
 
 function animate() {
-  tl_1
+  tl_1.from('#a', {
+    y: -1000,
+    duration: 0.8,
+    delay: 0.2,
+    ease: 'expo.out'
+  })
+  tl_1.from('#b', {
+    y: -1000,
+    duration: 0.8,
+    delay: 0,
+    ease: 'expo.out'
+  })
+  tl_1.to('#a', {
+    y: -1000,
+    ease: 'linear'
+  })
+  tl_1.to('#b', {
+    y: -1000,
+    ease: 'linear'
+  })
+  tl_3
     .fromTo(
-      '#a',
+      '.main-back',
       {
-        y: -500,
-        duration: 0.8,
-        delay: 0.2,
-        ease: 'expo.out'
+        opacity: '100%',
+        duration: 5
       },
       {
-        y: '50%',
-        ease: 'linear'
-      }
-    )
-    .then(() => {})
-
-  tl_1
-    .fromTo(
-      '#b',
-      {
-        y: -500,
-        duration: 0.8,
-        delay: 1,
-        ease: 'expo.out'
-      },
-      {
-        y: '50%',
-        ease: 'linear'
+        ease: 'linear',
+        opacity: '0%'
       }
     )
     .then(() => {
+      backRef.value.src = data.value.next_cover
       tl_1.fromTo(
-        '#b',
+        '.main-back',
         {
-          y: '50%',
-          duration: 0.8,
-          delay: 6,
-          ease: 'expo.out'
+          opacity: '0%',
+          delay: 1,
+          duration: 2.5
         },
         {
-          y: 1500,
-          ease: 'linear'
+          ease: 'linear',
+          opacity: '100%'
         }
       )
     })
-  tl_1.fromTo(
-    '.main-back',
-    {
-      opacity: '100%',
-      duration: 5
-    },
-    {
-      ease: 'linear',
-      opacity: '0%'
-    }
-  )
-  tl_1.fromTo(
-    '#a',
-    {
-      y: '50%',
-      duration: 0.8,
-      delay: 5.2,
-      ease: 'expo.out'
-    },
-    {
-      y: 1500,
-      ease: 'linear'
-    }
-  )
 }
 
 window['t_inject'] = (obj) => {

@@ -1,7 +1,8 @@
 import { ref } from 'vue'
 
 const data = ref({
-  cover_src: './cover/616084655.png',
+  cover_src: '/public/gp.png',
+  next_cover: '/public/badgun.gif',
   theme_color: '(244, 240, 238)',
   theme_brightness: 'light'
 })

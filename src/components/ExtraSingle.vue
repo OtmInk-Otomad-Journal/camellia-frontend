@@ -1,20 +1,22 @@
 <script setup>
-import { data } from '../data/MainView_data.js'
+const props = defineProps({
+  data: Object
+})
 </script>
 
 <template>
-  <div class="extra-single" :class="data.theme_brightness">
+  <div class="extra-single" :class="props.data.theme_brightness">
     <img class="cover" />
     <div class="right">
-      <h1 class="main-title">{{ data.title }}</h1>
+      <h1 class="main-title">{{ props.data.title }}</h1>
       <div class="chips">
-        <InfoChip>av{{ data.aid }}</InfoChip>
-        <InfoChip>{{ data.pubtime }}</InfoChip>
+        <InfoChip>av{{ props.data.aid }}</InfoChip>
+        <InfoChip>{{ props.data.pubtime }}</InfoChip>
       </div>
       <div class="bottom">
-        <div class="rank">#{{ data.ranking }}</div>
+        <div class="rank">#{{ props.data.ranking }}</div>
         <div class="points">
-          <span>2.33</span>
+          <span>{{ props.data.score }}</span>
           <span>POINTS</span>
         </div>
       </div>
