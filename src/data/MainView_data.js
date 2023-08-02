@@ -25,7 +25,7 @@ const data = ref({
   theme_brightness: 'light',
   ranking: 1,
   more_data: [
-    40,
+    60,
     {
       ranking: 123,
       score: 3.373,

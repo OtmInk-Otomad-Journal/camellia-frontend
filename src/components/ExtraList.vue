@@ -75,16 +75,10 @@ onMounted(() => {
       opacity: 1
     }
   )
-  tl_1.fromTo(
-    '.viewlist',
-    {
-      y: 0
-    },
-    {
-      duration: props.more_data[0],
-      y: 0
-    }
-  )
+  tl_1.to('.viewlist', {
+    duration: props.more_data[0],
+    scrollTo: { y: 'max' }
+  })
 })
 </script>
 
