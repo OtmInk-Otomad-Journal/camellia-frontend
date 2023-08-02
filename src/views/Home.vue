@@ -5,7 +5,6 @@
     <nav>
       <RouterLink to="/main">主榜</RouterLink>
       <RouterLink to="/extra">副榜</RouterLink>
-      <RouterLink to="/trans">过渡</RouterLink>
     </nav>
   </main>
 </template>

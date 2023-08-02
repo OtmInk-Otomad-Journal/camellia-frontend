@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CountItem: typeof import('./components/CountItem.vue')['default']
+    ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
     InfoChip: typeof import('./components/InfoChip.vue')['default']
     MainCounts: typeof import('./components/MainCounts.vue')['default']

@@ -1,11 +1,32 @@
 <script setup>
+import { onMounted, ref } from 'vue'
 const props = defineProps({
-  data: Object
+  data: {
+    type: Object,
+    default: () => {
+      return {
+        ranking: 123,
+        score: 3.373,
+        aid: '616084655',
+        bvid: 'BV1wh4y1L7mr',
+        title: '-冷吟閑酔-',
+        uploader: '芙兰厨陈YuYue',
+        copyright: '1',
+        pubtime: '2023-07-19 11:32:40',
+        adjust_scale: '1',
+        part: '1',
+        web_prefix: 'http://localhost:7213/',
+        avatar_src: './avatar/616084655.png',
+        cover_src: './cover/616084655.png',
+        theme_brightness: 'light'
+      }
+    }
+  }
 })
 </script>
 
 <template>
-  <div class="extra-single" :class="props.data.theme_brightness">
+  <div class="extra-single">
     <img class="cover" />
     <div class="right">
       <h1 class="main-title">{{ props.data.title }}</h1>
@@ -33,6 +54,7 @@ const props = defineProps({
   flex-grow: 1;
   width: 100%;
   padding: 1rem;
+  margin-top: 10px;
 }
 
 .cover {

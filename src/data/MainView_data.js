@@ -23,7 +23,58 @@ const data = ref({
   cover_src: './cover/616084655.png',
   theme_color: '(244, 240, 238)',
   theme_brightness: 'light',
-  ranking: 11
+  ranking: 1,
+  more_data: [
+    40,
+    {
+      ranking: 123,
+      score: 3.373,
+      aid: '616084655',
+      bvid: 'BV1wh4y1L7mr',
+      title: '-冷吟閑酔-',
+      uploader: '芙兰厨陈YuYue',
+      copyright: '1',
+      pubtime: '2023-07-19 11:32:40',
+      adjust_scale: '1',
+      part: '1',
+      web_prefix: 'http://localhost:7213/',
+      avatar_src: './avatar/616084655.png',
+      cover_src: './cover/616084655.png',
+      theme_brightness: 'light'
+    },
+    {
+      ranking: 4213,
+      score: 373,
+      aid: '616084655',
+      bvid: 'BV1wh4y1L7mr',
+      title: '-冷吟閑酔-',
+      uploader: '芙兰厨陈YuYue',
+      copyright: '1',
+      pubtime: '2023-07-19 11:32:40',
+      adjust_scale: '1',
+      part: '1',
+      web_prefix: 'http://localhost:7213/',
+      avatar_src: './avatar/616084655.png',
+      cover_src: './cover/616084655.png',
+      theme_brightness: 'light'
+    },
+    {
+      ranking: 11,
+      score: 3.373,
+      aid: '616084655',
+      bvid: 'BV1wh4y1L7mr',
+      title: '-冷吟閑酔-',
+      uploader: '芙兰厨陈YuYue',
+      copyright: '1',
+      pubtime: '2023-07-19 11:32:40',
+      adjust_scale: '1',
+      part: '1',
+      web_prefix: 'http://localhost:7213/',
+      avatar_src: './avatar/616084655.png',
+      cover_src: './cover/616084655.png',
+      theme_brightness: 'light'
+    }
+  ]
 })
 function fun(obj) {
   data.value = {

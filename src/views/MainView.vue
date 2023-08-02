@@ -2,9 +2,10 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
-import ExtraView from '../views/ExtraView.vue'
+import ExtraList from '../components/ExtraList.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
+import { onMounted } from 'vue'
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
@@ -19,7 +20,8 @@ function animate() {
     duration: 1,
     rotationX: 90,
     ease: 'back.out(2)'
-  }),
+  })
+  if (!data.value.more_data) {
     tl_1.to(
       '.left',
       {
@@ -30,26 +32,47 @@ function animate() {
       },
       data.value.full_time - 1
     ),
+      tl_1.to(
+        '.right',
+        {
+          duration: 1,
+          x: 200,
+          rotationY: 90,
+          ease: 'expo.in'
+        },
+        data.value.full_time - 1
+      )
+  } else {
     tl_1.to(
-      '.right',
+      '.left',
       {
         duration: 1,
-        x: 200,
-        rotationY: 90,
+        opacity: 0.5,
         ease: 'expo.in'
       },
       data.value.full_time - 1
     ),
-    tl_2.from(
-      '.main-info',
-      {
-        duration: 0.8,
-        y: 50,
-        rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
+      tl_1.to(
+        '.right',
+        {
+          duration: 1,
+          opacity: 0.5,
+          ease: 'expo.in'
+        },
+        data.value.full_time - 1
+      )
+  }
+
+  tl_2.from(
+    '.main-info',
+    {
+      duration: 0.8,
+      y: 50,
+      rotationX: 90,
+      ease: 'expo.out'
+    },
+    0
+  ),
     tl_2.from(
       '.main-rank',
       {
@@ -162,18 +185,92 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
+  /*
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
+  */
   fun(obj)
   animate()
 }
 
-fun(data.value)
+onMounted(() => {
+  fun(data.value)
+  animate()
+  console.log(data.value.more_data)
+})
+
+/*
+test data:
+左边收起
+
+inject([{
+  score: 0,
+  aid: '616084655',
+  bvid: 'BV1wh4y1L7mr',
+  title: '-热吟閑酔-',
+  uploader: '蕾咪厨陈YuYue',
+  copyright: '0.5',
+  pubtime: '2077-07-19 11:32:40',
+  adjust_scale: '1',
+  part: '1',
+  web_prefix: 'http://localhost:7213/',
+  avatar_src: './avatar/616084655.png',
+  cover_src: './cover/616084655.png',
+  theme_brightness: 'light',
+  ranking: 11
+},{
+  score: 11.4,
+  aid: '616084655',
+  bvid: 'BV1wh4y1L7mr',
+  title: '-吟閑酔-',
+  uploader: '蕾咪厨陈YuYue',
+  copyright: '5',
+  pubtime: '2077-07-19 11:32:40',
+  adjust_scale: '1',
+  part: '1',
+  web_prefix: 'http://localhost:7213/',
+  avatar_src: './avatar/616084655.png',
+  cover_src: './cover/616084655.png',
+  theme_brightness: 'light',
+  ranking: 0
+},{
+  score: -5,
+  aid: '616084655',
+  bvid: 'BV1wh4y1L7mr',
+  title: '-吟閑酔-',
+  uploader: '蕾咪厨陈YuYue',
+  copyright: '5',
+  pubtime: '2077-07-19 11:32:40',
+  adjust_scale: '1',
+  part: '1',
+  web_prefix: 'http://localhost:7213/',
+  avatar_src: './avatar/616084655.png',
+  cover_src: './cover/616084655.png',
+  theme_brightness: 'light',
+  ranking: 191
+},{
+  score: -66,
+  aid: '616084655',
+  bvid: 'BV1wh4y1L7mr',
+  title: '-吟閑酔-',
+  uploader: '蕾咪厨陈YuYue',
+  copyright: '5',
+  pubtime: '2077-07-19 11:32:40',
+  adjust_scale: '1',
+  part: '1',
+  web_prefix: 'http://localhost:7213/',
+  avatar_src: './avatar/616084655.png',
+  cover_src: './cover/616084655.png',
+  theme_brightness: 'light',
+  ranking: 191
+}])
+
+*/
 </script>
 
 <template>
-  <ExtraView v-if="data.more_data" :more_data="data.more_data" />
+  <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -256,5 +353,9 @@ fun(data.value)
 .right {
   flex-shrink: 0;
   max-width: 26.875rem;
+}
+.extra-list {
+  position: absolute;
+  z-index: 100;
 }
 </style>
