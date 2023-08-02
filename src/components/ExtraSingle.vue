@@ -28,7 +28,7 @@ const props = defineProps({
 <template>
   <div class="extra-single">
     <img class="cover" />
-    <div class="right">
+    <div class="rightI">
       <h1 class="main-title">{{ props.data.title }}</h1>
       <div class="chips">
         <InfoChip>av{{ props.data.aid }}</InfoChip>
@@ -66,7 +66,7 @@ const props = defineProps({
   border-radius: 0.5rem;
 }
 
-.right {
+.rightI {
   display: flex;
   flex-direction: column;
   margin-left: 2rem;

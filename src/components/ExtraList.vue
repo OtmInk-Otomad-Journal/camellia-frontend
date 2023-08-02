@@ -81,7 +81,7 @@ onMounted(() => {
     },
     {
       duration: props.more_data[0],
-      y: -4000
+      y: -8500
     }
   )
 })
