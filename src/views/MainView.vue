@@ -2,10 +2,9 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
+import ExtraView from '../views/ExtraView.vue'
 import { data, fun } from '../data/MainView_data.js'
-import router from '../router/index.js'
 import { gsap } from 'gsap'
-import { ref, onMounted } from 'vue'
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
@@ -163,23 +162,18 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  /*
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
-  */
   fun(obj)
   animate()
-  setTimeout(() => {
-    console.log('end')
-    router.push('/trans')
-  }, data.value.duration * 1000)
 }
 
 fun(data.value)
 </script>
 
 <template>
+  <ExtraView v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">

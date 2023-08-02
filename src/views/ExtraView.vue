@@ -1,35 +1,7 @@
 <script setup>
 import ExtraSingle from '../components/ExtraSingle.vue'
-import datas from '../data/ExtraView_data.js'
-import { gsap } from 'gsap'
-import { onMounted, ref } from 'vue'
-let tls = [gsap.timeline(), gsap.timeline(), gsap.timeline(), gsap.timeline()]
-
-window['e_inject'] = (obj) => {
-  datas.value = obj
-  tls.forEach((ele) => {
-    ele.restart()
-  })
-  animate()
-}
-function animate() {
-  tls.forEach((ele, index) => {
-    ele.from('#es' + index, {
-      x: 1500,
-      duration: 0.8,
-      ease: 'expo.out'
-    })
-    ele.to('#es' + index, {
-      x: -1500,
-      delay: 2.5,
-      ease: 'expo.in'
-    })
-  })
-}
-
-onMounted(() => {
-  console.log(datas.value)
-  animate()
+defineProps({
+  more_data: Object
 })
 </script>
 
