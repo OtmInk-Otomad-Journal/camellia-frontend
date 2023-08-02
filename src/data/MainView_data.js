@@ -182,16 +182,18 @@ function fun(obj) {
   data.value = {
     ...obj
   }
-  data.value.theme_color = String('rgb' + data.value.theme_color)
-  data.value.video_src = String(data.value.web_prefix + data.value.video_src)
-  data.value.avatar_src = String(data.value.web_prefix + data.value.avatar_src)
-  data.value.cover_src = String(data.value.web_prefix + data.value.cover_src)
-  data.value.more_data.forEach((element) => {
-    element.theme_color = String('rgb' + element.theme_color)
-    element.video_src = String(element.web_prefix + element.video_src)
-    element.avatar_src = String(element.web_prefix + element.avatar_src)
-    element.cover_src = String(element.web_prefix + element.cover_src)
-  })
+  data.value.theme_color = 'rgb' + data.value.theme_color
+  data.value.video_src = data.value.web_prefix + data.value.video_src
+  data.value.avatar_src = data.value.web_prefix + data.value.avatar_src
+  data.value.cover_src = data.value.web_prefix + data.value.cover_src
+  if (data.value.more_data) {
+    data.value.more_data.forEach((element) => {
+      element.theme_color = 'rgb' + element.theme_color
+      element.video_src = element.web_prefix + element.video_src
+      element.avatar_src = element.web_prefix + element.avatar_src
+      element.cover_src = element.web_prefix + element.cover_src
+    })
+  }
 }
 
 export { data, fun }

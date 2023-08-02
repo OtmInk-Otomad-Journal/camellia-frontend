@@ -18,6 +18,8 @@ let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
 let tl_4 = gsap.timeline()
 let tl_5 = gsap.timeline()
+let tls = []
+
 const videoRef = ref()
 
 // 动画 使用css选择器
@@ -209,13 +211,14 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  tl_1.kill()
-  tl_2.kill()
-  tl_3.kill()
-  tl_4.kill()
-  tl_5.kill()
-  fun(obj)
-  animate()
+  tl_1.restart()
+  tl_2.restart()
+  tl_3.restart()
+  tl_4.restart()
+  tl_5.restart()
+  fun(obj).then(() => {
+    animate()
+  })
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()

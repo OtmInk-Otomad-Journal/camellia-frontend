@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import ExtraSingle from './ExtraSingle.vue'
 import { data } from '../data/MainView_data'
 import StaffBox from './StaffBox.vue'
+import Avatar from './Avatar.vue'
 
 const props = defineProps({
   more_data: Array
@@ -20,17 +21,33 @@ const props = defineProps({
       <div class="end-board">
         <div class="staff-list">
           <div class="staff-single">
-            <StaffBox job="策划">坏枪</StaffBox>
-            <StaffBox job="主编团队">坏枪<br />ぁぁぁぁぁ</StaffBox>
-            <StaffBox job="界面设计">艾了个拉<br />坏枪</StaffBox>
-            <StaffBox job="前端架构">昊通机械<br />坏枪</StaffBox>
-            <StaffBox job="数据算法">ErH-弋汐希霅</StaffBox>
+            <StaffBox job="策划"><Avatar path="public/bd.jpg" /> 坏枪</StaffBox>
+            <StaffBox job="主编团队"
+              ><Avatar path="public/bd.jpg" /> 坏枪<br /><Avatar path="public/5a.jpg" />
+              ぁぁぁぁぁ</StaffBox
+            >
+            <StaffBox job="界面设计"
+              ><Avatar path="public/al.jpg" /> 艾了个拉<br />
+              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+            >
+            <StaffBox job="前端架构"
+              ><Avatar path="public/vt.jpg" /> 昊通机械<br />
+              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+            >
+            <StaffBox job="数据算法"><Avatar path="public/yl.jpg" /> ErH-弋汐希霅</StaffBox>
           </div>
           <div class="staff-single">
-            <StaffBox job="后端架构">ErH-弋汐希霅<br />坏枪</StaffBox>
-            <StaffBox job="片头音乐">thwy</StaffBox>
-            <StaffBox job="片头制作">唐辫小二</StaffBox>
-            <StaffBox job="数据审核">zzzzzz9125<br />我去是糖狗<br />隔壁你家一只老王 </StaffBox>
+            <StaffBox job="后端架构"
+              ><Avatar path="public/yl.jpg" /> ErH-弋汐希霅<br />
+              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+            >
+            <StaffBox job="片头音乐"><Avatar path="public/th.jpg" /> thwy</StaffBox>
+            <StaffBox job="片头制作"><Avatar path="public/tb.jpg" /> 唐辫小二</StaffBox>
+            <StaffBox job="数据审核"
+              ><Avatar path="public/zz.jpg" /> zzzzzz9125<br /><Avatar
+                path="public/tg.jpg"
+              />我去是糖狗<br /><Avatar path="public/lw.jpg" />隔壁你家一只老王
+            </StaffBox>
           </div>
         </div>
         <div class="logo-list">
