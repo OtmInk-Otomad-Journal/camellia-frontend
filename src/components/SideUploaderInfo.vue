@@ -1,14 +1,16 @@
 <script setup>
-import { data } from '../data/MainView_data.js'
+defineProps({
+  data: Object
+})
 </script>
 
 <template>
-  <div class="uploader">
+  <div class="uploader" :class="data.theme_brightness">
     <div class="avatar">
       <img :src="data.avatar_src" />
     </div>
-    <div class="text">
-      <span class="name" :class="data.theme_brightness">{{ data.uploader }}</span>
+    <div class="text" :class="data.theme_brightness">
+      <span class="name">{{ data.uploader }}</span>
       <div class="badge-repost" v-if="data.copyright != 1 && data.copyright != '1'">
         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -32,7 +34,8 @@ import { data } from '../data/MainView_data.js'
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: v-bind('data.theme_color');
+  backdrop-filter: blur(10px);
+  // background-color: v-bind('data.theme_color');
   // background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -41,6 +44,7 @@ import { data } from '../data/MainView_data.js'
   align-items: center;
   gap: 0.5rem;
   height: 2.25rem;
+  background-color: transparent;
 }
 
 .badge-repost {
@@ -76,6 +80,5 @@ import { data } from '../data/MainView_data.js'
 .name {
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: transparent;
 }
 </style>

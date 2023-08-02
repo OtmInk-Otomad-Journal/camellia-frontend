@@ -5,13 +5,19 @@ import MainRank from '../components/MainRank.vue'
 import ExtraList from '../components/ExtraList.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
+import { ScrollToPlugin } from 'gsap/all'
 import { onMounted } from 'vue'
+import TransitionImage from '../components/TransitionImage.vue'
+
+gsap.registerPlugin(ScrollToPlugin)
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
 let tl_1 = gsap.timeline()
 let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
+let tl_4 = gsap.timeline()
+let tl_5 = gsap.timeline()
 const videoRef = ref()
 
 // 动画 使用css选择器
@@ -21,47 +27,26 @@ function animate() {
     rotationX: 90,
     ease: 'back.out(2)'
   })
-  if (!data.value.more_data) {
+  tl_1.to(
+    '.left',
+    {
+      duration: 1,
+      x: -1000,
+      rotationY: 90,
+      ease: 'expo.in'
+    },
+    data.value.full_time - 1
+  ),
     tl_1.to(
-      '.left',
+      '.right',
       {
         duration: 1,
-        x: -400,
+        x: 500,
         rotationY: 90,
         ease: 'expo.in'
       },
       data.value.full_time - 1
-    ),
-      tl_1.to(
-        '.right',
-        {
-          duration: 1,
-          x: 200,
-          rotationY: 90,
-          ease: 'expo.in'
-        },
-        data.value.full_time - 1
-      )
-  } else {
-    tl_1.to(
-      '.left',
-      {
-        duration: 1,
-        opacity: 0.5,
-        ease: 'expo.in'
-      },
-      data.value.full_time - 1
-    ),
-      tl_1.to(
-        '.right',
-        {
-          duration: 1,
-          opacity: 0.5,
-          ease: 'expo.in'
-        },
-        data.value.full_time - 1
-      )
-  }
+    )
 
   tl_2.from(
     '.main-info',
@@ -142,7 +127,6 @@ function animate() {
       {
         duration: 0.8,
         delay: 0.4,
-        stagger: 0.08,
         y: 50,
         opacity: 0,
         ease: 'expo.out'
@@ -170,12 +154,52 @@ function animate() {
     },
     0
   )
+  // 副榜动画
+  tl_4.to(
+    '.main-board',
+    {
+      filter: 'blur(50px)'
+    },
+    data.value.full_time - data.value.side_duration
+  )
+  tl_4.fromTo(
+    '.extra-board',
+    {
+      opacity: 0
+    },
+    {
+      duration: 1,
+      opacity: 1
+    }
+  )
+  tl_4.to('.viewlist', {
+    duration: data.value.side_duration - 1,
+    scrollTo: { y: 'max' },
+    ease: 'sine.inOut'
+  })
+  // 过渡用图动画
+  tl_5.to('.transition-image', {
+    opacity: 0,
+    duration: 1
+  })
+  if (!data.value.more_data) {
+    tl_5.to(
+      '.transition-image',
+      {
+        opacity: 1,
+        duration: 1
+      },
+      data.value.full_time - 1
+    )
+  }
 }
 
 function seek_frame(frame, fps, start_time) {
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
   tl_3.seek(frame / fps)
+  tl_4.seek(frame / fps)
+  tl_5.seek(frame / fps)
   videoRef.value.currentTime = start_time + frame / fps
 }
 
@@ -185,19 +209,23 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  /*
+  tl_1.kill()
+  tl_2.kill()
+  tl_3.kill()
+  tl_4.kill()
+  tl_5.kill()
+  fun(obj)
+  animate()
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
-  */
-  fun(obj)
-  animate()
+  tl_4.pause()
+  tl_5.pause()
 }
 
 onMounted(() => {
   fun(data.value)
   animate()
-  console.log(data.value.more_data)
 })
 
 /*
@@ -286,6 +314,7 @@ inject([{
       <img class="cover" :src="data.cover_src" />
     </div>
   </div>
+  <TransitionImage />
   <img class="main-back" :src="data.cover_src" />
 </template>
 

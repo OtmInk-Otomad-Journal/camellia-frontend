@@ -1,96 +1,44 @@
 <script setup>
 import { onMounted } from 'vue'
 import ExtraSingle from './ExtraSingle.vue'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { data } from '../data/MainView_data'
+import StaffBox from './StaffBox.vue'
+
 const props = defineProps({
-  more_data: {
-    type: Array,
-    default: () => {
-      return [
-        40,
-        {
-          ranking: 123,
-          score: 3.373,
-          aid: '616084655',
-          bvid: 'BV1wh4y1L7mr',
-          title: '-冷吟閑酔-',
-          uploader: '芙兰厨陈YuYue',
-          copyright: '1',
-          pubtime: '2023-07-19 11:32:40',
-          adjust_scale: '1',
-          part: '1',
-          web_prefix: 'http://localhost:7213/',
-          avatar_src: './avatar/616084655.png',
-          cover_src: './cover/616084655.png',
-          theme_brightness: 'light'
-        },
-        {
-          ranking: 4213,
-          score: 32273,
-          aid: '616084655',
-          bvid: 'BV1wh4y1L7mr',
-          title: '-冷吟閑酔-',
-          uploader: '芙兰厨陈YuYue',
-          copyright: '1',
-          pubtime: '2023-07-19 11:32:40',
-          adjust_scale: '1',
-          part: '1',
-          web_prefix: 'http://localhost:7213/',
-          avatar_src: './avatar/616084655.png',
-          cover_src: './cover/616084655.png',
-          theme_brightness: 'light'
-        },
-        {
-          ranking: 11,
-          score: 3.373,
-          aid: '616084655',
-          bvid: 'BV1wh4y1L7mr',
-          title: '-冷吟閑酔-',
-          uploader: '芙兰厨陈YuYue',
-          copyright: '1',
-          pubtime: '2023-07-19 11:32:40',
-          adjust_scale: '1',
-          part: '1',
-          web_prefix: 'http://localhost:7213/',
-          avatar_src: './avatar/616084655.png',
-          cover_src: './cover/616084655.png',
-          theme_brightness: 'light'
-        }
-      ]
-    }
-  }
-})
-let tl_1 = gsap.timeline()
-onMounted(() => {
-  console.log('extra start')
-  tl_1.fromTo(
-    '.extra-board',
-    {
-      opacity: 0
-    },
-    {
-      delay: 20,
-      duration: 2.5,
-      opacity: 1
-    }
-  )
-  tl_1.to('.viewlist', {
-    duration: props.more_data[0],
-    scrollTo: { y: 'max' }
-  })
+  more_data: Array
 })
 </script>
 
 <template>
   <div class="extra-board">
-    <div class="leftI">
-      <div class="viewlist">
-        <ExtraSingle v-for="i in 40" :key="i" :data="props.more_data[i]" :id="'es' + i" />
+    <div class="viewlist">
+      <div class="start-board" :class="data.theme_brightness">
+        <div class="side-end-title">副榜</div>
+        <div class="side-end-title-eng">MORE RANKING</div>
+      </div>
+      <ExtraSingle v-for="i in more_data" :key="i" :data="i" :id="'es' + i.ranking" />
+      <div class="end-board">
+        <div class="staff-list">
+          <div class="staff-single">
+            <StaffBox job="策划">坏枪</StaffBox>
+            <StaffBox job="主编团队">坏枪<br />ぁぁぁぁぁ</StaffBox>
+            <StaffBox job="界面设计">艾了个拉<br />坏枪</StaffBox>
+            <StaffBox job="前端架构">昊通机械<br />坏枪</StaffBox>
+            <StaffBox job="数据算法">ErH-弋汐希霅</StaffBox>
+          </div>
+          <div class="staff-single">
+            <StaffBox job="后端架构">ErH-弋汐希霅<br />坏枪</StaffBox>
+            <StaffBox job="片头音乐">thwy</StaffBox>
+            <StaffBox job="片头制作">唐辫小二</StaffBox>
+            <StaffBox job="数据审核">zzzzzz9125<br />我去是糖狗<br />隔壁你家一只老王 </StaffBox>
+          </div>
+        </div>
+        <div class="logo-list">
+          <img class="otm-logo" src="../assets/logo.svg" />
+          <div class="otm-text" :class="data.theme_brightness">音MAD，像墨一样沁润。</div>
+        </div>
       </div>
     </div>
-    <div class="rightI"></div>
-    <video class="back-video"></video>
   </div>
 </template>
 
@@ -98,38 +46,78 @@ onMounted(() => {
 .viewlist {
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  padding: 0 10em;
+  overflow-y: scroll;
 }
 .extra-board {
-  aspect-ratio: 16 / 9;
-  display: flex;
-  gap: 2rem;
-  padding: 3.5rem 5rem;
-  background-size: 100vw;
-  background-position: center;
-}
-
-.leftI {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  width: 100%;
-}
-
-.rightI {
-  width: 500px;
-  flex-shrink: 0;
-}
-.back-video {
-  position: absolute;
-  z-index: -10;
-  top: 0;
   width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  object-fit: cover;
-  transform: scale(1.5);
-  filter: blur(100px);
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Safari,Chrome 隐藏滚动条 */
+  height: 0; /* Safari,Chrome 隐藏滚动条 */
+  display: none; /* 移动端、pad 上Safari，Chrome，隐藏滚动条 */
+}
+
+.start-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.side-end-title {
+  font-size: 6rem;
+  font-weight: bold;
+}
+.side-end-title-eng {
+  font-size: 1.8rem;
+  font-family: Montserrat, sans-serif;
+  letter-spacing: 0.15em;
+}
+
+.end-board {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.staff-list {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.staff-single {
+  display: flex;
+  margin-left: 3em;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-list {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.otm-logo {
+  width: 50%;
+  filter: drop-shadow(10px 10px 8px rgba(0, 0, 0, 0.18));
+}
+
+.otm-text {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  background-color: transparent;
 }
 </style>

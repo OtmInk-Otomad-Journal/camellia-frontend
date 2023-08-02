@@ -1,69 +1,57 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 const props = defineProps({
-  data: {
-    type: Object,
-    default: () => {
-      return {
-        ranking: 123,
-        score: 3.373,
-        aid: '616084655',
-        bvid: 'BV1wh4y1L7mr',
-        title: '-冷吟閑酔-',
-        uploader: '芙兰厨陈YuYue',
-        copyright: '1',
-        pubtime: '2023-07-19 11:32:40',
-        adjust_scale: '1',
-        part: '1',
-        web_prefix: 'http://localhost:7213/',
-        avatar_src: './avatar/616084655.png',
-        cover_src: './cover/616084655.png',
-        theme_brightness: 'light'
-      }
-    }
-  }
+  data: Object
 })
 </script>
 
 <template>
   <div class="extra-single">
-    <img class="cover" />
     <div class="rightI">
-      <h1 class="main-title">{{ props.data.title }}</h1>
-      <div class="chips">
-        <InfoChip>av{{ props.data.aid }}</InfoChip>
-        <InfoChip>{{ props.data.pubtime }}</InfoChip>
+      <h1 class="side-title" :class="props.data.theme_brightness">{{ props.data.title }}</h1>
+      <div class="side-chips">
+        <SideInfoChip :single_data="props.data">av{{ props.data.aid }}</SideInfoChip>
+        <SideInfoChip :single_data="props.data">{{ props.data.pubtime }}</SideInfoChip>
       </div>
-      <div class="bottom">
+      <div class="bottom" :class="props.data.theme_brightness">
         <div class="rank">#{{ props.data.ranking }}</div>
         <div class="points">
           <span>{{ props.data.score }}</span>
           <span>POINTS</span>
         </div>
       </div>
-      <UploaderInfo />
+      <SideUploaderInfo :data="props.data" />
     </div>
+    <img class="cover" :src="props.data.cover_src" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .extra-single {
-  @include card;
   position: relative;
   display: flex;
   flex-grow: 1;
   width: 100%;
+  max-height: 200px;
   padding: 1rem;
-  margin-top: 10px;
+  margin-top: 30px;
+  border-radius: 12px;
+  background-image: linear-gradient(90deg, v-bind('props.data.theme_color') 33%, transparent);
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
 }
 
 .cover {
-  width: auto;
-  height: auto;
-  aspect-ratio: 16 / 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  object-fit: cover;
   flex-shrink: 0;
   border-radius: 0.5rem;
+  opacity: 1;
 }
 
 .rightI {
@@ -79,7 +67,7 @@ const props = defineProps({
     white-space: nowrap;
   }
 
-  .chips {
+  .side-chips {
     display: flex;
     gap: 1rem;
   }
@@ -88,6 +76,7 @@ const props = defineProps({
     display: flex;
     align-items: flex-end;
     gap: 1rem;
+    background-color: transparent;
   }
 
   .rank {
@@ -111,5 +100,9 @@ const props = defineProps({
   position: absolute;
   right: 1rem;
   bottom: 1rem;
+}
+
+.side-title {
+  background-color: transparent;
 }
 </style>

@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./components/UploaderInfo copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
@@ -16,6 +17,10 @@ declare module 'vue' {
     MainRank: typeof import('./components/MainRank.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideInfoChip: typeof import('./components/SideInfoChip.vue')['default']
+    SideUploaderInfo: typeof import('./components/SideUploaderInfo.vue')['default']
+    StaffBox: typeof import('./components/StaffBox.vue')['default']
+    TransitionImage: typeof import('./components/TransitionImage.vue')['default']
     UploaderInfo: typeof import('./components/UploaderInfo.vue')['default']
   }
 }
