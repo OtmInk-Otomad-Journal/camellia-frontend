@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import ExtraSingle from './ExtraSingle.vue'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const props = defineProps({
   more_data: {
     type: Array,
@@ -81,7 +82,7 @@ onMounted(() => {
     },
     {
       duration: props.more_data[0],
-      y: -4000
+      y: 0
     }
   )
 })
@@ -100,6 +101,11 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.viewlist {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
 .extra-board {
   aspect-ratio: 16 / 9;
   display: flex;
