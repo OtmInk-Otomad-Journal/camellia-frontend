@@ -21,30 +21,31 @@ const props = defineProps({
       <div class="end-board">
         <div class="staff-list">
           <div class="staff-single">
-            <StaffBox job="策划"><Avatar path="public/bd.jpg" /> 坏枪</StaffBox>
+            <StaffBox job="策划"><Avatar path="public/bd.jpg" />坏枪</StaffBox>
             <StaffBox job="主编团队"
-              ><Avatar path="public/bd.jpg" /> 坏枪<br /><Avatar path="public/5a.jpg" />
-              ぁぁぁぁぁ</StaffBox
+              ><Avatar path="public/bd.jpg" />坏枪<br /><Avatar
+                path="public/5a.jpg"
+              />ぁぁぁぁぁ</StaffBox
             >
             <StaffBox job="界面设计"
-              ><Avatar path="public/al.jpg" /> 艾了个拉<br />
-              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+              ><Avatar path="public/al.jpg" />艾了个拉<br />
+              <Avatar path="public/bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="前端架构"
-              ><Avatar path="public/vt.jpg" /> 昊通机械<br />
-              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+              ><Avatar path="public/vt.jpg" />昊通机械<br />
+              <Avatar path="public/bd.jpg" />坏枪</StaffBox
             >
-            <StaffBox job="数据算法"><Avatar path="public/yl.jpg" /> ErH-弋汐希霅</StaffBox>
+            <StaffBox job="数据算法"><Avatar path="public/yl.jpg" />ErH-弋汐希霅</StaffBox>
           </div>
           <div class="staff-single">
             <StaffBox job="后端架构"
-              ><Avatar path="public/yl.jpg" /> ErH-弋汐希霅<br />
-              <Avatar path="public/bd.jpg" /> 坏枪</StaffBox
+              ><Avatar path="public/yl.jpg" />ErH-弋汐希霅<br />
+              <Avatar path="public/bd.jpg" />坏枪</StaffBox
             >
-            <StaffBox job="片头音乐"><Avatar path="public/th.jpg" /> thwy</StaffBox>
-            <StaffBox job="片头制作"><Avatar path="public/tb.jpg" /> 唐辫小二</StaffBox>
+            <StaffBox job="片头音乐"><Avatar path="public/th.jpg" />thwy</StaffBox>
+            <StaffBox job="片头制作"><Avatar path="public/tb.jpg" />唐辫小二</StaffBox>
             <StaffBox job="数据审核"
-              ><Avatar path="public/zz.jpg" /> zzzzzz9125<br /><Avatar
+              ><Avatar path="public/zz.jpg" />zzzzzz9125<br /><Avatar
                 path="public/tg.jpg"
               />我去是糖狗<br /><Avatar path="public/lw.jpg" />隔壁你家一只老王
             </StaffBox>
@@ -52,7 +53,7 @@ const props = defineProps({
         </div>
         <div class="logo-list">
           <img class="otm-logo" src="../assets/logo.svg" />
-          <div class="otm-text" :class="data.theme_brightness">音MAD，像墨一样沁润。</div>
+          <div class="otm-text" :class="data.theme_brightness">音MAD，如墨一般浸润。</div>
         </div>
       </div>
     </div>

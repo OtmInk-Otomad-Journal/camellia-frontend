@@ -2,10 +2,11 @@
   <img
     style="
       border-radius: 50%;
-      height: 25px;
-      width: 25px;
+      height: 30px;
+      width: 30px;
       vertical-align: sub;
       display: inline-block;
+      margin-right: 10px;
     "
     :src="props.path"
   />

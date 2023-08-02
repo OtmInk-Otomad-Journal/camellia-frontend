@@ -19,6 +19,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SideInfoChip: typeof import('./components/SideInfoChip.vue')['default']
     SideUploaderInfo: typeof import('./components/SideUploaderInfo.vue')['default']
+    StaffAvatar: typeof import('./components/StaffAvatar.vue')['default']
     StaffBox: typeof import('./components/StaffBox.vue')['default']
     TransitionImage: typeof import('./components/TransitionImage.vue')['default']
     UploaderInfo: typeof import('./components/UploaderInfo.vue')['default']

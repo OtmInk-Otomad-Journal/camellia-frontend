@@ -157,28 +157,30 @@ function animate() {
     0
   )
   // 副榜动画
-  tl_4.to(
-    '.main-board',
-    {
-      filter: 'blur(50px)'
-    },
-    data.value.full_time - data.value.side_duration
-  )
-  tl_4.fromTo(
-    '.extra-board',
-    {
-      opacity: 0
-    },
-    {
-      duration: 1,
-      opacity: 1
-    }
-  )
-  tl_4.to('.viewlist', {
-    duration: data.value.side_duration - 1,
-    scrollTo: { y: 'max' },
-    ease: 'sine.inOut'
-  })
+  if (data.value.more_data) {
+    tl_4.to(
+      '.main-board',
+      {
+        filter: 'blur(50px)'
+      },
+      data.value.full_time - data.value.side_duration
+    )
+    tl_4.fromTo(
+      '.extra-board',
+      {
+        opacity: 0
+      },
+      {
+        duration: 1,
+        opacity: 1
+      }
+    )
+    tl_4.to('.viewlist', {
+      duration: data.value.side_duration - 1,
+      scrollTo: { y: 'max' },
+      ease: 'sine.inOut'
+    })
+  }
   // 过渡用图动画
   tl_5.to('.transition-image', {
     opacity: 0,
@@ -211,14 +213,8 @@ window['seek_frame'] = (frame, fps, start_time) => {
 }
 
 window['inject'] = (obj) => {
-  tl_1.restart()
-  tl_2.restart()
-  tl_3.restart()
-  tl_4.restart()
-  tl_5.restart()
-  fun(obj).then(() => {
-    animate()
-  })
+  fun(obj)
+  animate()
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
@@ -228,7 +224,6 @@ window['inject'] = (obj) => {
 
 onMounted(() => {
   fun(data.value)
-  animate()
 })
 
 /*
