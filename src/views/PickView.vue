@@ -1,15 +1,10 @@
 <script setup>
+import PickInfo from '../components/PickInfo.vue'
 import MainInfo from '../components/MainInfo.vue'
-import MainCounts from '../components/MainCounts.vue'
-import MainRank from '../components/MainRank.vue'
-import ExtraList from '../components/ExtraList.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
-import { ScrollToPlugin } from 'gsap/all'
 import { onMounted } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
-
-gsap.registerPlugin(ScrollToPlugin)
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
@@ -214,11 +209,11 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
-  // tl_1.pause()
-  // tl_2.pause()
-  // tl_3.pause()
-  // tl_4.pause()
-  // tl_5.pause()
+  tl_1.pause()
+  tl_2.pause()
+  tl_3.pause()
+  tl_4.pause()
+  tl_5.pause()
 }
 
 onMounted(() => {
@@ -295,7 +290,6 @@ inject([{
 </script>
 
 <template>
-  <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -306,8 +300,7 @@ inject([{
       <MainInfo />
     </div>
     <div class="right">
-      <MainRank />
-      <MainCounts />
+      <PickInfo :reason="data.reason" :picker="data.picker" />
       <img class="cover" :src="data.cover_src" />
     </div>
   </div>

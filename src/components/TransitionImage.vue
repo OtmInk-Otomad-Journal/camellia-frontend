@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="transition-image">过渡用图</div>
+  <div class="transition-image"><div style="margin: auto">过渡用图</div></div>
 </template>
 <style scoped>
 .transition-image {
@@ -15,5 +15,6 @@
   z-index: -5;
   white-space: nowrap;
   font-size: 400px;
+  font-family: 'SimSun', sans-serif;
 }
 </style>

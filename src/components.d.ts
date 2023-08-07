@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./components/Avatar.vue')['default']
+    copy: typeof import('./components/TransitionImage copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
@@ -15,12 +16,14 @@ declare module 'vue' {
     MainCounts: typeof import('./components/MainCounts.vue')['default']
     MainInfo: typeof import('./components/MainInfo.vue')['default']
     MainRank: typeof import('./components/MainRank.vue')['default']
+    PickInfo: typeof import('./components/PickInfo.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideInfoChip: typeof import('./components/SideInfoChip.vue')['default']
     SideUploaderInfo: typeof import('./components/SideUploaderInfo.vue')['default']
     StaffAvatar: typeof import('./components/StaffAvatar.vue')['default']
     StaffBox: typeof import('./components/StaffBox.vue')['default']
+    TransitionAnimation: typeof import('./components/TransitionAnimation.vue')['default']
     TransitionImage: typeof import('./components/TransitionImage.vue')['default']
     UploaderInfo: typeof import('./components/UploaderInfo.vue')['default']
   }

@@ -24,6 +24,22 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/MainView.vue')
+    },
+    {
+      path: '/pick',
+      name: 'pick',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/PickView.vue')
+    },
+    {
+      path: '/transition',
+      name: 'transition',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/TransView.vue')
     }
     /*{
       path: '/extra',

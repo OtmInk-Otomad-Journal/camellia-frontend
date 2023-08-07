@@ -3,8 +3,9 @@
 <template>
   <main>
     <nav>
-      <RouterLink to="/main">主榜</RouterLink>
-      <RouterLink to="/extra">副榜</RouterLink>
+      <RouterLink to="/main">主榜 / 副榜</RouterLink>
+      <RouterLink to="/transition">过渡</RouterLink>
+      <RouterLink to="/pick">Pick</RouterLink>
     </nav>
   </main>
 </template>

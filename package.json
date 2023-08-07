@@ -10,13 +10,17 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "dplayer": "^1.27.1",
     "eslint": "^8.45.0",
     "gsap": "^3.12.2",
+    "s": "^1.0.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.2.0",
+    "@types/dplayer": "^1.25.2",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vue/eslint-config-prettier": "^7.1.0",
     "eslint-plugin-vue": "^9.11.0",
