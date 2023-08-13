@@ -3,7 +3,7 @@ import { data } from '../data/MainView_data.js'
 </script>
 
 <template>
-  <div class="chip" :class="data.theme_brightness">
+  <div class="chip">
     <slot></slot>
   </div>
 </template>
@@ -14,13 +14,11 @@ import { data } from '../data/MainView_data.js'
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
-  // background-color: var(--c-accent);
-  background-color: v-bind('data.theme_color');
+  background-color: v-bind('data.dark_color');
   border-radius: 100rem;
   padding: 0.5rem 1.5rem;
   height: 2.25rem;
-  filter: brightness(1.2);
-  // color: white;
+  color: white;
   font-weight: 700;
   font-size: 1.25rem;
 }

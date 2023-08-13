@@ -6,7 +6,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="staff-box" :class="data.theme_brightness">
+  <div class="staff-box">
     <div class="staff-job">
       {{ job }}
     </div>
@@ -27,7 +27,9 @@ defineProps({
   padding: 5px 10px;
   border-radius: 8px;
   margin-bottom: 5px;
-  background-color: v-bind('data.theme_color');
+  /* background-color: var(--c-accent); */
+  background-color: v-bind('data.light_color');
+  color: black;
   font-size: 1.5rem;
   font-weight: bold;
 }

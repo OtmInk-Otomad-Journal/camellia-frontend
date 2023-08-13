@@ -214,11 +214,11 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
-  // tl_1.pause()
-  // tl_2.pause()
-  // tl_3.pause()
-  // tl_4.pause()
-  // tl_5.pause()
+  tl_1.pause()
+  tl_2.pause()
+  tl_3.pause()
+  tl_4.pause()
+  tl_5.pause()
 }
 
 onMounted(() => {
@@ -311,8 +311,8 @@ inject([{
       <img class="cover" :src="data.cover_src" />
     </div>
   </div>
-  <TransitionImage />
-  <img class="main-back" :src="data.cover_src" />
+  <!-- <TransitionImage /> -->
+  <!-- <img class="main-back" :src="data.cover_src" /> -->
 </template>
 
 <style lang="scss" scoped>
@@ -323,7 +323,7 @@ inject([{
   // height: 100vh;
   gap: 2rem;
   padding: 3.5rem 5rem;
-  // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
+  background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
   background-size: 100vw;
   background-position: center;
 }

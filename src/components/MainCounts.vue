@@ -4,10 +4,10 @@ import { data } from '../data/MainView_data.js'
 
 <template>
   <div class="main-counts">
-    <CountItem icon="play" title="播放" :count="data.play" :class="data.theme_brightness" />
-    <CountItem icon="like" title="点赞" :count="data.like" :class="data.theme_brightness" />
-    <CountItem icon="coin" title="投币" :count="data.coin" :class="data.theme_brightness" />
-    <CountItem icon="star" title="收藏" :count="data.star" :class="data.theme_brightness" />
+    <CountItem icon="play" title="播放" :count="data.play" />
+    <CountItem icon="like" title="点赞" :count="data.like" />
+    <CountItem icon="coin" title="投币" :count="data.coin" />
+    <CountItem icon="star" title="收藏" :count="data.star" />
   </div>
 </template>
 

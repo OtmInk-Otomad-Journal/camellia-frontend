@@ -151,46 +151,25 @@ function animate() {
   )
   // 副榜动画
   if (data.value.more_data) {
-    tl_4.to(
-      '.main-board',
-      {
-        filter: 'blur(50px)'
-      },
-      data.value.full_time - data.value.side_duration
-    )
-    tl_4.fromTo(
-      '.extra-board',
-      {
-        opacity: 0
-      },
-      {
-        duration: 1,
-        opacity: 1
-      }
-    )
-    tl_4.to('.viewlist', {
-      duration: data.value.side_duration - 1,
-      scrollTo: { y: 'max' },
-      ease: 'sine.inOut'
+    // 过渡用图动画
+    tl_5.to('.transition-image', {
+      opacity: 0,
+      duration: 1
     })
-  }
-  // 过渡用图动画
-  tl_5.to('.transition-image', {
-    opacity: 0,
-    duration: 1
-  })
-  if (!data.value.more_data) {
-    tl_5.to(
-      '.transition-image',
-      {
-        opacity: 1,
-        duration: 0.5
-      },
-      data.value.full_time - 0.5
-    )
+    if (!data.value.more_data) {
+      tl_5.to(
+        '.transition-image',
+        {
+          opacity: 1,
+          duration: 0.5
+        },
+        data.value.full_time - 0.5
+      )
+    }
   }
 }
 
+//// 全局函数 统一写在这
 function seek_frame(frame, fps, start_time) {
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
@@ -209,11 +188,11 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
-  tl_1.pause()
-  tl_2.pause()
-  tl_3.pause()
-  tl_4.pause()
-  tl_5.pause()
+  // tl_1.pause()
+  // tl_2.pause()
+  // tl_3.pause()
+  // tl_4.pause()
+  // tl_5.pause()
 }
 
 onMounted(() => {
@@ -297,14 +276,14 @@ inject([{
           <source :src="data.video_src" />
         </video>
       </div>
-      <MainInfo />
+      <MainInfo special_text="PICK UP" />
     </div>
     <div class="right">
       <PickInfo :reason="data.reason" :picker="data.picker" />
       <img class="cover" :src="data.cover_src" />
     </div>
   </div>
-  <TransitionImage />
+  <!-- <TransitionImage /> -->
   <img class="main-back" :src="data.cover_src" />
 </template>
 

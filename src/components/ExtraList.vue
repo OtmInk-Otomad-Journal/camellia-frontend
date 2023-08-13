@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
   <div class="extra-board">
     <div class="viewlist">
-      <div class="start-board" :class="data.theme_brightness">
+      <div class="start-board">
         <div class="side-end-title">副榜</div>
         <div class="side-end-title-eng">MORE RANKING</div>
       </div>
@@ -53,7 +53,7 @@ const props = defineProps({
         </div>
         <div class="logo-list">
           <img class="otm-logo" src="../assets/logo.svg" />
-          <div class="otm-text" :class="data.theme_brightness">音MAD，如墨一般浸润。</div>
+          <div class="otm-text">音MAD，如墨一般浸润。</div>
         </div>
       </div>
     </div>
@@ -70,6 +70,7 @@ const props = defineProps({
 .extra-board {
   width: 100%;
   height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 ::-webkit-scrollbar {

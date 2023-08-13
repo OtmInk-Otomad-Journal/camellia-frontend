@@ -5,11 +5,11 @@ defineProps({
 </script>
 
 <template>
-  <div class="uploader" :class="data.theme_brightness">
+  <div class="uploader">
     <div class="avatar">
       <img :src="data.avatar_src" />
     </div>
-    <div class="text" :class="data.theme_brightness">
+    <div class="text">
       <span class="name">{{ data.uploader }}</span>
       <div class="badge-repost" v-if="data.copyright != 1 && data.copyright != '1'">
         <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -34,9 +34,8 @@ defineProps({
   padding: 1rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  // background-color: v-bind('data.theme_color');
-  // background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .text {
@@ -54,8 +53,8 @@ defineProps({
   gap: 0.25rem;
   border-radius: 0.5rem;
   background-color: white;
-  color: var(--c-accent);
-  fill: var(--c-accent);
+  color: v-bind('data.dark_color');
+  fill: v-bind('data.dark_color');
   font-size: 1.25rem;
   font-weight: bold;
   height: 100%;

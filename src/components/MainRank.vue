@@ -3,7 +3,7 @@ import { data } from '../data/MainView_data.js'
 </script>
 
 <template>
-  <div class="main-rank" :class="data.theme_brightness">
+  <div class="main-rank">
     <div>
       <span class="rank">#{{ data.ranking }}</span>
     </div>
@@ -21,8 +21,9 @@ import { data } from '../data/MainView_data.js'
   justify-content: center;
   align-items: center;
   padding: 0.25rem 1rem 1rem 1rem;
-  background-color: v-bind('data.theme_color');
-  // color: white;
+  // background-color: var(--c-accent);
+  background-color: v-bind('data.dark_color');
+  color: white;
 }
 
 .rank {

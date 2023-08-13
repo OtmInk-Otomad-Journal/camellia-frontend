@@ -8,12 +8,12 @@ const props = defineProps({
 <template>
   <div class="extra-single">
     <div class="rightI">
-      <h1 class="side-title" :class="props.data.theme_brightness">{{ props.data.title }}</h1>
+      <h1 class="side-title">{{ props.data.title }}</h1>
       <div class="side-chips">
         <SideInfoChip :single_data="props.data">av{{ props.data.aid }}</SideInfoChip>
         <SideInfoChip :single_data="props.data">{{ props.data.pubtime }}</SideInfoChip>
       </div>
-      <div class="bottom" :class="props.data.theme_brightness">
+      <div class="bottom">
         <div class="rank">#{{ props.data.ranking }}</div>
         <div class="points">
           <span>{{ props.data.score }}</span>
@@ -22,12 +22,14 @@ const props = defineProps({
       </div>
       <SideUploaderInfo :data="props.data" />
     </div>
+    <div class="cover-mask"></div>
     <img class="cover" :src="props.data.cover_src" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .extra-single {
+  @include card;
   position: relative;
   display: flex;
   flex-grow: 1;
@@ -36,7 +38,7 @@ const props = defineProps({
   padding: 1rem;
   margin-top: 30px;
   border-radius: 12px;
-  background-image: linear-gradient(90deg, v-bind('props.data.theme_color') 33%, transparent);
+  // background-image: linear-gradient(90deg, #fff 33%, transparent);
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
 }
 
@@ -51,9 +53,18 @@ const props = defineProps({
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  opacity: 1;
+  opacity: 0.4;
 }
 
+.cover-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, rgb(233, 233, 233), transparent);
+}
 .rightI {
   display: flex;
   flex-direction: column;

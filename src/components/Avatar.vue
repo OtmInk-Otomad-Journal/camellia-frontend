@@ -17,8 +17,3 @@ const props = defineProps({
   path: String
 })
 </script>
-
-<style>
-. {
-}
-</style>
