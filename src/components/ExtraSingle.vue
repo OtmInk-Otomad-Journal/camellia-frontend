@@ -30,6 +30,7 @@ const props = defineProps({
 <style lang="scss" scoped>
 .extra-single {
   @include card;
+  @include acrylic;
   position: relative;
   display: flex;
   flex-grow: 1;

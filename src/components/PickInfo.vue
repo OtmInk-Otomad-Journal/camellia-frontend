@@ -37,6 +37,7 @@ defineProps({
 }
 .pick-info {
   @include card;
+  @include acrylic;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -313,6 +313,8 @@ inject([{
   </div>
   <!-- <TransitionImage /> -->
   <!-- <img class="main-back" :src="data.cover_src" /> -->
+  <!-- <img src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" /> -->
+  <!-- 请注意这个img是给background-image盗链服务的，平时使用时给它加上「display: none;」，直接background-image会403 -->
 </template>
 
 <style lang="scss" scoped>
