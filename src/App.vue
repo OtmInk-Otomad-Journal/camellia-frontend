@@ -9,7 +9,12 @@ import '@/assets/global.scss'
 
 <style lang="scss">
 body {
-  font-family: 'HarmonyOS Sans SC', 'Segoe UI Variable Display', sans-serif;
+  font-family:
+  // 常规黑体
+    'HarmonyOS Sans SC', 'Source Han Sans', 'Segoe UI Variable Display', sans-serif,
+    // 天珩全字库
+    'TH-Tshyn-P0',
+    'TH-Tshyn-P1', 'TH-Tshyn-P2', 'TH-Tshyn-P16';
   margin: 0;
   padding: 0;
   width: 100%;

@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./components/Avatar.vue')['default']
+    BackgroundImage: typeof import('./components/BackgroundImage.vue')['default']
     copy: typeof import('./components/TransitionImage copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']

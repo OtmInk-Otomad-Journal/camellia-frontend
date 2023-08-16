@@ -33,7 +33,7 @@ defineProps({
 <style lang="scss" scoped>
 .pick-icon {
   fill: v-bind('data.dark_color');
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  // filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 .pick-info {
   @include card;

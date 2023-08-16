@@ -1,11 +1,9 @@
 <script setup>
-import { onMounted } from 'vue'
 import ExtraSingle from './ExtraSingle.vue'
-import { data } from '../data/MainView_data'
 import StaffBox from './StaffBox.vue'
 import Avatar from './Avatar.vue'
 
-const props = defineProps({
+defineProps({
   more_data: Array
 })
 </script>
@@ -43,7 +41,11 @@ const props = defineProps({
               <Avatar path="public/bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="片头音乐"><Avatar path="public/th.jpg" />thwy</StaffBox>
-            <StaffBox job="片头制作"><Avatar path="public/tb.jpg" />唐辫小二</StaffBox>
+            <StaffBox job="片头制作"
+              ><Avatar path="public/tb.jpg" />唐辫小二<br /><Avatar
+                path="public/bd.jpg"
+              />坏枪</StaffBox
+            >
             <StaffBox job="数据审核"
               ><Avatar path="public/zz.jpg" />zzzzzz9125<br /><Avatar
                 path="public/tg.jpg"
@@ -52,7 +54,38 @@ const props = defineProps({
           </div>
         </div>
         <div class="logo-list">
-          <img class="otm-logo" src="../assets/logo.svg" />
+          <div class="otm-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.43 175">
+              <g id="图层_2" data-name="图层 2">
+                <path
+                  class="cls-1"
+                  d="M87.5,150A62.5,62.5,0,1,1,150,87.5h25A87.5,87.5,0,1,0,87.5,175Z"
+                />
+                <circle class="cls-1" cx="87.5" cy="87.5" r="12.5" />
+                <rect class="cls-1" x="107.5" y="100" width="25" height="75" />
+                <path
+                  class="cls-1"
+                  d="M112.5,100v25h20A17.51,17.51,0,0,1,150,142.5V175h25V137.57A37.57,37.57,0,0,0,137.43,100Z"
+                />
+                <path
+                  class="cls-1"
+                  d="M99.87,103.2a19.94,19.94,0,0,1-24.74,0,.08.08,0,0,0-.13.06v58.83A12.77,12.77,0,0,0,87.27,175H100V103.26A.08.08,0,0,0,99.87,103.2Z"
+                />
+                <polygon
+                  class="cls-1"
+                  points="230.43 175 174.02 118.59 156.34 136.27 195.08 175 230.43 175"
+                />
+                <polygon
+                  class="cls-1"
+                  points="188.43 100.23 156.34 132.32 174.02 150 223.79 100.23 188.43 100.23"
+                />
+                <path
+                  class="cls-1"
+                  d="M170.63,111,175,106.6V87.5H150v9.4A42.76,42.76,0,0,1,170.63,111Z"
+                />
+              </g>
+            </svg>
+          </div>
           <div class="otm-text">音MAD，如墨一般浸润。</div>
         </div>
       </div>
@@ -70,7 +103,7 @@ const props = defineProps({
 .extra-board {
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
 ::-webkit-scrollbar {
@@ -92,6 +125,7 @@ const props = defineProps({
 .side-end-title {
   font-size: 6rem;
   font-weight: bold;
+  color: #303030;
 }
 .side-end-title-eng {
   font-size: 1.8rem;
@@ -122,7 +156,7 @@ const props = defineProps({
 }
 
 .logo-list {
-  width: 50%;
+  width: 33%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +170,8 @@ const props = defineProps({
 
 .otm-text {
   margin-top: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 300;
   background-color: transparent;
 }
 </style>

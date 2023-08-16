@@ -28,8 +28,8 @@ defineProps({
   border-radius: 8px;
   margin-bottom: 5px;
   /* background-color: var(--c-accent); */
-  background-color: v-bind('data.light_color');
-  color: black;
+  background-color: v-bind('data.dark_color');
+  color: white;
   font-size: 1.5rem;
   font-weight: bold;
 }

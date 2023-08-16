@@ -18,12 +18,12 @@ defineProps({
   gap: 0.25rem;
   // background-color: var(--c-accent);
   background-color: v-bind('single_data.dark_color');
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.18);
+  // box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.18);
   border-radius: 100rem;
-  padding: 0.5rem 1.5rem;
-  height: 2.25rem;
+  padding: 0.25rem 1rem;
+  height: 2rem;
   color: white;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 </style>

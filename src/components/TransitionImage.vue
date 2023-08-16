@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="transition-image"><div style="margin: auto">过渡用图</div></div>
+  <div class="transition-image"></div>
 </template>
 <style scoped>
 .transition-image {
@@ -10,11 +10,10 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: white;
-  display: flex;
+  background-image: url('../assets/transition_back.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: -5;
-  white-space: nowrap;
-  font-size: 400px;
-  font-family: 'SimSun', sans-serif;
 }
 </style>

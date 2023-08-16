@@ -4,6 +4,7 @@ import MainInfo from '../components/MainInfo.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { onMounted } from 'vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
 import TransitionImage from '../components/TransitionImage.vue'
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
@@ -27,20 +28,20 @@ function animate() {
   tl_1.to(
     '.left',
     {
-      duration: 0.5,
+      duration: 1,
       x: -2000,
       ease: 'expo.in'
     },
-    data.value.full_time - 0.5
+    data.value.full_time - 1
   ),
     tl_1.to(
       '.right',
       {
-        duration: 0.5,
+        duration: 1,
         x: 800,
         ease: 'expo.in'
       },
-      data.value.full_time - 0.5
+      data.value.full_time - 1
     )
 
   tl_2.from(
@@ -149,24 +150,19 @@ function animate() {
     },
     0
   )
-  // 副榜动画
-  if (data.value.more_data) {
-    // 过渡用图动画
-    tl_5.to('.transition-image', {
-      opacity: 0,
-      duration: 1
-    })
-    if (!data.value.more_data) {
-      tl_5.to(
-        '.transition-image',
-        {
-          opacity: 1,
-          duration: 0.5
-        },
-        data.value.full_time - 0.5
-      )
-    }
-  }
+  // 过渡用图动画
+  tl_5.to('.transition-image', {
+    opacity: 0,
+    duration: 1
+  })
+  tl_5.to(
+    '.transition-image',
+    {
+      opacity: 1,
+      duration: 0.5
+    },
+    data.value.full_time - 0.5
+  )
 }
 
 //// 全局函数 统一写在这
@@ -188,16 +184,27 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
+  tl_1.pause()
+  tl_2.pause()
+  tl_3.pause()
+  tl_4.pause()
+  tl_5.pause()
+}
+
+onMounted(() => {
+  fun(data.value)
+})
+
+// 测试专用函数
+
+window['test'] = () => {
+  animate()
   // tl_1.pause()
   // tl_2.pause()
   // tl_3.pause()
   // tl_4.pause()
   // tl_5.pause()
 }
-
-onMounted(() => {
-  fun(data.value)
-})
 
 /*
 test data:
@@ -282,9 +289,9 @@ inject([{
       <PickInfo :reason="data.reason" :picker="data.picker" />
       <img class="cover" :src="data.cover_src" />
     </div>
+    <BackgroundImage />
   </div>
-  <!-- <TransitionImage /> -->
-  <img class="main-back" :src="data.cover_src" />
+  <TransitionImage />
 </template>
 
 <style lang="scss" scoped>

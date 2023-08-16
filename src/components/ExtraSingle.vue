@@ -97,6 +97,7 @@ const props = defineProps({
     font-weight: 600;
     margin-top: -0.5rem;
     margin-bottom: -1rem;
+    min-width: 10rem;
   }
 
   .points {
@@ -115,6 +116,6 @@ const props = defineProps({
 }
 
 .side-title {
-  background-color: transparent;
+  margin-bottom: 0.5rem;
 }
 </style>

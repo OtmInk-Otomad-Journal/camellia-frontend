@@ -3,6 +3,7 @@ import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import ExtraList from '../components/ExtraList.vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
@@ -29,25 +30,6 @@ function animate() {
     rotationX: 90,
     ease: 'back.out(1.8)'
   })
-  tl_1.to(
-    '.left',
-    {
-      duration: 0.5,
-      x: -2000,
-      ease: 'expo.in'
-    },
-    data.value.full_time - 0.5
-  ),
-    tl_1.to(
-      '.right',
-      {
-        duration: 0.5,
-        x: 800,
-        ease: 'expo.in'
-      },
-      data.value.full_time - 0.5
-    )
-
   tl_2.from(
     '.main-info',
     {
@@ -159,7 +141,8 @@ function animate() {
     tl_4.to(
       '.main-board',
       {
-        filter: 'blur(50px)'
+        filter: 'blur(50px)',
+        scale: 1.35
       },
       data.value.full_time - data.value.side_duration
     )
@@ -171,10 +154,11 @@ function animate() {
       {
         duration: 1,
         opacity: 1
-      }
+      },
+      '<'
     )
     tl_4.to('.viewlist', {
-      duration: data.value.side_duration - 1,
+      duration: data.value.side_duration - 1 - 3, // 预留 3 秒给 STAFF
       scrollTo: { y: 'max' },
       ease: 'sine.inOut'
     })
@@ -192,6 +176,24 @@ function animate() {
         duration: 0.5
       },
       data.value.full_time - 0.5
+    )
+    tl_1.to(
+      '.left',
+      {
+        duration: 1,
+        x: -2000,
+        ease: 'expo.in'
+      },
+      data.value.full_time - 1
+    )
+    tl_1.to(
+      '.right',
+      {
+        duration: 1,
+        x: 800,
+        ease: 'expo.in'
+      },
+      data.value.full_time - 1
     )
   }
 }
@@ -225,73 +227,16 @@ onMounted(() => {
   fun(data.value)
 })
 
-/*
-test data:
-左边收起
+// 测试专用函数
 
-inject([{
-  score: 0,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-热吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '0.5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 11
-},{
-  score: 11.4,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 0
-},{
-  score: -5,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 191
-},{
-  score: -66,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 191
-}])
-
-*/
+window['test'] = () => {
+  animate()
+  // tl_1.pause()
+  // tl_2.pause()
+  // tl_3.pause()
+  // tl_4.pause()
+  // tl_5.pause()
+}
 </script>
 
 <template>
@@ -310,8 +255,9 @@ inject([{
       <MainCounts />
       <img class="cover" :src="data.cover_src" />
     </div>
+    <BackgroundImage />
   </div>
-  <!-- <TransitionImage /> -->
+  <TransitionImage />
   <!-- <img class="main-back" :src="data.cover_src" /> -->
   <!-- <img src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" /> -->
   <!-- 请注意这个img是给background-image盗链服务的，平时使用时给它加上「display: none;」，直接background-image会403 -->
@@ -325,7 +271,7 @@ inject([{
   // height: 100vh;
   gap: 2rem;
   padding: 3.5rem 5rem;
-  background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
+  // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
   background-size: 100vw;
   background-position: center;
 }
@@ -385,12 +331,5 @@ inject([{
 .extra-list {
   position: absolute;
   z-index: 100;
-}
-
-.dplayer-controller {
-  display: none !important;
-}
-.dplayer-controller-mask {
-  display: none !important;
 }
 </style>
