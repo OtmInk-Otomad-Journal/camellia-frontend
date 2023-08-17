@@ -212,7 +212,7 @@ window['test'] = () => {
 </script>
 
 <template>
-  <button v-if="test_num != 0" onclick="test()">重播动画</button>
+  <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -306,5 +306,10 @@ window['test'] = () => {
 }
 .dplayer-controller-mask {
   display: none !important;
+}
+// 测试按钮
+.test-button {
+  position: absolute;
+  z-index: 20;
 }
 </style>
