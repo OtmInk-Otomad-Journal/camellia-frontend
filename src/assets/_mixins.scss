@@ -13,20 +13,7 @@
   background-color: rgba(255, 255, 255, 0.75);
   z-index: 10;
   background-blend-mode: overlay, normal;
-
-  // Acrylic Blur
-  &::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-    left: 0;
-    backdrop-filter: blur(16px);
-    z-index: -2;
-    border-radius: inherit;
-    background-blend-mode: exclusion;
-  }
+  backdrop-filter: blur(16px);
 
   // Acrylic Noise
   &::after {
