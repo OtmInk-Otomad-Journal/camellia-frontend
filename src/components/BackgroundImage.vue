@@ -3,10 +3,7 @@ import { data } from '../data/MainView_data'
 </script>
 
 <template>
-  <img
-    class="back-model"
-    :src="'../src/assets/background_model_' + ((data.aid % 3) + 1) + '.png'"
-  />
+  <img class="back-model" :src="'./background_model_' + ((data.aid % 3) + 1) + '.png'" />
   <div class="back-color"></div>
 </template>
 <style>
