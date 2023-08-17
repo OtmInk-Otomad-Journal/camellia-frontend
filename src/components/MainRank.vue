@@ -27,6 +27,7 @@ import { data } from '../data/MainView_data.js'
 }
 
 .rank {
+  display: block;
   font-size: 6rem;
   font-family: Montserrat, sans-serif;
   font-weight: 600;

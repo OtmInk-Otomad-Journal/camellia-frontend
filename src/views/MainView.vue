@@ -44,9 +44,38 @@ function animate() {
       '.main-rank',
       {
         duration: 0.8,
-        x: 50,
-        rotationX: 90,
+        x: 550,
+        // rotationX: 90,
         ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
+      '.main-left',
+      {
+        duration: 0.8,
+        x: -1440,
+        ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
+      '.main-rank .rank',
+      {
+        duration: 0.5,
+        scale: 0,
+        ease: 'back.out(1.5)'
+      },
+      0
+    ),
+    tl_2.from(
+      '.main-rank .points',
+      {
+        delay: 0.1,
+        duration: 0.5,
+        scale: 0,
+        y: 50,
+        ease: 'back.out(1.5)'
       },
       0
     ),
@@ -54,7 +83,8 @@ function animate() {
       '.main-counts',
       {
         duration: 0.8,
-        x: 50,
+        x: 450,
+        opacity: 0,
         rotationX: 90,
         ease: 'expo.out'
       },
@@ -74,9 +104,11 @@ function animate() {
     tl_2.from(
       '.cover',
       {
-        duration: 0.8,
-        y: 50,
-        rotationX: 90,
+        duration: 0.7,
+        delay: 0.2,
+        x: 550,
+        // y: 50,
+        // rotationX: 90,
         ease: 'expo.out'
       },
       0
@@ -122,6 +154,30 @@ function animate() {
         delay: 0.2,
         stagger: 0.08,
         y: 50,
+        opacity: 0,
+        ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
+      '.count-item .title',
+      {
+        duration: 0.8,
+        delay: 0.1,
+        stagger: 0.04,
+        y: 80,
+        opacity: 0,
+        ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
+      '.count-item .icon',
+      {
+        duration: 0.7,
+        delay: 0.1,
+        stagger: 0.08,
+        scale: 0,
         opacity: 0,
         ease: 'expo.out'
       },
@@ -178,19 +234,19 @@ function animate() {
       data.value.full_time - 0.5
     )
     tl_1.to(
-      '.left',
+      '.main-left',
       {
         duration: 1,
-        x: -2000,
+        x: -1400,
         ease: 'expo.in'
       },
       data.value.full_time - 1
     )
     tl_1.to(
-      '.right',
+      '.main-right',
       {
         duration: 1,
-        x: 800,
+        x: 550,
         ease: 'expo.in'
       },
       data.value.full_time - 1
@@ -247,7 +303,7 @@ window['test'] = () => {
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
-    <div class="left">
+    <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
         <video class="video-inner" ref="videoRef" :key="data.video_src">
           <source :src="data.video_src" />
@@ -255,7 +311,7 @@ window['test'] = () => {
       </div>
       <MainInfo />
     </div>
-    <div class="right">
+    <div class="main-right">
       <MainRank />
       <MainCounts />
       <img class="cover" :src="data.cover_src" />
@@ -317,19 +373,19 @@ window['test'] = () => {
   flex-shrink: 0;
 }
 
-.left,
-.right {
+.main-left,
+.main-right {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   flex-grow: 1;
 }
 
-.left {
+.main-left {
   width: 0px;
 }
 
-.right {
+.main-right {
   flex-shrink: 0;
   max-width: 26.875rem;
 }

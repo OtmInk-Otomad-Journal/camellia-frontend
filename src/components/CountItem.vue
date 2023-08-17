@@ -53,6 +53,5 @@ defineProps({
   justify-content: center;
   width: 50px;
   height: 50px;
-  filter: drop-shadow(0px 4px 8px 0px rgba(0, 0, 0, 0.15));
 }
 </style>
