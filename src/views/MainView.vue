@@ -76,7 +76,7 @@ function animate() {
         duration: 0.5,
         scale: 0,
         y: 50,
-        ease: 'back.out(1.5)'
+        ease: 'back.out(0.8)'
       },
       0
     ),
