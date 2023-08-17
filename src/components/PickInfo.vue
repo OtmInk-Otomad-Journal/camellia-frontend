@@ -34,6 +34,7 @@ defineProps({
 .pick-icon {
   fill: v-bind('data.dark_color');
   // filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  z-index: 20;
 }
 .pick-info {
   @include card;
@@ -57,6 +58,7 @@ defineProps({
   overflow: hidden;
   white-space: nowrap;
   margin-left: 10px;
+  z-index: 19;
 }
 .pick-reason {
   display: -webkit-box;

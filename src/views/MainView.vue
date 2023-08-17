@@ -117,8 +117,8 @@ function animate() {
       '.chip',
       {
         duration: 0.8,
-        delay: 0.2,
-        stagger: 0.08,
+        delay: 0.4,
+        stagger: 0.06,
         y: 50,
         opacity: 0,
         ease: 'expo.out'
@@ -140,7 +140,7 @@ function animate() {
       '.main-title',
       {
         duration: 0.8,
-        delay: 0.4,
+        delay: 0.5,
         y: 50,
         opacity: 0,
         ease: 'expo.out'

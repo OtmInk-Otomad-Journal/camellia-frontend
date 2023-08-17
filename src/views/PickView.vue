@@ -26,19 +26,19 @@ function animate() {
     ease: 'back.out(1.8)'
   })
   tl_1.to(
-    '.left',
+    '.main-left',
     {
       duration: 1,
-      x: -2000,
+      x: -1400,
       ease: 'expo.in'
     },
     data.value.full_time - 1
   ),
     tl_1.to(
-      '.right',
+      '.main-right',
       {
         duration: 1,
-        x: 800,
+        x: 550,
         ease: 'expo.in'
       },
       data.value.full_time - 1
@@ -55,11 +55,53 @@ function animate() {
     0
   ),
     tl_2.from(
+      '.main-left',
+      {
+        duration: 0.8,
+        x: -1440,
+        ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
       '.pick-info',
       {
         duration: 0.8,
-        x: 50,
+        x: 550,
         rotationX: 90,
+        ease: 'expo.out'
+      },
+      0
+    ),
+    tl_2.from(
+      '.pick-picker-box .pick-icon',
+      {
+        delay: 0.1,
+        duration: 0.5,
+        x: -100,
+        scale: 0,
+        ease: 'back.out(1.0)'
+      },
+      0
+    ),
+    tl_2.from(
+      '.pick-picker-box .pick-picker',
+      {
+        delay: 0.2,
+        duration: 0.5,
+        x: -100,
+        scale: 0,
+        ease: 'back.out(1.0)'
+      },
+      0
+    ),
+    tl_2.from(
+      '.pick-reason',
+      {
+        duration: 0.8,
+        delay: 0.3,
+        y: 50,
+        opacity: 0,
         ease: 'expo.out'
       },
       0
@@ -67,9 +109,9 @@ function animate() {
     tl_2.from(
       '.cover',
       {
-        duration: 0.8,
-        y: 50,
-        rotationX: 90,
+        duration: 0.7,
+        delay: 0.1,
+        x: 550,
         ease: 'expo.out'
       },
       0
@@ -78,8 +120,8 @@ function animate() {
       '.chip',
       {
         duration: 0.8,
-        delay: 0.2,
-        stagger: 0.08,
+        delay: 0.4,
+        stagger: 0.06,
         y: 50,
         opacity: 0,
         ease: 'expo.out'
@@ -101,7 +143,7 @@ function animate() {
       '.main-title',
       {
         duration: 0.8,
-        delay: 0.4,
+        delay: 0.5,
         y: 50,
         opacity: 0,
         ease: 'expo.out'
@@ -193,7 +235,7 @@ window['test'] = () => {
 <template>
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
-    <div class="left">
+    <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
         <video class="video-inner" ref="videoRef" :key="data.video_src">
           <source :src="data.video_src" />
@@ -201,7 +243,7 @@ window['test'] = () => {
       </div>
       <MainInfo special_text="PICK UP" />
     </div>
-    <div class="right">
+    <div class="main-right">
       <PickInfo :reason="data.reason" :picker="data.picker" />
       <img class="cover" :src="data.cover_src" />
     </div>
@@ -259,19 +301,19 @@ window['test'] = () => {
   flex-shrink: 0;
 }
 
-.left,
-.right {
+.main-left,
+.main-right {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   flex-grow: 1;
 }
 
-.left {
+.main-left {
   width: 0px;
 }
 
-.right {
+.main-right {
   flex-shrink: 0;
   max-width: 26.875rem;
 }
