@@ -7,7 +7,7 @@ import BackgroundImage from '../components/BackgroundImage.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
@@ -229,17 +229,22 @@ onMounted(() => {
 
 // 测试专用函数
 
+var test_num = ref(0)
 window['test'] = () => {
-  animate()
-  // tl_1.pause()
-  // tl_2.pause()
-  // tl_3.pause()
-  // tl_4.pause()
-  // tl_5.pause()
+  if (test_num.value == 0) {
+    animate()
+    test_num.value += 1
+  }
+  tl_1.restart()
+  tl_2.restart()
+  tl_3.restart()
+  tl_4.restart()
+  tl_5.restart()
 }
 </script>
 
 <template>
+  <button v-if="test_num != 0" onclick="test()">重播动画</button>
   <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="left">

@@ -197,85 +197,22 @@ onMounted(() => {
 
 // 测试专用函数
 
+var test_num = ref(0)
 window['test'] = () => {
-  animate()
-  // tl_1.pause()
-  // tl_2.pause()
-  // tl_3.pause()
-  // tl_4.pause()
-  // tl_5.pause()
+  if (test_num.value == 0) {
+    animate()
+    test_num.value += 1
+  }
+  tl_1.restart()
+  tl_2.restart()
+  tl_3.restart()
+  tl_4.restart()
+  tl_5.restart()
 }
-
-/*
-test data:
-左边收起
-
-inject([{
-  score: 0,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-热吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '0.5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 11
-},{
-  score: 11.4,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 0
-},{
-  score: -5,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 191
-},{
-  score: -66,
-  aid: '616084655',
-  bvid: 'BV1wh4y1L7mr',
-  title: '-吟閑酔-',
-  uploader: '蕾咪厨陈YuYue',
-  copyright: '5',
-  pubtime: '2077-07-19 11:32:40',
-  adjust_scale: '1',
-  part: '1',
-  web_prefix: 'http://localhost:7213/',
-  avatar_src: './avatar/616084655.png',
-  cover_src: './cover/616084655.png',
-  theme_brightness: 'light',
-  ranking: 191
-}])
-
-*/
 </script>
 
 <template>
+  <button v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
     <div class="left">
       <div class="video-box" :style="{ background: data.theme_color }">
