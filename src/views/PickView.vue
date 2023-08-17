@@ -55,32 +55,11 @@ function animate() {
     0
   ),
     tl_2.from(
-      '.main-rank',
+      '.pick-info',
       {
         duration: 0.8,
         x: 50,
         rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-counts',
-      {
-        duration: 0.8,
-        x: 50,
-        rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.count-item',
-      {
-        duration: 0.8,
-        x: 50,
-        rotationY: 90,
-        stagger: 0.08,
         ease: 'expo.out'
       },
       0
