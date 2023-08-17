@@ -62,9 +62,10 @@ function animate() {
     tl_2.from(
       '.main-rank .rank',
       {
-        duration: 0.5,
+        delay: 0.1,
+        duration: 0.4,
         scale: 0,
-        ease: 'back.out(1.5)'
+        ease: 'back.out(2.0)'
       },
       0
     ),
@@ -174,12 +175,12 @@ function animate() {
     tl_2.from(
       '.count-item .icon',
       {
-        duration: 0.7,
+        duration: 0.4,
         delay: 0.1,
         stagger: 0.08,
         scale: 0,
         opacity: 0,
-        ease: 'expo.out'
+        ease: 'back.out(2.0)'
       },
       0
     )
