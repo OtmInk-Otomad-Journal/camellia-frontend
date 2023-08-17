@@ -79,8 +79,10 @@ function animate() {
         delay: 0.1,
         duration: 0.5,
         x: -100,
+        y: 20,
         scale: 0,
-        ease: 'back.out(1.0)'
+        ease: 'back.out(1.0)',
+        rotateZ: 60,
       },
       0
     ),
