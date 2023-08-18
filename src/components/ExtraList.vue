@@ -27,14 +27,14 @@ defineProps({
               ><Avatar path="./al.jpg" />艾了个拉<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
-            <StaffBox job="前端架构"
+            <StaffBox job="前端"
               ><Avatar path="./vt.jpg" />昊通机械<br />
-              <Avatar path="./bd.jpg" />坏枪</StaffBox
+              <Avatar path="./bd.jpg" />坏枪 <br /><Avatar path="./al.jpg" />艾了个拉</StaffBox
             >
             <StaffBox job="数据算法"><Avatar path="./yl.jpg" />ErH-弋汐希霅</StaffBox>
           </div>
           <div class="staff-single">
-            <StaffBox job="后端架构"
+            <StaffBox job="后端"
               ><Avatar path="./yl.jpg" />ErH-弋汐希霅<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
