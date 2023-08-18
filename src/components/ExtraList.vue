@@ -99,7 +99,7 @@ defineProps({
 .extra-board {
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.35);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -127,6 +127,7 @@ defineProps({
   font-size: 1.8rem;
   font-family: Montserrat, sans-serif;
   letter-spacing: 0.15em;
+  color: #303030;
 }
 
 .end-board {

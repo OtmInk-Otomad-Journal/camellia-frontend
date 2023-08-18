@@ -25,6 +25,15 @@ const videoRef = ref()
 
 // 动画 使用css选择器
 function animate() {
+  // 过渡用图动画
+  tl_5.to(
+    '.transition-image',
+    {
+      opacity: 0,
+      duration: 1
+    },
+    0
+  )
   tl_1.from('.video-box', {
     duration: 1,
     rotationX: 90,
@@ -39,151 +48,151 @@ function animate() {
       ease: 'expo.out'
     },
     0
-  ),
-    tl_2.from(
-      '.main-rank',
-      {
-        duration: 0.8,
-        x: 550,
-        // rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-left',
-      {
-        duration: 0.8,
-        x: -1440,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-rank .rank',
-      {
-        delay: 0.1,
-        duration: 0.4,
-        scale: 0,
-        ease: 'back.out(2.0)'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-rank .points',
-      {
-        delay: 0.1,
-        duration: 0.5,
-        scale: 0,
-        y: 50,
-        ease: 'back.out(0.8)'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-counts',
-      {
-        duration: 0.8,
-        x: 450,
-        opacity: 0,
-        rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.count-item',
-      {
-        duration: 0.8,
-        x: 50,
-        rotationY: 90,
-        stagger: 0.08,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.cover',
-      {
-        duration: 0.7,
-        delay: 0.2,
-        x: 550,
-        // y: 50,
-        // rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.chip',
-      {
-        duration: 0.8,
-        delay: 0.4,
-        stagger: 0.06,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.uploader',
-      {
-        duration: 0.8,
-        delay: 0.4,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-title',
-      {
-        duration: 0.8,
-        delay: 0.5,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.count',
-      {
-        duration: 0.8,
-        delay: 0.2,
-        stagger: 0.08,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.count-item .title',
-      {
-        duration: 0.8,
-        delay: 0.1,
-        stagger: 0.04,
-        y: 80,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.count-item .icon',
-      {
-        duration: 0.4,
-        delay: 0.1,
-        stagger: 0.08,
-        scale: 0,
-        opacity: 0,
-        ease: 'back.out(2.0)'
-      },
-      0
-    )
+  )
+  tl_2.from(
+    '.main-rank',
+    {
+      duration: 0.8,
+      x: 550,
+      // rotationX: 90,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.main-left',
+    {
+      duration: 0.8,
+      x: -1440,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.main-rank .rank',
+    {
+      delay: 0.1,
+      duration: 0.4,
+      scale: 0,
+      ease: 'back.out(2.0)'
+    },
+    0
+  )
+  tl_2.from(
+    '.main-rank .points',
+    {
+      delay: 0.1,
+      duration: 0.5,
+      scale: 0,
+      y: 50,
+      ease: 'back.out(0.8)'
+    },
+    0
+  )
+  tl_2.from(
+    '.main-counts',
+    {
+      duration: 0.8,
+      x: 450,
+      opacity: 0,
+      rotationX: 90,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.count-item',
+    {
+      duration: 0.8,
+      x: 50,
+      rotationY: 90,
+      stagger: 0.08,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.cover',
+    {
+      duration: 0.7,
+      delay: 0.2,
+      x: 550,
+      // y: 50,
+      // rotationX: 90,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.chip',
+    {
+      duration: 0.8,
+      delay: 0.4,
+      stagger: 0.06,
+      y: 50,
+      opacity: 0,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.uploader',
+    {
+      duration: 0.8,
+      delay: 0.4,
+      y: 50,
+      opacity: 0,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.main-title',
+    {
+      duration: 0.8,
+      delay: 0.5,
+      y: 50,
+      opacity: 0,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.count',
+    {
+      duration: 0.8,
+      delay: 0.2,
+      stagger: 0.08,
+      y: 50,
+      opacity: 0,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.count-item .title',
+    {
+      duration: 0.8,
+      delay: 0.1,
+      stagger: 0.04,
+      y: 80,
+      opacity: 0,
+      ease: 'expo.out'
+    },
+    0
+  )
+  tl_2.from(
+    '.count-item .icon',
+    {
+      duration: 0.4,
+      delay: 0.1,
+      stagger: 0.08,
+      scale: 0,
+      opacity: 0,
+      ease: 'back.out(2.0)'
+    },
+    0
+  )
   tl_3.to(
     '.main-progress',
     {
@@ -198,8 +207,8 @@ function animate() {
     tl_4.to(
       '.main-board',
       {
-        filter: 'blur(50px)',
-        scale: 1.35
+        filter: 'blur(100px)',
+        scale: 1.25
       },
       data.value.full_time - data.value.side_duration
     )
@@ -209,22 +218,17 @@ function animate() {
         opacity: 0
       },
       {
-        duration: 1,
+        duration: 2,
         opacity: 1
       },
       '<'
     )
     tl_4.to('.viewlist', {
-      duration: data.value.side_duration - 1 - 3, // 预留 3 秒给 STAFF
+      duration: data.value.side_duration - 2 - 3, // 预留 3 秒给 STAFF
       scrollTo: { y: 'max' },
       ease: 'sine.inOut'
     })
   }
-  // 过渡用图动画
-  tl_5.to('.transition-image', {
-    opacity: 0,
-    duration: 1
-  })
   if (!data.value.more_data) {
     tl_5.to(
       '.transition-image',
@@ -256,12 +260,12 @@ function animate() {
 }
 
 function seek_frame(frame, fps, start_time) {
+  videoRef.value.currentTime = start_time + frame / fps
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
   tl_3.seek(frame / fps)
   tl_4.seek(frame / fps)
   tl_5.seek(frame / fps)
-  videoRef.value.currentTime = start_time + frame / fps
 }
 
 //// 全局函数 统一写在这
@@ -306,7 +310,7 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
-        <video class="video-inner" ref="videoRef" :key="data.video_src">
+        <video class="video-inner" ref="videoRef" :key="data.video_src" muted>
           <source :src="data.video_src" />
         </video>
       </div>
@@ -397,6 +401,6 @@ window['test'] = () => {
 // 测试按钮
 .test-button {
   position: absolute;
-  z-index: 20;
+  z-index: 1000;
 }
 </style>
