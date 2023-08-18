@@ -293,7 +293,7 @@ onMounted(() => {
 var test_num = ref(0)
 window['test'] = () => {
   if (test_num.value == 0) {
-    animate()
+    // animate()
     test_num.value += 1
   }
   tl_1.restart()
@@ -321,9 +321,9 @@ window['test'] = () => {
       <MainCounts />
       <img class="cover" :src="data.cover_src" />
     </div>
+    <TransitionImage />
     <BackgroundImage />
   </div>
-  <TransitionImage />
   <!-- <img class="main-back" :src="data.cover_src" /> -->
   <!-- <img src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" /> -->
   <!-- 请注意这个img是给background-image盗链服务的，平时使用时给它加上「display: none;」，直接background-image会403 -->
