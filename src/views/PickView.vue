@@ -82,7 +82,7 @@ function animate() {
         y: 20,
         scale: 0,
         ease: 'back.out(1.0)',
-        rotateZ: 60,
+        rotateZ: 60
       },
       0
     ),
@@ -249,9 +249,9 @@ window['test'] = () => {
       <PickInfo :reason="data.reason" :picker="data.picker" />
       <img class="cover" :src="data.cover_src" />
     </div>
+    <TransitionImage />
     <BackgroundImage />
   </div>
-  <TransitionImage />
 </template>
 
 <style lang="scss" scoped>

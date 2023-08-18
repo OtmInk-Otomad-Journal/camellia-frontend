@@ -40,8 +40,8 @@ defineProps({
   top: 0;
   left: 0;
   // background-color: var(--c-accent);
-  background-color: v-bind('data.light_color');
-  opacity: 0.25;
+  background-color: v-bind('data.dark_color');
+  opacity: 0.18;
   height: 100%;
   width: 0;
   z-index: -1;
