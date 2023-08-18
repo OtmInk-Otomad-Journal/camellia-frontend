@@ -24,8 +24,8 @@ defineProps({
 .special_text {
   position: absolute;
   z-index: -1;
-  color: v-bind('data.light_color');
-  opacity: 0.4;
+  color: v-bind('data.dark_color');
+  opacity: 0.3;
   right: 0;
   bottom: 0;
   margin-right: 3.5rem;
