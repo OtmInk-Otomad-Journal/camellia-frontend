@@ -28,9 +28,9 @@ defineProps({
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="前端"
-              ><Avatar path="./vt.jpg" />昊通机械<br />
-              <Avatar path="./bd.jpg" />坏枪 <br /><Avatar path="./al.jpg" />艾了个拉</StaffBox
-            >
+              ><Avatar path="./al.jpg" />艾了个拉<br /><Avatar path="./vt.jpg" />昊通机械<br />
+              <Avatar path="./bd.jpg" />坏枪 <br
+            /></StaffBox>
             <StaffBox job="数据算法"><Avatar path="./yl.jpg" />ErH-弋汐希霅</StaffBox>
           </div>
           <div class="staff-single">
@@ -39,8 +39,10 @@ defineProps({
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="片头音乐"><Avatar path="./th.jpg" />thwy</StaffBox>
-            <StaffBox job="片头制作"
-              ><Avatar path="./tb.jpg" />唐辫小二<br /><Avatar path="./bd.jpg" />坏枪</StaffBox
+            <StaffBox job="片头视频"
+              ><Avatar path="./tb.jpg" />唐辫小二<br /><Avatar path="./bd.jpg" />坏枪<br /><Avatar
+                path="./al.jpg"
+              />艾了个拉</StaffBox
             >
             <StaffBox job="数据审核"
               ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar
