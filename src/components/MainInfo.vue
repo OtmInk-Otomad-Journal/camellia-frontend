@@ -12,6 +12,7 @@ defineProps({
       <div class="chips">
         <InfoChip>av{{ data.aid }}</InfoChip>
         <InfoChip>{{ data.pubtime }}</InfoChip>
+        <InfoChip v-if="data.score_add">{{ data.score_add }}</InfoChip>
       </div>
       <UploaderInfo />
     </div>
