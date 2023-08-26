@@ -60,16 +60,23 @@ defineProps({
   margin-left: 10px;
   z-index: 19;
 }
+
+.pick-reason::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
 .pick-reason {
-  display: -webkit-box;
+  display: block;
   top: 0;
   margin-top: 15px;
   font-size: 1.25rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  // text-overflow: ellipsis;
+  overflow-x: hidden;
+  overflow-y: scroll;
   line-height: 1.95rem;
-  -webkit-line-clamp: 18;
-  -webkit-box-orient: vertical;
+  // -webkit-line-clamp: 18;
+  // -webkit-box-orient: vertical;
   white-space: pre-wrap;
 }
 </style>

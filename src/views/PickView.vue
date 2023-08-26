@@ -4,8 +4,11 @@ import MainInfo from '../components/MainInfo.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { onMounted } from 'vue'
+import { ScrollToPlugin } from 'gsap/all'
 import BackgroundImage from '../components/BackgroundImage.vue'
 import TransitionImage from '../components/TransitionImage.vue'
+
+gsap.registerPlugin(ScrollToPlugin)
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
@@ -151,18 +154,6 @@ function animate() {
         ease: 'expo.out'
       },
       0
-    ),
-    tl_2.from(
-      '.count',
-      {
-        duration: 0.8,
-        delay: 0.2,
-        stagger: 0.08,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
     )
   tl_3.to(
     '.main-progress',
@@ -173,6 +164,11 @@ function animate() {
     },
     0
   )
+  tl_4.to('.pick-reason', {
+    duration: data.value.full_time,
+    scrollTo: { y: 'max' },
+    ease: 'sine.inOut'
+  })
   // 过渡用图动画
   tl_5.to('.transition-image', {
     opacity: 0,
