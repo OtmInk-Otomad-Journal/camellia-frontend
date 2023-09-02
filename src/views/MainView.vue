@@ -362,11 +362,14 @@ window['test'] = () => {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   flex-shrink: 0;
-}
+  background-color: black;
 
-.video-inner {
-  width: 100%;
-  height: 100%;
+  > * {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: contain;
+  }
 }
 
 .cover {
