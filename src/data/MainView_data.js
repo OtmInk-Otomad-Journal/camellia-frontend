@@ -4,7 +4,8 @@ const data = ref({
   score: '3.161',
   aid: '488745602',
   bvid: 'BV1pN411e79c',
-  title: '【地铁（？）音mad】长春轻轨这么可爱真是抱歉',
+  title:
+    '⼊入⼋⼌⼍⼎⼏⼐⼑⼒⼓⼔⼕⼖⼗⼘⼙⼚⼛⼜⼝⼞⼟⼠⼡⼢⼣⼤⼥⼦⼧⼨⼩⼪⼫⼬⼭⼮⼯⼰⼱⼲⼳⼴⼵⼶⼷⼸⼹⼺⼻⼼⼽⼾⼿⽀⽁⽂⽃⽄⽅⽆⽇⽈⽉⽊⽋⽌⽍⽎⽏⽐⽑⽒⽓⽔⽕⽖',
   uploader: '佐仓镜泽',
   copyright: '1',
   play: '18345',
@@ -18,7 +19,7 @@ const data = ref({
   start_time: 108.7501565,
   full_time: 20,
   web_prefix: 'http://localhost:7213/',
-  video_src: './video/488745602.mp4',
+  video_src: './video/960200304.mp4',
   avatar_src: './avatar/488745602.png',
   cover_src: './cover/488745602.png',
   light_color: '(321.1764705882353,41.463414634146346%,75%)',
@@ -26,7 +27,7 @@ const data = ref({
   reason:
     '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
   ranking: 15
-  // score_add: '合作单品 + 10%'
+  // score_add: '合作单品 + 10%',
   // more_data: [
   //   {
   //     score: '5.439',
