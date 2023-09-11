@@ -12,6 +12,12 @@ import TransitionImage from '../components/TransitionImage.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
+// 弹幕插件
+
+import Danmaku from 'danmaku'
+
+const videoBoxRef = ref()
+
 // “全局”变量，既方便函数内调用，也方便外面调用。
 
 let tl_1 = gsap.timeline()
@@ -286,6 +292,13 @@ window['inject'] = (obj) => {
 
 onMounted(() => {
   fun(data.value)
+
+  // 弹幕
+  var danmaku1 = new Danmaku({
+    container: videoBoxRef.value,
+    media: videoRef.value,
+    comments: []
+  })
 })
 
 // 测试专用函数
@@ -309,7 +322,7 @@ window['test'] = () => {
   <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="main-left">
-      <div class="video-box" :style="{ background: data.theme_color }">
+      <div class="video-box" :style="{ background: data.theme_color }" ref="videoBoxRef">
         <video class="video-inner" ref="videoRef" :key="data.video_src" muted>
           <source :src="data.video_src" />
         </video>
