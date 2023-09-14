@@ -44,6 +44,7 @@ defineProps({
                 path="./al.jpg"
               />艾了个拉</StaffBox
             >
+            <StaffBox job="封面"><Avatar path="./jp.jpg" />铝合金键盘</StaffBox>
             <StaffBox job="数据审核"
               ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar
                 path="./tg.jpg"
