@@ -12,10 +12,6 @@ import TransitionImage from '../components/TransitionImage.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
-// 弹幕插件
-
-import Danmaku from 'danmaku'
-
 const videoBoxRef = ref()
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
@@ -290,15 +286,10 @@ window['inject'] = (obj) => {
   tl_5.pause()
 }
 
-onMounted(() => {
-  fun(data.value)
+// 弹幕
 
-  // 弹幕
-  var danmaku1 = new Danmaku({
-    container: videoBoxRef.value,
-    media: videoRef.value,
-    comments: []
-  })
+onMounted(() => {
+  fun(data.value).then(() => {})
 })
 
 // 测试专用函数
@@ -314,6 +305,10 @@ window['test'] = () => {
   tl_3.restart()
   tl_4.restart()
   tl_5.restart()
+}
+
+window['play'] = () => {
+  videoRef.value.play()
 }
 </script>
 
@@ -413,6 +408,9 @@ window['test'] = () => {
 .extra-list {
   position: absolute;
   z-index: 100;
+}
+.video-inner {
+  position: absolute;
 }
 // 测试按钮
 .test-button {

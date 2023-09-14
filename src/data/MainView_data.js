@@ -19,7 +19,7 @@ const data = ref({
   start_time: 108.7501565,
   full_time: 20,
   web_prefix: 'http://localhost:7213/',
-  video_src: './video/960200304.mp4',
+  video_src: './video/361093456.mp4',
   avatar_src: './avatar/488745602.png',
   cover_src: './cover/488745602.png',
   light_color: '(321.1764705882353,41.463414634146346%,75%)',
