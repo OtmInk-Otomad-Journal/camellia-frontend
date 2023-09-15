@@ -9,12 +9,11 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
 import { ref, onMounted } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
+import { CommentManager } from '../ccl/CommentCoreLibrary.js'
 
 gsap.registerPlugin(ScrollToPlugin)
 
 // 弹幕插件
-
-import Danmaku from 'danmaku'
 
 const videoBoxRef = ref()
 
@@ -25,10 +24,27 @@ let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
 let tl_4 = gsap.timeline()
 let tl_5 = gsap.timeline()
-// let tls = []
+
+var danmakuList = [
+  {
+    mode: 1,
+    text: 'Hello World',
+    stime: 0,
+    size: 50,
+    color: '0xffffff'
+  },
+  {
+    mode: 4,
+    text: 'Hello DASDWorld',
+    stime: 2,
+    size: 50,
+    color: '0xffffff'
+  }
+]
 
 const videoRef = ref()
-
+const comments = ref()
+var CM
 // 动画 使用css选择器
 function animate() {
   // 过渡用图动画
@@ -283,26 +299,18 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
+  console.log(CM.load(danmakuList))
+  CM.start()
+
+  /*
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
   tl_4.pause()
-  tl_5.pause()
+  tl_5.pause()*/
 }
 
-onMounted(() => {
-  fun(data.value)
-
-  // 弹幕
-  var danmaku1 = new Danmaku({
-    container: videoBoxRef.value,
-    media: videoRef.value,
-    comments: []
-  })
-})
-
 // 测试专用函数
-
 var test_num = ref(0)
 window['test'] = () => {
   if (test_num.value == 0) {
@@ -315,6 +323,18 @@ window['test'] = () => {
   tl_4.restart()
   tl_5.restart()
 }
+
+onMounted(() => {
+  fun(data.value)
+
+  // 弹幕
+  CM = new CommentManager(videoBoxRef.value)
+  CM.init() // 初始化
+  console.log(CM)
+  window.CM = CM
+  CM.load(danmakuList)
+  CM.start()
+})
 </script>
 
 <template>
@@ -323,7 +343,7 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }" ref="videoBoxRef">
-        <video class="video-inner" ref="videoRef" :key="data.video_src" muted>
+        <video class="video-inner" ref="videoRef" :key="data.video_src" muted autoplay>
           <source :src="data.video_src" />
         </video>
       </div>
@@ -376,7 +396,6 @@ window['test'] = () => {
   overflow: hidden;
   flex-shrink: 0;
   background-color: black;
-
   > * {
     width: 100%;
     height: 100%;
