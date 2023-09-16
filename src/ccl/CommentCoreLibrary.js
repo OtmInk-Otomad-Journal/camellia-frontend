@@ -3,6 +3,7 @@
 /* eslint-disable no-redeclare */
 /* eslint-disable no-prototype-builtins */
 /* eslint-disable no-self-assign */
+
 /**
  * Binary Search Stubs for JS Arrays
  * @license MIT
@@ -2621,5 +2622,17 @@ var CommonDanmakuFormat = (function () {
 
   return CommonDanmakuFormat
 })()
-
-export { CommentManager, CommentProvider }
+var CM
+function danmuku(danmukus) {
+  CM = new CommentManager(document.getElementById('vd'))
+  CM.init()
+  CM.load(danmukus)
+  CM.time(2)
+  CM.start()
+  console.log(CM)
+}
+function changeDmkFrame(frame, fps, start_time) {
+  CM = new CommentManager(document.getElementById('vd'))
+  CM.time((start_time + frame / fps) * 100)
+}
+export { CommentManager, CommentProvider, danmuku, changeDmkFrame }
