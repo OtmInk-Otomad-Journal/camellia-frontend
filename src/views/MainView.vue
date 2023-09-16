@@ -7,11 +7,12 @@ import BackgroundImage from '../components/BackgroundImage.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
-
+import { danmuku, changeDmkFrame } from '../ccl/CommentCoreLibrary.js'
 gsap.registerPlugin(ScrollToPlugin)
 
+// 弹幕插件
 const videoBoxRef = ref()
 
 // “全局”变量，既方便函数内调用，也方便外面调用。
@@ -21,10 +22,32 @@ let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
 let tl_4 = gsap.timeline()
 let tl_5 = gsap.timeline()
-// let tls = []
 
+var danmakuList = [
+  {
+    mode: 5,
+    text: 'Hello World',
+    stime: 0,
+    size: 25,
+    color: 0x66ccff
+  },
+  {
+    mode: 2,
+    text: 'Hello DASDWorld',
+    stime: 1,
+    size: 50,
+    color: 0x66ccff
+  },
+  {
+    mode: 1,
+    text: '他战胜了自己，他爱老大哥',
+    stime: 50,
+    size: 25,
+    color: 0x66ccff
+  }
+]
 const videoRef = ref()
-
+const comments = ref()
 // 动画 使用css选择器
 function animate() {
   // 过渡用图动画
@@ -263,6 +286,7 @@ function animate() {
 
 function seek_frame(frame, fps, start_time) {
   videoRef.value.currentTime = start_time + frame / fps
+  changeDmkFrame(frame, fps, start_time)
   tl_1.seek(frame / fps)
   tl_2.seek(frame / fps)
   tl_3.seek(frame / fps)
@@ -279,21 +303,17 @@ window['inject'] = (obj) => {
   fun(obj).then(() => {
     animate()
   })
+  // 初始化
+  danmuku(danmakuList)
+  /*
   tl_1.pause()
   tl_2.pause()
   tl_3.pause()
   tl_4.pause()
-  tl_5.pause()
+  tl_5.pause()*/
 }
 
-// 弹幕
-
-onMounted(() => {
-  fun(data.value).then(() => {})
-})
-
 // 测试专用函数
-
 var test_num = ref(0)
 window['test'] = () => {
   if (test_num.value == 0) {
@@ -307,9 +327,9 @@ window['test'] = () => {
   tl_5.restart()
 }
 
-window['play'] = () => {
-  videoRef.value.play()
-}
+onMounted(() => {
+  fun(data.value)
+})
 </script>
 
 <template>
@@ -318,9 +338,12 @@ window['play'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }" ref="videoBoxRef">
-        <video class="video-inner" ref="videoRef" :key="data.video_src" muted>
-          <source :src="data.video_src" />
-        </video>
+        <div class="abp">
+          <div ref="comments" id="vd" class="container"></div>
+          <video class="video-inner" ref="videoRef" :key="data.video_src" muted autoplay>
+            <source :src="data.video_src" />
+          </video>
+        </div>
       </div>
       <MainInfo />
     </div>
@@ -371,7 +394,6 @@ window['play'] = () => {
   overflow: hidden;
   flex-shrink: 0;
   background-color: black;
-
   > * {
     width: 100%;
     height: 100%;
@@ -416,5 +438,91 @@ window['play'] = () => {
 .test-button {
   position: absolute;
   z-index: 1000;
+}
+
+.abp {
+  @include card;
+  width: auto;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: black;
+  > * {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: contain;
+  }
+}
+.abp .container {
+  border: 0;
+  bottom: 0;
+  display: block;
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  touch-callout: none;
+  -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 999999;
+}
+.abp .container .cmt {
+  color: #fff;
+  font-family: SimHei, SimSun, Heiti, 'MS Mincho', Meiryo, 'Microsoft YaHei', monospace;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: 100%;
+  margin: 0;
+  padding: 3px 0 0 0;
+  position: absolute;
+  text-decoration: none;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+  white-space: pre;
+  word-break: keep-all;
+}
+.abp .container .cmt.no-shadow {
+  text-shadow: none;
+}
+.abp .container .cmt.reverse-shadow {
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+.abp .container .cmt.css-optimize {
+  will-change: transform;
+}
+@font-face {
+  font-family: '\9ED1\4F53';
+  src: local('SimHei');
+}
+@font-face {
+  font-family: '\5B8B\4F53';
+  src: local('SimSun');
+}
+@font-face {
+  font-family: '\534E\6587\6977\4F53';
+  src: local('SimKai');
+}
+@font-face {
+  font-family: '\5E7C\5706';
+  src: local('YouYuan');
+}
+@font-face {
+  font-family: '\5FAE\8F6F\96C5\9ED1';
+  src: local('Microsoft YaHei');
 }
 </style>

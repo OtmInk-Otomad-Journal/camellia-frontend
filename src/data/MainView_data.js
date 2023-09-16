@@ -18,12 +18,13 @@ const data = ref({
   duration: 20,
   start_time: 108.7501565,
   full_time: 20,
-  web_prefix: 'http://localhost:7213/',
-  video_src: './video/361093456.mp4',
-  avatar_src: './avatar/488745602.png',
-  cover_src: './cover/488745602.png',
+  web_prefix: '',
+  video_src: 'http://localhost:5173/test.mp4',
+  avatar_src: './5a.jpg',
+  cover_src: './5a.jpg',
   light_color: '(321.1764705882353,41.463414634146346%,75%)',
   dark_color: '(321.1764705882353,41.463414634146346%,30%)',
+  //更适合本地宝宝品质的测试
   reason:
     '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
   ranking: 15
