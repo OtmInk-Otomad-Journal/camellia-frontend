@@ -23,29 +23,6 @@ let tl_3 = gsap.timeline()
 let tl_4 = gsap.timeline()
 let tl_5 = gsap.timeline()
 
-var danmakuList = [
-  {
-    mode: 5,
-    text: 'Hello World',
-    stime: 0,
-    size: 25,
-    color: 0x66ccff
-  },
-  {
-    mode: 2,
-    text: 'Hello DASDWorld',
-    stime: 1,
-    size: 50,
-    color: 0x66ccff
-  },
-  {
-    mode: 1,
-    text: '他战胜了自己，他爱老大哥',
-    stime: 50,
-    size: 25,
-    color: 0x66ccff
-  }
-]
 const videoRef = ref()
 const comments = ref()
 // 动画 使用css选择器
@@ -304,13 +281,12 @@ window['inject'] = (obj) => {
     animate()
   })
   // 初始化
-  danmuku(danmakuList)
-  /*
-  tl_1.pause()
-  tl_2.pause()
-  tl_3.pause()
-  tl_4.pause()
-  tl_5.pause()*/
+  danmuku(comments.value, data.value.danmaku_src)
+  // tl_1.pause()
+  // tl_2.pause()
+  // tl_3.pause()
+  // tl_4.pause()
+  // tl_5.pause()
 }
 
 // 测试专用函数
@@ -327,6 +303,10 @@ window['test'] = () => {
   tl_5.restart()
 }
 
+window['danmaku'] = () => {
+  danmuku(comments.value, data.value.danmaku_src)
+}
+
 onMounted(() => {
   fun(data.value)
 })
@@ -337,10 +317,11 @@ onMounted(() => {
   <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
   <div class="main-board">
     <div class="main-left">
-      <div class="video-box" :style="{ background: data.theme_color }" ref="videoBoxRef">
+      <div class="video-box" :style="{ background: data.theme_color }">
         <div class="abp">
           <div ref="comments" id="vd" class="container"></div>
           <video class="video-inner" ref="videoRef" :key="data.video_src" muted autoplay>
+            <!-- 后续不能 autoplay -->
             <source :src="data.video_src" />
           </video>
         </div>

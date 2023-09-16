@@ -2622,17 +2622,28 @@ var CommonDanmakuFormat = (function () {
 
   return CommonDanmakuFormat
 })()
+
 var CM
-function danmuku(danmukus) {
-  CM = new CommentManager(document.getElementById('vd'))
-  CM.init()
-  CM.load(danmukus)
-  CM.time(2)
-  CM.start()
+function danmuku(target, danmaku_src) {
+  CM = new CommentManager(target)
   console.log(CM)
+  // 制作弹幕供应器
+  var provider = new CommentProvider()
+  // 添加一个静态弹幕源（只加载一次）
+  provider.addStaticSource(
+    CommentProvider.XMLProvider('GET', danmaku_src),
+    CommentProvider.SOURCE_XML
+  )
+  // 添加一个解析器
+  provider.addParser(new BilibiliFormat.XMLParser(), CommentProvider.SOURCE_XML)
+  provider.addTarget(CM)
+  CM.init()
+  provider.load().then(() => {
+    CM.time(10)
+    CM.start()
+  })
 }
 function changeDmkFrame(frame, fps, start_time) {
-  CM = new CommentManager(document.getElementById('vd'))
   CM.time((start_time + frame / fps) * 100)
 }
 export { CommentManager, CommentProvider, danmuku, changeDmkFrame }
