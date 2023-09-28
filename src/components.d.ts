@@ -9,9 +9,11 @@ declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./components/Avatar.vue')['default']
     BackgroundImage: typeof import('./components/BackgroundImage.vue')['default']
+    copy: typeof import('./components/MainInfo copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
+    GuanZhongInfo: typeof import('./components/GuanZhongInfo.vue')['default']
     InfoChip: typeof import('./components/InfoChip.vue')['default']
     MainCounts: typeof import('./components/MainCounts.vue')['default']
     MainInfo: typeof import('./components/MainInfo.vue')['default']

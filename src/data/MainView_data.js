@@ -1,11 +1,10 @@
 import { ref } from 'vue'
 // 初始化
 const data = ref({
-  score: '3.161',
+  score: '61',
   aid: '488745602',
   bvid: 'BV1pN411e79c',
-  title:
-    '⼊入⼋⼌⼍⼎⼏⼐⼑⼒⼓⼔⼕⼖⼗⼘⼙⼚⼛⼜⼝⼞⼟⼠⼡⼢⼣⼤⼥⼦⼧⼨⼩⼪⼫⼬⼭⼮⼯⼰⼱⼲⼳⼴⼵⼶⼷⼸⼹⼺⼻⼼⼽⼾⼿⽀⽁⽂⽃⽄⽅⽆⽇⽈⽉⽊⽋⽌⽍⽎⽏⽐⽑⽒⽓⽔⽕⽖',
+  title: '希望与梦想的兔兔',
   uploader: '佐仓镜泽',
   copyright: '1',
   play: '18345',
