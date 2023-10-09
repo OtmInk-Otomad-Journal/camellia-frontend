@@ -139,7 +139,7 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px; // 最顶端阴影消除
+  margin-top: 20px; // 最顶端阴影消除
 }
 .staff-list {
   width: 50%;
