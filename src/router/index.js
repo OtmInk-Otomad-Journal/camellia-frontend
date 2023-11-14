@@ -9,45 +9,30 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/Home.vue')
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // },
     {
       path: '/main',
       name: 'main',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/MainView.vue')
     },
     {
       path: '/pick',
       name: 'pick',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/PickView.vue')
     },
     {
       path: '/transition',
       name: 'transition',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/TransView.vue')
     },
     {
       path: '/viewpick',
       name: 'viewpick',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/GuanZhongView.vue')
+    },
+    {
+      path: '/calendar',
+      name: 'calendar',
+      component: () => import('../views/CalendarView.vue')
     }
     /*{
       path: '/extra',

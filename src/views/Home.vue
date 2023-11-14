@@ -7,6 +7,7 @@
       <RouterLink to="/transition">过渡</RouterLink>
       <RouterLink to="/pick">Pick</RouterLink>
       <RouterLink to="/viewpick">观众选模板</RouterLink>
+      <RouterLink to="/calendar">日历</RouterLink>
     </nav>
   </main>
 </template>

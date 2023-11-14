@@ -17,6 +17,7 @@ let tl_2 = gsap.timeline()
 let tl_3 = gsap.timeline()
 let tl_4 = gsap.timeline()
 let tl_5 = gsap.timeline()
+let tl_6 = gsap.timeline()
 // let tls = []
 
 const videoRef = ref()
@@ -182,6 +183,16 @@ function animate() {
     },
     data.value.full_time - 0.5
   )
+  tl_6.from('.logo', { duration: 0.75, x: -1000, ease: 'expo.out' })
+  tl_6.to(
+    '.logo',
+    {
+      duration: 1,
+      x: -1000,
+      ease: 'expo.in'
+    },
+    data.value.full_time - 1
+  )
 }
 
 //// 全局函数 统一写在这
@@ -191,6 +202,7 @@ function seek_frame(frame, fps, start_time) {
   tl_3.seek(frame / fps)
   tl_4.seek(frame / fps)
   tl_5.seek(frame / fps)
+  tl_6.seek(frame / fps)
   videoRef.value.currentTime = start_time + frame / fps
 }
 
@@ -208,6 +220,7 @@ window['inject'] = (obj) => {
   tl_3.pause()
   tl_4.pause()
   tl_5.pause()
+  tl_6.pause()
 }
 
 onMounted(() => {
@@ -227,10 +240,12 @@ window['test'] = () => {
   tl_3.restart()
   tl_4.restart()
   tl_5.restart()
+  tl_6.restart()
 }
 </script>
 
 <template>
+  <img v-if="data.activity == 'wc'" class="logo" src="/WeeklyC.png" />
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
     <div class="main-left">
@@ -251,6 +266,14 @@ window['test'] = () => {
 </template>
 
 <style lang="scss" scoped>
+.logo {
+  width: 25rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 2.5rem;
+  z-index: 16;
+  filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.5));
+}
 .main-board {
   aspect-ratio: 16 / 9;
   display: flex;

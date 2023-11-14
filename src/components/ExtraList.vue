@@ -21,7 +21,7 @@ defineProps({
           <div class="staff-single">
             <StaffBox job="策划"><Avatar path="./bd.jpg" />坏枪</StaffBox>
             <StaffBox job="主编团队"
-              ><Avatar path="./bd.jpg" />坏枪<br /><Avatar path="./5a.jpg" />ぁぁぁぁぁ</StaffBox
+              ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar path="./bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="界面设计"
               ><Avatar path="./al.jpg" />艾了个拉<br />
