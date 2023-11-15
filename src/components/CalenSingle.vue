@@ -16,7 +16,8 @@ const props = defineProps({
         <div class="ca-subtitle">{{ data.subtitle }}</div>
       </div>
     </div>
-    <div class="cover-mask" />
+    <div class="cover-mask"></div>
+    <img class="cover" :src="data.cover" />
   </div>
 </template>
 
@@ -50,7 +51,8 @@ const props = defineProps({
   flex-direction: row;
   margin-left: 1rem;
   height: 6rem;
-  justify-content: space-between;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .ca-time {
@@ -58,6 +60,7 @@ const props = defineProps({
   background-color: rgba(255, 255, 255, 0.753);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.18);
   border-radius: 0.5rem;
+  min-width: 12rem;
   overflow: hidden;
 }
 
@@ -68,7 +71,6 @@ const props = defineProps({
   padding-bottom: 0.8rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-width: 12rem;
   font-size: 3rem;
   font-weight: bolder;
   m {
@@ -88,17 +90,39 @@ const props = defineProps({
 .ca-title {
   font-size: 2.5rem;
   font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .ca-subtitle {
   font-size: 1.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .ca-title-box {
   height: 100%;
+  flex-grow: 1;
   display: flex;
+  overflow: hidden;
   flex-direction: column;
   margin-left: 1.5rem;
   justify-content: center;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  opacity: 0.4;
 }
 </style>

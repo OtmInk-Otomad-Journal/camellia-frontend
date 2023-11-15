@@ -3,7 +3,6 @@ import { data, fun } from '../data/Calendar_data.js'
 import { gsap } from 'gsap'
 import { onMounted } from 'vue'
 import { ScrollToPlugin } from 'gsap/all'
-import BackgroundImage from '../components/BackgroundImage.vue'
 import CalenSingle from '../components/CalenSingle.vue'
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -11,15 +10,11 @@ gsap.registerPlugin(ScrollToPlugin)
 
 let tl_1 = gsap.timeline()
 
-// let tls = []
-
-const videoRef = ref()
-
 // 动画 使用css选择器
 function animate() {
   tl_1.from('.ca-header', {
     duration: 1,
-    x: -2000,
+    y: -300,
     ease: 'expo.out'
   })
   tl_1.from(
@@ -30,7 +25,25 @@ function animate() {
       stagger: 0.08,
       ease: 'expo.out'
     },
-    0
+    0.4
+  )
+  tl_1.from(
+    '.ca-box',
+    {
+      duration: 1,
+      y: 2000,
+      ease: 'expo.out'
+    },
+    0.3
+  )
+  tl_1.to(
+    '.ca-box',
+    {
+      duration: data.value.full_time - 3, // 预留 3 秒给 STAFF
+      scrollTo: { y: 'max' },
+      ease: 'sine.inOut'
+    },
+    2
   )
 }
 
@@ -53,7 +66,6 @@ window['inject'] = (obj) => {
 
 onMounted(() => {
   fun(data.value)
-  animate()
 })
 
 // 测试专用函数
@@ -61,7 +73,7 @@ onMounted(() => {
 var test_num = ref(0)
 window['test'] = () => {
   if (test_num.value == 0) {
-    animate()
+    // animate()
     test_num.value += 1
   }
   tl_1.restart()
@@ -69,15 +81,23 @@ window['test'] = () => {
 </script>
 
 <template>
-  <div class="ca-header">音之墨小日历</div>
-  <div class="ca-box" v-for="cad in data.more_data" :key="cad">
-    <CalenSingle :data="cad" />
+  <div class="big-board">
+    <div class="ca-header">音之墨小日历</div>
+    <div class="ca-box">
+      <CalenSingle v-for="cad in data.more_data" :key="cad" :data="cad" />
+    </div>
+    <img class="big-bag" src="background_model_1.png" />
+    <img class="big-back" src="Background.png" />
   </div>
-  <img class="big-bag" src="background_model_1.png" />
-  <img class="big-back" src="Background.png" />
 </template>
 
 <style lang="scss" scoped>
+.big-board {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .big-bag {
   position: absolute;
   width: 100%;
@@ -100,17 +120,27 @@ window['test'] = () => {
 .ca-header {
   width: 100%;
   font-size: 4rem;
-  margin: 3rem auto;
+  margin-top: 2rem;
   font-weight: bolder;
   text-align: center;
 }
 
 .ca-box {
-  padding: 0 15rem;
+  @include card;
+  margin: 2rem 15rem;
+  padding: 0 2rem 2rem 2rem;
+  overflow: scroll;
+  flex-grow: 1;
 }
 // 测试按钮
 .test-button {
   position: absolute;
   z-index: 20;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Safari,Chrome 隐藏滚动条 */
+  height: 0; /* Safari,Chrome 隐藏滚动条 */
+  display: none; /* 移动端、pad 上Safari，Chrome，隐藏滚动条 */
 }
 </style>
