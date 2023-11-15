@@ -12,7 +12,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -21,7 +20,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -30,7 +28,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -39,7 +36,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -48,7 +44,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -57,7 +52,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -66,7 +60,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     },
     {
@@ -75,7 +68,6 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      web_prefix: 'http://localhost:7213/',
       cover: './cover/231090115.png'
     }
   ]
@@ -86,7 +78,7 @@ function fun(obj) {
   }
   if (data.value.more_data) {
     data.value.more_data.forEach((element) => {
-      element.cover = element.web_prefix + element.cover
+      element.cover = data.value.web_prefix + element.cover
     })
   }
   return new Promise((resolve) => {
