@@ -86,8 +86,8 @@ window['test'] = () => {
     <div class="ca-box">
       <CalenSingle v-for="cad in data.more_data" :key="cad" :data="cad" />
     </div>
-    <img class="big-bag" src="background_model_1.png" />
-    <img class="big-back" src="Background.png" />
+    <img class="big-bag" src="../assets/background_model_1.png" />
+    <img class="big-back" src="../assets/Background.png" />
   </div>
 </template>
 

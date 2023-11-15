@@ -10,7 +10,6 @@ declare module 'vue' {
     Avatar: typeof import('./components/Avatar.vue')['default']
     BackgroundImage: typeof import('./components/BackgroundImage.vue')['default']
     CalenSingle: typeof import('./components/CalenSingle.vue')['default']
-    copy: typeof import('./components/ExtraSingle copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
