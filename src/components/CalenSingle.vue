@@ -123,6 +123,6 @@ const props = defineProps({
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  opacity: 0.4;
+  opacity: 0.65;
 }
 </style>
