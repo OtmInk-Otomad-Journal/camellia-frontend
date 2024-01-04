@@ -37,5 +37,7 @@ defineProps({
   padding: 0 10px;
   font-size: 1.5rem;
   line-height: 2.8rem;
+  font-weight: 500;
+  text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.35);
 }
 </style>

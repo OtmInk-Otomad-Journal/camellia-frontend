@@ -4,7 +4,7 @@ const data = ref({
   score: '61',
   aid: '488745602',
   bvid: 'BV1pN411e79c',
-  title: '希望与梦想的兔兔',
+  title: '𰻞希望与梦想的兔兔𰀀𰀁𰀂𰀃𰀄𰀅𰀆𰀇𰀈',
   uploader: '佐仓镜泽',
   copyright: '1',
   play: '18345',

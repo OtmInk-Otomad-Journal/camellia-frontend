@@ -24,31 +24,43 @@ defineProps({
               ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar path="./bd.jpg" />坏枪</StaffBox
             >
             <StaffBox job="界面设计"
-              ><Avatar path="./al.jpg" />艾了个拉<br />
+              ><Avatar path="./al.png" />艾了个拉<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
-            <StaffBox job="前端"
-              ><Avatar path="./al.jpg" />艾了个拉<br /><Avatar path="./vt.jpg" />昊通机械<br />
-              <Avatar path="./bd.jpg" />坏枪 <br
-            /></StaffBox>
             <StaffBox job="数据算法"><Avatar path="./yl.jpg" />ErH-弋汐希霅</StaffBox>
-          </div>
-          <div class="staff-single">
             <StaffBox job="后端"
               ><Avatar path="./yl.jpg" />ErH-弋汐希霅<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
+          </div>
+          <div class="staff-single">
+            <StaffBox job="前端"
+              ><Avatar path="./al.png" />艾了个拉<br /><Avatar path="./vt.jpg" />昊通机械<br />
+              <Avatar path="./bd.jpg" />坏枪 <br
+            /></StaffBox>
+            <StaffBox job="封面团队"
+              ><Avatar path="./aw.jpg" />阿我饿一屋雨<br /><Avatar
+                path="./xk.jpg"
+              />小刊啦<br /><Avatar path="./st.jpg" />STARDO<br /><Avatar
+                path="./ptsm.jpg"
+              />普通市民B<br /><Avatar path="./nc.jpg" />Nucleus<br /><Avatar
+                path="./jp.jpg"
+              />铝合金键盘</StaffBox
+            >
             <StaffBox job="片头音乐"><Avatar path="./th.jpg" />thwy</StaffBox>
+          </div>
+          <div class="staff-single">
             <StaffBox job="片头视频"
               ><Avatar path="./tb.jpg" />唐辫小二<br /><Avatar path="./bd.jpg" />坏枪<br /><Avatar
-                path="./al.jpg"
+                path="./al.png"
               />艾了个拉</StaffBox
             >
-            <StaffBox job="封面"><Avatar path="./jp.jpg" />铝合金键盘</StaffBox>
             <StaffBox job="数据审核"
               ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar
-                path="./tg.jpg"
-              />我去是糖狗<br /><Avatar path="./lw.jpg" />隔壁你家一只老王
+                path="./lw.jpg"
+              />隔壁你家一只老王<br /><Avatar path="./xk.jpg" />小刊啦<br /><Avatar
+                path="./qsh.jpg"
+              />秦始皇派蒙
             </StaffBox>
           </div>
         </div>
@@ -142,7 +154,7 @@ defineProps({
   margin-top: 20px; // 最顶端阴影消除
 }
 .staff-list {
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -172,7 +184,7 @@ defineProps({
 .otm-text {
   margin-top: 2rem;
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 500;
   background-color: transparent;
 }
 </style>
