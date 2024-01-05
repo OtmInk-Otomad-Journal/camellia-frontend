@@ -223,6 +223,12 @@ window['inject'] = (obj) => {
   tl_6.pause()
 }
 
+window['inject_wvc'] = (obj) => {
+  fun(obj).then(() => {
+    animate()
+  })
+}
+
 onMounted(() => {
   fun(data.value)
 })
