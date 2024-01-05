@@ -27,9 +27,9 @@ defineProps({
               ><Avatar path="./al.png" />艾了个拉<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
-            <StaffBox job="数据算法"><Avatar path="./yl.jpg" />ErH-弋汐希霅</StaffBox>
+            <StaffBox job="数据算法"><Avatar path="./yl.jpg" />ErH_杋糖</StaffBox>
             <StaffBox job="后端"
-              ><Avatar path="./yl.jpg" />ErH-弋汐希霅<br />
+              ><Avatar path="./yl.jpg" />ErH_杋糖<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
             >
           </div>
