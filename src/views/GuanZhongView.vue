@@ -170,7 +170,12 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
-        <video class="video-inner" ref="videoRef" :key="data.video_src">
+        <video
+          class="video-inner"
+          ref="videoRef"
+          :startTime="data.start_time * 1000"
+          :key="data.video_src"
+        >
           <source :src="data.video_src" />
         </video>
       </div>
