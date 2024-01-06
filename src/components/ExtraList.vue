@@ -62,6 +62,7 @@ defineProps({
                 path="./qsh.jpg"
               />秦始皇派蒙
             </StaffBox>
+            <StaffBox job="引擎支持">WebVideoCreator<am>by Vinlic</am><br /></StaffBox>
           </div>
         </div>
         <div class="logo-list">
@@ -186,5 +187,12 @@ defineProps({
   font-size: 1.25rem;
   font-weight: 500;
   background-color: transparent;
+}
+
+am {
+  font-size: 1.2rem;
+  margin-top: -0.8rem;
+  display: block;
+  text-align: right;
 }
 </style>

@@ -170,14 +170,16 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
-        <video
+        <canvas
+          :src="data.video_src"
           class="video-inner"
+          :seekStart="data.start_time * 1000"
           ref="videoRef"
-          :startTime="data.start_time * 1000"
           :key="data.video_src"
+          muted
+          video-capture
         >
-          <source :src="data.video_src" />
-        </video>
+        </canvas>
       </div>
       <GuanZhongInfo />
     </div>
