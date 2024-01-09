@@ -15,7 +15,7 @@ import { data } from '../data/MainView_data.js'
       <div class="main-progress"></div>
     </div>
     <div class="view-point">
-      <div>{{ data.score }}<span>票</span></div>
+      <div>{{ data.score }}<span> 票</span></div>
     </div>
   </div>
 </template>

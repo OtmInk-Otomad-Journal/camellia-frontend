@@ -319,7 +319,6 @@ window['test'] = () => {
         <canvas
           :src="data.video_src"
           class="video-inner"
-          :seekStart="data.start_time * 1000"
           ref="videoRef"
           :key="data.video_src"
           muted

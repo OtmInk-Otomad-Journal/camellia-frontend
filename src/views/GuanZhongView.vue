@@ -173,7 +173,6 @@ window['test'] = () => {
         <canvas
           :src="data.video_src"
           class="video-inner"
-          :seekStart="data.start_time * 1000"
           ref="videoRef"
           :key="data.video_src"
           muted
@@ -197,12 +196,12 @@ window['test'] = () => {
   z-index: 16;
 }
 .main-board {
-  aspect-ratio: 16 / 9;
+  // aspect-ratio: 16 / 9;
   display: flex;
-  // width: 100vw;
-  // height: 100vh;
+  width: 100vw;
+  height: 100vh;
   gap: 2rem;
-  padding: 5rem 20rem;
+  padding: 3rem 16rem;
   // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
   background-size: 100vw;
   background-position: center;
