@@ -43,6 +43,7 @@ import { data } from '../data/MainView_data.js'
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
+  white-space: nowrap;
 }
 .main-progress {
   position: absolute;
@@ -63,6 +64,7 @@ import { data } from '../data/MainView_data.js'
   // gap: 4.75rem;
   padding: 1.5rem 1.75rem;
   flex-grow: 1;
+  overflow: hidden;
 
   h1 {
     font-size: 2.5rem;

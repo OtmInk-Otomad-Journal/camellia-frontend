@@ -4,7 +4,7 @@ const data = ref({
   score: '123',
   aid: '488745602',
   bvid: 'BV1pN411e79c',
-  title: '希望与梦想的兔兔',
+  title: '希望与梦想的鸡牛马人狗猪比吧哈陛下哈里路大旋风啊啊啊啊啊啊',
   uploader: '兔兔',
   copyright: '1',
   play: '18345',
