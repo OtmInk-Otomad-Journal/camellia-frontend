@@ -9,7 +9,9 @@ const props = defineProps({
     <div class="rightI">
       <div class="ca-time">
         <div class="ca-progress">{{ data.progress }}</div>
-        <div class="ca-date" v-html="data.date"></div>
+        <div class="ca-date-wrapper">
+          <div class="ca-date" v-html="data.date"></div>
+        </div>
       </div>
       <div class="ca-title-box">
         <div class="ca-title">{{ data.title }}</div>
@@ -46,6 +48,7 @@ const props = defineProps({
   height: 100%;
   background-image: linear-gradient(90deg, rgb(233, 233, 233), transparent);
 }
+
 .rightI {
   display: flex;
   flex-direction: row;
@@ -56,6 +59,8 @@ const props = defineProps({
 }
 
 .ca-time {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.753);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.18);
@@ -64,15 +69,23 @@ const props = defineProps({
   overflow: hidden;
 }
 
+.ca-date-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
 .ca-date {
   display: flex;
   align-items: last baseline;
   justify-content: center;
-  padding-bottom: 0.8rem;
+  // padding-bottom: 0.8rem;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 3rem;
   font-weight: bolder;
+
   m {
     font-size: 1rem;
   }
@@ -81,10 +94,13 @@ const props = defineProps({
 .ca-progress {
   background-color: v-bind('data.color');
   position: relative;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   width: 100%;
   font-weight: bolder;
+  height: 28px;
 }
 
 .ca-title {
