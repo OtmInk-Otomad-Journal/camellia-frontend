@@ -11,6 +11,7 @@ import { data } from '../data/MainView_data.js'
           <InfoChip>av{{ data.aid }}</InfoChip>
           <InfoChip>{{ data.pubtime }}</InfoChip>
         </div>
+        <UploaderInfo />
       </div>
       <div class="main-progress"></div>
     </div>

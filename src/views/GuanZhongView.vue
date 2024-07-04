@@ -201,7 +201,7 @@ window['test'] = () => {
   width: 100vw;
   height: 100vh;
   gap: 2rem;
-  padding: 3rem 16rem;
+  padding: 2.5rem 17rem;
   // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
   background-size: 100vw;
   background-position: center;
