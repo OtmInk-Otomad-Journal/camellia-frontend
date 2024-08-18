@@ -165,7 +165,7 @@ window['test'] = () => {
 </script>
 
 <template>
-  <img class="logo" src="/2023LOGO.png" />
+  <img class="logo" src="/2024h.png" />
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
     <div class="main-left">
