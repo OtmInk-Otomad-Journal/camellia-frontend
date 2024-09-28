@@ -19,10 +19,8 @@ defineProps({
       <div class="end-board">
         <div class="staff-list">
           <div class="staff-single">
-            <StaffBox job="策划"><Avatar path="./bd.jpg" />坏枪</StaffBox>
-            <StaffBox job="主编团队"
-              ><Avatar path="./zz.jpg" />zzzzzz9125<br /><Avatar path="./bd.jpg" />坏枪</StaffBox
-            >
+            <StaffBox job="现任主编"><Avatar path="./zz.jpg" />zzzzzz9125</StaffBox>
+            <StaffBox job="原策划"><Avatar path="./bd.jpg" />坏枪</StaffBox>
             <StaffBox job="界面设计"
               ><Avatar path="./al.png" />艾了个拉<br />
               <Avatar path="./bd.jpg" />坏枪</StaffBox
@@ -67,38 +65,9 @@ defineProps({
         </div>
         <div class="logo-list">
           <div class="otm-logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.43 175">
-              <g id="图层_2" data-name="图层 2">
-                <path
-                  class="cls-1"
-                  d="M87.5,150A62.5,62.5,0,1,1,150,87.5h25A87.5,87.5,0,1,0,87.5,175Z"
-                />
-                <circle class="cls-1" cx="87.5" cy="87.5" r="12.5" />
-                <rect class="cls-1" x="107.5" y="100" width="25" height="75" />
-                <path
-                  class="cls-1"
-                  d="M112.5,100v25h20A17.51,17.51,0,0,1,150,142.5V175h25V137.57A37.57,37.57,0,0,0,137.43,100Z"
-                />
-                <path
-                  class="cls-1"
-                  d="M99.87,103.2a19.94,19.94,0,0,1-24.74,0,.08.08,0,0,0-.13.06v58.83A12.77,12.77,0,0,0,87.27,175H100V103.26A.08.08,0,0,0,99.87,103.2Z"
-                />
-                <polygon
-                  class="cls-1"
-                  points="230.43 175 174.02 118.59 156.34 136.27 195.08 175 230.43 175"
-                />
-                <polygon
-                  class="cls-1"
-                  points="188.43 100.23 156.34 132.32 174.02 150 223.79 100.23 188.43 100.23"
-                />
-                <path
-                  class="cls-1"
-                  d="M170.63,111,175,106.6V87.5H150v9.4A42.76,42.76,0,0,1,170.63,111Z"
-                />
-              </g>
-            </svg>
+            <img class="yzm" src="../assets/yzm.webp" />
           </div>
-          <div class="otm-text">音MAD，如墨一般浸润。</div>
+          <!-- <div class="otm-text"></div> -->
         </div>
       </div>
     </div>
@@ -155,11 +124,11 @@ defineProps({
   margin-top: 20px; // 最顶端阴影消除
 }
 .staff-list {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .staff-single {
@@ -178,7 +147,9 @@ defineProps({
 }
 
 .otm-logo {
-  width: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   filter: drop-shadow(10px 10px 8px rgba(0, 0, 0, 0.18));
 }
 
@@ -194,5 +165,19 @@ am {
   margin-top: -0.8rem;
   display: block;
   text-align: right;
+}
+
+@keyframes yzm-ani {
+  from {
+    transform: rotate(-15deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+
+.yzm {
+  width: 100%;
+  animation: yzm-ani ease-in-out 1s infinite alternate;
 }
 </style>
