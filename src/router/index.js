@@ -33,6 +33,11 @@ const router = createRouter({
       path: '/calendar',
       name: 'calendar',
       component: () => import('../views/CalendarView.vue')
+    },
+    {
+      path: '/backicons',
+      name: 'backicons',
+      component: () => import('../components/BackgroundIcons.vue')
     }
     /*{
       path: '/extra',

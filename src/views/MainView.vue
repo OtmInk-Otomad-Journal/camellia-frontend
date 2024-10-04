@@ -4,6 +4,7 @@ import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
 import ExtraList from '../components/ExtraList.vue'
 import BackgroundImage from '../components/BackgroundImage.vue'
+import BackgroundIcons from '../components/BackgroundIcons.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
@@ -299,7 +300,7 @@ onMounted(() => {
 var test_num = ref(0)
 window['test'] = () => {
   if (test_num.value == 0) {
-    // animate()
+    animate()
     test_num.value += 1
   }
   tl_1.restart()
@@ -334,6 +335,7 @@ window['test'] = () => {
       <img class="cover" :src="data.cover_src" />
     </div>
     <TransitionImage />
+    <!-- <BackgroundIcons /> -->
     <BackgroundImage />
   </div>
   <!-- <img class="main-back" :src="data.cover_src" /> -->

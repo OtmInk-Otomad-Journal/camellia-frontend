@@ -65,7 +65,7 @@ defineProps({
         </div>
         <div class="logo-list">
           <div class="otm-logo">
-            <img class="yzm" src="../assets/yzm.webp" />
+            <img class="yzm" src="../assets/yzm.png" />
           </div>
           <!-- <div class="otm-text"></div> -->
         </div>

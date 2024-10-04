@@ -8,8 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Avatar: typeof import('./components/Avatar.vue')['default']
+    BackgroundIcons: typeof import('./components/BackgroundIcons.vue')['default']
     BackgroundImage: typeof import('./components/BackgroundImage.vue')['default']
     CalenSingle: typeof import('./components/CalenSingle.vue')['default']
+    copy: typeof import('./components/BackgroundImage copy.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
     ExtraSingle: typeof import('./components/ExtraSingle.vue')['default']
