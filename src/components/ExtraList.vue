@@ -41,11 +41,13 @@ defineProps({
                 path="./xk.jpg"
               />小刊啦<br /><Avatar path="./st.jpg" />STARDO<br /><Avatar
                 path="./ptsm.jpg"
-              />普通市民B<br /><Avatar path="./nc.jpg" />Nucleus<br /><Avatar
-                path="./jp.jpg"
-              />铝合金键盘</StaffBox
+              />普通市民B<br /><Avatar path="./nc.jpg" />Nucleus</StaffBox
             >
             <StaffBox job="片头音乐"><Avatar path="./th.jpg" />thwy</StaffBox>
+            <StaffBox job="运行维护"
+              ><Avatar path="./al.png" />艾了个拉<br />
+              <Avatar path="./bd.jpg" />坏枪<br /><Avatar path="./xb.jpg" />信标之光<br
+            /></StaffBox>
           </div>
           <div class="staff-single">
             <StaffBox job="片头视频"
