@@ -5,7 +5,7 @@ const data = ref({
   aid: '488745602',
   bvid: 'BV1pN411e79c',
   title: '希望与梦想的鸡牛马人狗猪比吧哈陛下哈里路大旋风啊啊啊啊啊啊',
-  uploader: '希望与梦想的兔兔',
+  uploader: 'UNCHECKABLE',
   copyright: '1',
   play: '18345',
   like: '1465',

@@ -13,7 +13,7 @@ import { data } from '../data/MainView_data.js'
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.25rem;
+  // gap: 0.25rem;
   background-color: v-bind('data.dark_color');
   border-radius: 100rem;
   padding: 0.5rem 1.5rem;

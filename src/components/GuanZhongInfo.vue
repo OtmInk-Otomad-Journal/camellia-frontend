@@ -8,10 +8,10 @@ import { data } from '../data/MainView_data.js'
       <h1 class="main-title">{{ data.title }}</h1>
       <div class="details">
         <div class="chips">
-          <InfoChip>av{{ data.aid }}</InfoChip>
-          <InfoChip>{{ data.pubtime }}</InfoChip>
+          <InfoChip><span v-if="!isNaN(data.aid)">av</span>{{ data.aid }}</InfoChip>
+          <InfoChip v-if="data.pubtime">{{ data.pubtime }}</InfoChip>
         </div>
-        <UploaderInfo />
+        <UploaderInfo v-if="data.uploader != 'UNCHECKABLE'" />
       </div>
       <div class="main-progress"></div>
     </div>
