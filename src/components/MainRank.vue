@@ -1,11 +1,16 @@
 <script setup>
 import { data } from '../data/MainView_data.js'
+import { NewspaperFolding } from '@icon-park/vue-next'
 </script>
 
 <template>
   <div class="main-rank">
     <div>
-      <span class="rank">#{{ data.ranking }}</span>
+      <span class="rank"
+        ><newspaper-folding style="display: inline-flex; align-items: center" theme="outline" />{{
+          data.ranking
+        }}</span
+      >
     </div>
     <span class="points">{{ data.score }} POINTS</span>
   </div>
@@ -27,7 +32,7 @@ import { data } from '../data/MainView_data.js'
 }
 
 .rank {
-  display: block;
+  display: flex;
   font-size: 6rem;
   font-family: Montserrat, sans-serif;
   font-weight: 600;

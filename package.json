@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@icon-park/vue-next": "^1.4.2",
     "dplayer": "^1.27.1",
     "eslint": "^8.45.0",
     "gsap": "^3.12.2",

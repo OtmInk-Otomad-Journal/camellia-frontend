@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { NewspaperFolding } from '@icon-park/vue-next'
+
 const props = defineProps({
   data: Object
 })
@@ -14,7 +15,11 @@ const props = defineProps({
         <SideInfoChip :single_data="props.data">{{ props.data.pubtime }}</SideInfoChip>
       </div>
       <div class="bottom">
-        <div class="rank">#{{ props.data.ranking }}</div>
+        <div class="rank">
+          <newspaper-folding style="display: inline-flex; align-items: center" theme="outline" />{{
+            props.data.ranking
+          }}
+        </div>
         <div class="points">
           <span>{{ props.data.score }}</span>
           <span>POINTS</span>
@@ -92,6 +97,7 @@ const props = defineProps({
   }
 
   .rank {
+    display: flex;
     font-family: Montserrat, sans-serif;
     font-size: 5rem;
     font-weight: 600;
