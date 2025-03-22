@@ -36,6 +36,12 @@ import { NewspaperFolding } from '@icon-park/vue-next'
   font-size: 6rem;
   font-family: Montserrat, sans-serif;
   font-weight: 600;
+  gap: 0.15em;
+
+  .i-icon {
+    font-size: 0.9em;
+    margin-top: -0.1em;
+  }
 }
 
 .points {

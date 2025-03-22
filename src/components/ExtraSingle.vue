@@ -71,10 +71,11 @@ const props = defineProps({
   height: 100%;
   background-image: linear-gradient(90deg, rgb(233, 233, 233), transparent);
 }
+
 .rightI {
   display: flex;
   flex-direction: column;
-  margin-left: 2rem;
+  margin-left: 0.5rem;
   justify-content: space-between;
 
   h1 {
@@ -99,11 +100,18 @@ const props = defineProps({
   .rank {
     display: flex;
     font-family: Montserrat, sans-serif;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 600;
-    margin-top: -0.5rem;
-    margin-bottom: -1rem;
+    margin-top: 0.5rem;
+    margin-bottom: -0.1em;
     min-width: 10rem;
+    gap: 0.15em;
+    line-height: 1;
+
+    .i-icon {
+      font-size: 0.9em;
+      margin-top: -0.06em;
+    }
   }
 
   .points {
@@ -112,6 +120,7 @@ const props = defineProps({
     font-family: Montserrat, sans-serif;
     font-size: 2rem;
     font-weight: 500;
+    line-height: 1;
   }
 }
 

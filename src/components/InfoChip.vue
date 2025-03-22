@@ -21,5 +21,6 @@ import { data } from '../data/MainView_data.js'
   color: white;
   font-weight: 700;
   font-size: 1.25rem;
+  line-height: 1;
 }
 </style>
