@@ -45,6 +45,7 @@ defineProps({
 .count {
   font-size: 2rem;
   font-weight: 700;
+  margin-bottom: -0.2em;
 }
 
 .icon {
