@@ -95,7 +95,6 @@ function animate() {
     {
       duration: 0.8,
       x: 450,
-      opacity: 0,
       rotationX: 90,
       ease: 'expo.out'
     },
@@ -106,6 +105,7 @@ function animate() {
     {
       duration: 0.8,
       x: 50,
+      opacity: 0,
       rotationY: 90,
       stagger: 0.08,
       ease: 'expo.out'
