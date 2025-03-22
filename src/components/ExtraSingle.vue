@@ -41,7 +41,7 @@ const props = defineProps({
   flex-grow: 1;
   width: 100%;
   max-height: 200px;
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   margin-top: 30px;
   border-radius: 12px;
   // background-image: linear-gradient(90deg, #fff 33%, transparent);
@@ -75,7 +75,6 @@ const props = defineProps({
 .rightI {
   display: flex;
   flex-direction: column;
-  margin-left: 0.5rem;
   justify-content: space-between;
 
   h1 {
@@ -126,8 +125,8 @@ const props = defineProps({
 
 .uploader {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: 1.5rem;
+  bottom: 1.25rem;
 }
 
 .side-title {
