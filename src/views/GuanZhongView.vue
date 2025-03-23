@@ -25,7 +25,7 @@ function animate() {
   tl_1.from('.video-box', {
     duration: 1,
     rotationX: 90,
-    ease: 'back.out(1.8)'
+    ease: 'expo.out'
   })
   tl_1.to(
     '.main-left',
