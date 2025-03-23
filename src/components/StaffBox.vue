@@ -8,6 +8,7 @@ defineProps({
 <template>
   <div class="staff-box">
     <div class="staff-job">
+      <slot name="icon"></slot>
       {{ job }}
     </div>
     <div class="staff-name">
@@ -22,8 +23,12 @@ defineProps({
   background-color: transparent;
   margin-bottom: 20px;
 }
+
 .staff-job {
-  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 255px;
   padding: 5px 10px;
   border-radius: 8px;
   margin-bottom: 5px;
@@ -33,6 +38,7 @@ defineProps({
   font-size: 1.5rem;
   font-weight: bold;
 }
+
 .staff-name {
   padding: 0 10px;
   font-size: 1.5rem;
