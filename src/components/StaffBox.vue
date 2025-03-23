@@ -21,7 +21,6 @@ defineProps({
 .staff-box {
   min-width: 50px;
   background-color: transparent;
-  margin-bottom: 20px;
 }
 
 .staff-job {

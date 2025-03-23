@@ -247,6 +247,7 @@ defineProps({
 
 .staff-single {
   display: flex;
+  gap: 20px;
   margin-left: 3em;
   flex-direction: column;
   align-items: flex-start;
