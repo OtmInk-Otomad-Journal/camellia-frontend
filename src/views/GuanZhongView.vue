@@ -165,7 +165,7 @@ window['test'] = () => {
 </script>
 
 <template>
-  <img class="logo" src="/2024LOGO.png" />
+  <img class="logo" src="/2025hLOGO.png" />
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
   <div class="main-board">
     <div class="main-left">
@@ -189,10 +189,10 @@ window['test'] = () => {
 
 <style lang="scss" scoped>
 .logo {
-  width: 25rem;
+  width: 28rem;
   position: absolute;
-  top: 0.5rem;
-  left: 2.5rem;
+  top: 0rem;
+  left: 2rem;
   z-index: 16;
 }
 .main-board {
