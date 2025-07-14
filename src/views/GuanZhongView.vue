@@ -170,9 +170,10 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
+        <div v-if="data.prevent" class="prevent">规避</div>
         <canvas
           :src="data.video_src"
-          class="video-inner"
+          :class="('video-inner', { preblur: data.prevent })"
           ref="videoRef"
           :key="data.video_src"
           muted
@@ -227,11 +228,19 @@ window['test'] = () => {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   flex-shrink: 0;
+  position: relative;
 }
 
 .video-inner {
   width: 100%;
   height: 100%;
+}
+
+.preblur {
+  position: absolute;
+  filter: blur(20px) brightness(0.75);
+  top: 0;
+  left: 0;
 }
 
 .cover {
@@ -269,6 +278,21 @@ window['test'] = () => {
 }
 .dplayer-controller-mask {
   display: none !important;
+}
+.prevent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  font-weight: bolder;
+  color: white;
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 // 测试按钮
 .test-button {
