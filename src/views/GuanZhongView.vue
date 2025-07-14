@@ -170,16 +170,16 @@ window['test'] = () => {
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
-        <div v-if="data.prevent" class="prevent">规避</div>
         <canvas
           :src="data.video_src"
-          :class="('video-inner', { preblur: data.prevent })"
+          :class="['video-inner', { preblur: data.prevent == 'true' }]"
           ref="videoRef"
           :key="data.video_src"
           muted
           video-capture
         >
         </canvas>
+        <div v-if="data.prevent == 'true'" class="prevent">规避</div>
       </div>
       <GuanZhongInfo />
     </div>
@@ -218,7 +218,7 @@ window['test'] = () => {
   background-position: center;
   object-fit: cover;
   transform: scale(1.5);
-  filter: blur(100px);
+  filter: blur(50px);
   // mix-blend-mode: darken;
 }
 .video-box {
@@ -234,13 +234,13 @@ window['test'] = () => {
 .video-inner {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .preblur {
-  position: absolute;
-  filter: blur(20px) brightness(0.75);
-  top: 0;
-  left: 0;
+  filter: blur(100px) brightness(0.75);
 }
 
 .cover {
