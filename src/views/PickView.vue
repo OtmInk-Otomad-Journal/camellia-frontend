@@ -332,6 +332,8 @@ window['test'] = () => {
   position: absolute;
   top: 0;
   left: 0;
+  object-position: center;
+  object-fit: contain;
 }
 
 .cover {
