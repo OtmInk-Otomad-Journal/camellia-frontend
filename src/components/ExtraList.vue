@@ -79,9 +79,7 @@ defineProps({
               <Avatar path="./yl.jpg" />ErH_杋糖<br />
               <Avatar path="./bd.jpg" />坏枪
             </StaffBox>
-          </div>
 
-          <div class="staff-single">
             <StaffBox job="前端">
               <template #icon>
                 <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px"
@@ -94,7 +92,9 @@ defineProps({
               <Avatar path="./vt.jpg" />昊通机械<br />
               <Avatar path="./bd.jpg" />坏枪 <br />
             </StaffBox>
+          </div>
 
+          <div class="staff-single">
             <StaffBox job="封面团队">
               <template #icon>
                 <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px"
@@ -103,9 +103,10 @@ defineProps({
                     d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
                 </svg>
               </template>
+              <Avatar path="./st.jpg" />STARDO<br />
+              <Avatar path="./vc.jpg" />万豪敦可可亚<br />
               <Avatar path="./aw.jpg" />阿我饿一屋雨<br />
               <Avatar path="./xk.jpg" />小刊啦<br />
-              <Avatar path="./st.jpg" />STARDO<br />
               <Avatar path="./ptsm.jpg" />普通市民B<br />
               <Avatar path="./nc.jpg" />Nucleus
             </StaffBox>
@@ -130,6 +131,7 @@ defineProps({
               </template>
               <Avatar path="./bd.jpg" />坏枪<br />
               <Avatar path="./xb.jpg" />信标之光<br />
+              <Avatar path="./al.png" />艾了个拉<br />
             </StaffBox>
           </div>
           <div class="staff-single">
