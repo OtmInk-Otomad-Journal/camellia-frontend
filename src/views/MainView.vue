@@ -313,7 +313,12 @@ window['test'] = () => {
 
 <template>
   <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
-  <ExtraList class="extra-list" v-if="data.more_data" :more_data="data.more_data" />
+  <ExtraList
+    class="extra-list"
+    v-if="data.more_data"
+    :more_data="data.more_data"
+    :show_staff="data.show_staff"
+  />
   <div class="main-board">
     <div class="main-left">
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -331,9 +336,9 @@ window['test'] = () => {
       <MainInfo />
     </div>
     <div class="main-right">
-      <MainRank />
-      <MainCounts />
       <img class="cover" :src="data.cover_src" />
+      <MainCounts />
+      <MainRank />
     </div>
     <TransitionImage />
     <!-- <BackgroundIcons /> -->
@@ -402,6 +407,7 @@ window['test'] = () => {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .main-left,

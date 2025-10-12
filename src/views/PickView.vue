@@ -343,6 +343,7 @@ window['test'] = () => {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   flex-shrink: 0;
+  object-fit: cover;
 }
 
 .main-left,
