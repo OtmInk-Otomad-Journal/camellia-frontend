@@ -10,7 +10,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: url('../assets/transition_back.png');
+  background-image: url('https://file.51pptmoban.com/d/file/2023/08/25/3411b8d2e1500573b7063fdade48f34b.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

@@ -29,6 +29,8 @@ import { NewspaperFolding } from '@icon-park/vue-next'
   // background-color: var(--c-accent);
   background-color: v-bind('data.dark_color');
   color: white;
+  background-image: url('./textures/diamond-upholstery.png');
+  background-blend-mode: color-burn;
 }
 
 .rank {
