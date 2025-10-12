@@ -194,6 +194,16 @@ function animate() {
     },
     0
   )
+  tl_2.from(
+    '.rank-title',
+    {
+      duration: 0.4,
+      scale: 0,
+      opacity: 0,
+      ease: 'back.out(2.0)'
+    },
+    0
+  )
   tl_3.to(
     '.main-progress',
     {
