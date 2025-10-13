@@ -42,7 +42,8 @@ const props = defineProps({
   width: 100%;
   max-height: 200px;
   padding: 1.25rem 1.5rem;
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   border-radius: 12px;
   // background-image: linear-gradient(90deg, #fff 33%, transparent);
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
