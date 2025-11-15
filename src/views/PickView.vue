@@ -213,6 +213,7 @@ window['seek_frame'] = (frame, fps, start_time) => {
 
 window['inject'] = (obj) => {
   fun(obj).then(() => {
+    UpdateCanvasAttribute()
     animate()
   })
   tl_1.pause()
@@ -225,7 +226,19 @@ window['inject'] = (obj) => {
 
 window['inject_wvc'] = (obj) => {
   fun(obj).then(() => {
+    UpdateCanvasAttribute()
     animate()
+  })
+}
+
+function UpdateCanvasAttribute() {
+  // 将所有 Canvas 元素的 start-time 属性赋值给它本身的 startTime 属性
+  const canvasElements = document.querySelectorAll('canvas')
+  canvasElements.forEach((canvas) => {
+    const startTime = canvas.getAttribute('start-time')
+    if (startTime !== null) {
+      canvas.startTime = parseFloat(startTime)
+    }
   })
 }
 
