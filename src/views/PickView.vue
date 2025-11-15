@@ -275,7 +275,7 @@ window['test'] = () => {
           :class="['video-inner', { preblur: data.prevent == 'true' }]"
           ref="videoRef"
           :key="data.video_src"
-          :start-time="Math.floor(data.start_time * 1000)"
+          :start-time="Math.floor((data.start_time - data.front_reserved_time) * 1000)"
           muted
           video-capture
         >
