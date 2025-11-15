@@ -262,6 +262,7 @@ window['test'] = () => {
           :class="['video-inner', { preblur: data.prevent == 'true' }]"
           ref="videoRef"
           :key="data.video_src"
+          :startTime="data.start_time * 1000"
           muted
           video-capture
         >
