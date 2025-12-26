@@ -2,6 +2,8 @@ import { ref } from 'vue'
 // 初始化
 const data = ref({
   score: '123',
+  golden: '22',
+  normal: '456',
   aid: '488745602',
   bvid: 'BV1pN411e79c',
   title: '希望与梦想的鸡牛马人狗猪比吧哈陛下哈里路大旋风啊啊啊啊啊啊',
