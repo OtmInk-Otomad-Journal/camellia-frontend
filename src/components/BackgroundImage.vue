@@ -1,15 +1,31 @@
 <script setup>
 import { data } from '../data/MainView_data'
+import { computed, onMounted } from 'vue'
+import { useAudioReactiveScale } from '../utils/audioReactive'
+
+const { scale, start } = useAudioReactiveScale({ maxScale: 1.05, smoothing: 0.14, boost: 1.7 })
+const reactiveStyle = computed(() => ({ transform: `scale(${scale.value})` }))
+
+onMounted(() => {
+  start()
+})
 </script>
 
 <template>
-  <img
-    class="back-model"
-    :src="'./background_model_' + (((isNaN(data.aid) ? 0 : data.aid) % 3) + 1) + '.png'"
-  />
-  <div class="back-color"></div>
+  <div class="back-wrap" :style="reactiveStyle">
+    <img
+      class="back-model"
+      :src="'./background_model_' + (((isNaN(data.aid) ? 0 : data.aid) % 3) + 1) + '.png'"
+    />
+    <div class="back-color"></div>
+  </div>
 </template>
 <style>
+.back-wrap {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+}
 .back-model {
   position: absolute;
   width: 100%;

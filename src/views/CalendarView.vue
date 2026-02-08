@@ -99,10 +99,13 @@ window['test'] = () => {
 
 <style lang="scss" scoped>
 .big-board {
+  position: relative;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 2.25rem 3rem;
+  gap: 1.25rem;
 }
 .big-bag {
   position: absolute;
@@ -125,18 +128,42 @@ window['test'] = () => {
 }
 .ca-header {
   width: 100%;
-  font-size: 4rem;
-  margin-top: 2rem;
-  font-weight: bolder;
+  font-size: 3.25rem;
+  margin-top: 0.25rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   text-align: center;
+  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .ca-box {
   @include card;
-  margin: 2rem 15rem;
-  padding: 0 2rem 2rem 2rem;
+  @include acrylic;
+  margin: 0 10rem;
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem;
   overflow: scroll;
   flex-grow: 1;
+}
+
+@media (max-width: 1280px) {
+  .big-board {
+    padding: 2rem;
+  }
+  .ca-box {
+    margin: 0 4rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .big-board {
+    padding: 1.25rem;
+  }
+  .ca-header {
+    font-size: 2.5rem;
+  }
+  .ca-box {
+    margin: 0;
+  }
 }
 // 测试按钮
 .test-button {

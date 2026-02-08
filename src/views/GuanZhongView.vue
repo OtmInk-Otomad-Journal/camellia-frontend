@@ -24,14 +24,14 @@ const videoRef = ref()
 function animate() {
   tl_1.from('.video-box', {
     duration: 1,
-    rotationX: 90,
+    rotationX: 70,
     ease: 'expo.out'
   })
   tl_1.to(
     '.main-left',
     {
       duration: 1,
-      x: 1800,
+      x: 1600,
       ease: 'expo.in'
     },
     data.value.full_time - 1
@@ -40,8 +40,8 @@ function animate() {
       '.main-info',
       {
         duration: 0.8,
-        y: 50,
-        rotationX: 90,
+        y: 40,
+        rotationX: 70,
         ease: 'expo.out'
       },
       0
@@ -50,7 +50,7 @@ function animate() {
       '.main-left',
       {
         duration: 0.8,
-        x: -1800,
+        x: -1600,
         ease: 'expo.out'
       },
       0
@@ -211,12 +211,22 @@ window['test'] = () => {
   z-index: 16;
 }
 .main-board {
+  position: relative;
   // aspect-ratio: 16 / 9;
   display: flex;
   width: 100vw;
   height: 100vh;
   gap: 2rem;
-  padding: 2.5rem 17rem;
+  padding: 2.5rem 12rem;
+  border-radius: 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px) saturate(1.15);
   // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
   background-size: 100vw;
   background-position: center;
@@ -282,6 +292,24 @@ window['test'] = () => {
   flex-shrink: 0;
   max-width: 26.875rem;
 }
+
+@media (max-width: 1280px) {
+  .main-board {
+    padding: 2.25rem 6rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .main-board {
+    padding: 1.5rem;
+    border-radius: 22px;
+  }
+  .logo {
+    width: 22rem;
+  }
+}
+
 .extra-list {
   position: absolute;
   z-index: 100;

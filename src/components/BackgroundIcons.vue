@@ -1,15 +1,24 @@
 <script setup>
 import { onMounted } from 'vue'
 import { data, fun } from '../data/MainView_data'
+import { computed } from 'vue'
+import { useAudioReactiveScale } from '../utils/audioReactive'
 
 // onMounted(() => {
 //   fun(data.value)
 // })
+
+const { scale, start } = useAudioReactiveScale({ maxScale: 1.06, smoothing: 0.14, boost: 1.9 })
+const reactiveStyle = computed(() => ({ transform: `scale(${scale.value})` }))
+
+onMounted(() => {
+  start()
+})
 </script>
 
 <template>
   <!-- <img class="back-model" :src="'./background_model_' + ((data.aid % 3) + 1) + '.png'" /> -->
-  <div class="back-model">
+  <div class="back-model" :style="reactiveStyle">
     <img class="icon-1" src="../assets/backicons/3dicons-1.webp" />
     <img class="icon-2" src="../assets/backicons/3dicons-2.webp" />
     <img class="icon-3" src="../assets/backicons/3dicons-3.webp" />
@@ -18,7 +27,7 @@ import { data, fun } from '../data/MainView_data'
     <img class="icon-6" src="../assets/backicons/3dicons-6.webp" />
     <img class="icon-7" src="../assets/backicons/3dicons-7.webp" />
   </div>
-  <div class="back-color"></div>
+  <div class="back-color" :style="reactiveStyle"></div>
 </template>
 <style>
 @keyframes rotate {
@@ -86,6 +95,7 @@ import { data, fun } from '../data/MainView_data'
   position: absolute;
   width: 100%;
   height: 100%;
+  transform-origin: 50% 50%;
   mix-blend-mode: overlay;
   z-index: -20;
   top: 0;
@@ -95,6 +105,7 @@ import { data, fun } from '../data/MainView_data'
   position: absolute;
   width: 100%;
   height: 100%;
+  transform-origin: 50% 50%;
   opacity: 0.75;
   top: 0;
   left: 0;

@@ -3,16 +3,81 @@
   --c-otmink-h: 152;
   --c-otmink-s: 79%;
   --c-otmink-l: 38%;
+  --c-bg-0: #05060a;
+  --c-bg-1: #0b1020;
+  --c-ink: rgba(255, 255, 255, 0.92);
+  --c-ink-muted: rgba(255, 255, 255, 0.72);
+  --c-border: rgba(255, 255, 255, 0.22);
+  --c-glass: rgba(255, 255, 255, 0.07);
+  --c-glass-strong: rgba(255, 255, 255, 0.12);
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --shadow-glass:
+    0 24px 60px rgba(0, 0, 0, 0.4),
+    0 2px 14px rgba(0, 0, 0, 0.18);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   font-size: 16px; // 用于rem计算
 }
 
+body {
+  color: var(--c-ink);
+  background:
+    radial-gradient(900px 520px at 20% 5%, rgba(240, 110, 142, 0.22), rgba(0, 0, 0, 0) 60%),
+    radial-gradient(900px 520px at 80% 15%, hsla(var(--c-otmink-h), var(--c-otmink-s), 60%, 0.2), rgba(0, 0, 0, 0) 62%),
+    radial-gradient(1100px 600px at 60% 100%, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(180deg, var(--c-bg-1), var(--c-bg-0));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+.glass {
+  background: var(--c-glass);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px) saturate(1.35);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-strong {
+  background: var(--c-glass-strong);
+}
+
+@keyframes liquid-sheen {
+  0% {
+    transform: translate3d(-12%, -10%, 0) rotate(-10deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(10%, 6%, 0) rotate(-6deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(-12%, -10%, 0) rotate(-10deg);
+    opacity: 0.35;
+  }
+}
+
+.glass-hover {
+  transition: transform 240ms var(--ease-out), border-color 240ms var(--ease-out), background 240ms var(--ease-out);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.14);
+  }
 }
 
 h1,
