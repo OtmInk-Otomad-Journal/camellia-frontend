@@ -1,144 +1,93 @@
 <script setup>
-const props = defineProps({
-  data: Object
-})
+defineProps({ data: Object })
 </script>
 
 <template>
   <div class="extra-single">
-    <div class="rightI">
-      <div class="ca-time">
-        <div class="ca-progress">{{ data.progress }}</div>
-        <div class="ca-date-wrapper">
-          <div class="ca-date" v-html="data.date"></div>
-        </div>
-      </div>
-      <div class="ca-title-box">
-        <div class="ca-title">{{ data.title }}</div>
-        <div class="ca-subtitle">{{ data.subtitle }}</div>
-      </div>
+    <span class="timeline-dot" :style="{ backgroundColor: data.color }"></span>
+    <div class="ca-time">
+      <span class="ca-progress">{{ data.progress }}</span>
+      <div class="ca-date" v-html="data.date"></div>
     </div>
-    <div class="cover-mask"></div>
-    <img class="cover" :src="data.cover" />
+    <div class="ca-title-box">
+      <div class="ca-title">{{ data.title }}</div>
+      <div class="ca-subtitle">{{ data.subtitle }}</div>
+    </div>
+    <img class="cover" :src="data.cover" alt="" />
   </div>
 </template>
 
 <style lang="scss">
 .extra-single {
-  @include card;
-  @include acrylic;
   position: relative;
-  display: flex;
-  flex-grow: 1;
-  width: 100%;
-  max-height: 200px;
-  padding: 1rem;
-  margin-top: 30px;
-  border-radius: 12px;
-  // background-image: linear-gradient(90deg, #fff 33%, transparent);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
-}
-
-.cover-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(90deg, rgb(233, 233, 233), transparent);
-}
-
-.rightI {
-  display: flex;
-  flex-direction: row;
-  margin-left: 1rem;
-  height: 6rem;
-  justify-content: flex-start;
-  width: 100%;
+  width: 1765px;
+  height: 257px;
 }
 
 .ca-time {
+  position: absolute;
+  top: 0;
+  left: 24px;
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.753);
-  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.18);
-  border-radius: 0.5rem;
-  min-width: 12rem;
-  overflow: hidden;
-}
-
-.ca-date-wrapper {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  gap: 10px;
+  height: 217px;
 }
 
 .ca-date {
-  display: flex;
-  align-items: last baseline;
-  justify-content: center;
-  // padding-bottom: 0.8rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 3rem;
-  font-weight: bolder;
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 128px;
+  line-height: 1;
+  letter-spacing: -5.12px;
+  white-space: nowrap;
 
   m {
-    font-size: 1rem;
+    font-family: 'HarmonyOS Sans SC', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -3.2px;
   }
 }
 
-.ca-progress {
-  background-color: v-bind('data.color');
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  width: 100%;
-  font-weight: bolder;
-  height: 28px;
-}
-
-.ca-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.ca-subtitle {
-  font-size: 1.2rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
+.ca-progress { font-size: 40px; font-weight: 700; letter-spacing: -3.2px; white-space: nowrap; }
 
 .ca-title-box {
-  height: 100%;
-  flex-grow: 1;
+  position: absolute;
+  top: 7px;
+  left: 447px;
   display: flex;
-  overflow: hidden;
   flex-direction: column;
-  margin-left: 1.5rem;
   justify-content: center;
+  gap: 4px;
+  width: 465px;
+  height: 203px;
+  overflow: hidden;
 }
+
+.ca-title { max-width: 465px; font-size: 64px; font-weight: 700; line-height: 1.08; letter-spacing: -5.12px; }
+.ca-subtitle { max-width: 465px; font-size: 36px; font-weight: 700; letter-spacing: -2.88px; }
 
 .cover {
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
+  left: 912px;
+  width: 823px;
+  height: 217px;
   overflow: hidden;
   object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  opacity: 0.65;
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.timeline-dot {
+  position: absolute;
+  z-index: 2;
+  top: 100px;
+  left: -11px;
+  width: 21px;
+  height: 21px;
+  border: 5px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05);
 }
 </style>

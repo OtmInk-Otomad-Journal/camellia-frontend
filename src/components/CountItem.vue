@@ -1,58 +1,116 @@
 <script setup>
+import { data } from '../data/MainView_data.js'
+import headerBase from '../assets/otmink-next/count-header-base.svg'
+import headerAccent from '../assets/otmink-next/count-header-accent.svg'
+
 defineProps({
   icon: String,
   title: String,
-  count: Number
+  count: [Number, String]
 })
 </script>
 
 <template>
   <div class="count-item">
-    <div class="icon">
-      <slot></slot>
-    </div>
-    <div class="right">
+    <div
+      class="count-head"
+      :style="{
+        '--header-base-mask': `url(${headerBase})`,
+        '--header-accent-mask': `url(${headerAccent})`
+      }"
+    >
+      <span class="header-base"></span>
+      <span class="header-accent"></span>
       <span class="title">{{ title }}</span>
-      <span class="count">{{ count }}</span>
     </div>
+    <span class="icon" :style="{ '--icon-mask': `url(${icon})` }"></span>
+    <span class="count">{{ count }}</span>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .count-item {
-  @include card;
-  @include acrylic;
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
   width: 100%;
-  padding: 1.1rem 1.875rem;
+  height: 122px;
+  overflow: visible;
+  background: white;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.25);
 }
 
-.right {
+.count-head {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  width: 183px;
+  height: 48px;
+  padding-left: 16px;
+  overflow: visible;
+  color: white;
+  background: transparent;
+}
+
+.header-base,
+.header-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 48px;
+  mask-repeat: no-repeat;
+  mask-position: left top;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: left top;
+  -webkit-mask-size: 100% 100%;
+}
+
+.header-base {
+  width: 183px;
+  background: v-bind('data.dark_color');
+  mask-image: var(--header-base-mask);
+  -webkit-mask-image: var(--header-base-mask);
+}
+
+.header-accent {
+  width: 99.846px;
+  background: v-bind('data.light_color');
+  mask-image: var(--header-accent-mask);
+  -webkit-mask-image: var(--header-accent-mask);
 }
 
 .title {
-  font-size: 1rem;
-  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: -1px;
 }
 
 .count {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: -0.2em;
+  display: block;
+  padding: 0 14px;
+  color: #212121;
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 67px;
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  z-index: 2;
+  top: -14px;
+  right: -17px;
+  width: 73px;
+  height: 73px;
+  background: v-bind('data.light_color');
+  mask-image: var(--icon-mask);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: var(--icon-mask);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 </style>
