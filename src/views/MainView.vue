@@ -296,7 +296,7 @@ onBeforeUnmount(() => {
 
 .logo-watermark {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: -112.5px;
   left: 810.6px;
   width: 298.22px;
