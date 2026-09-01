@@ -35,7 +35,7 @@ defineProps({
   height: 122px;
   overflow: visible;
   background: white;
-  border-bottom: 1px solid rgba(33, 33, 33, 0.25);
+  border-bottom: 1px solid v-bind('data.dark_color');
 }
 
 .count-head {
@@ -93,7 +93,7 @@ defineProps({
   font-family: 'Outfit', sans-serif;
   font-size: 48px;
   font-weight: 500;
-  line-height: 67px;
+  line-height: 73px;
 }
 
 .icon {
