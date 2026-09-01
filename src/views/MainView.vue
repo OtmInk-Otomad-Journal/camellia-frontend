@@ -10,13 +10,11 @@ import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
+import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
+import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
 import brandLogo from '../assets/otmink-next/logo.svg'
 import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
 import ornamentRight from '../assets/otmink-next/ornament-right.svg'
-import leftTriangles from '../assets/otmink-next/left-triangles.svg'
-import leftDiagonal from '../assets/otmink-next/left-diagonal.svg'
-import leftStar from '../assets/otmink-next/left-star.svg'
-import logoWatermark from '../assets/otmink-next/logo-watermark.svg'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -174,15 +172,8 @@ onBeforeUnmount(() => {
     :show_staff="data.show_staff"
   />
   <div ref="mainBoardRef" class="main-board">
-    <img class="logo-watermark" :src="logoWatermark" alt="" aria-hidden="true" />
-    <div class="weekly-label">OTOMAD WEEKLY RANKING</div>
-    <div class="category-label">
-      <span class="pixel-mark"><i></i><i></i><i></i><i></i><i></i></span>
-      <strong>综合</strong>
-    </div>
-    <img class="left-triangles" :src="leftTriangles" alt="" aria-hidden="true" />
-    <img class="left-diagonal" :src="leftDiagonal" alt="" aria-hidden="true" />
-    <img class="left-star" :src="leftStar" alt="" aria-hidden="true" />
+    <BoardLogoWatermark />
+    <BoardHeaderDecor title="综合" />
     <div class="main-left">
       <MainRank />
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -292,91 +283,6 @@ onBeforeUnmount(() => {
   left: 50px;
   width: 149px;
   height: 113px;
-}
-
-.logo-watermark {
-  position: absolute;
-  z-index: 2;
-  top: -112.5px;
-  left: 810.6px;
-  width: 298.22px;
-  height: 226.48px;
-  opacity: 0.08;
-}
-
-.left-triangles,
-.left-diagonal,
-.left-star {
-  position: absolute;
-  z-index: 4;
-  pointer-events: none;
-}
-
-.left-triangles {
-  top: 85px;
-  left: 35px;
-  width: 48px;
-  height: 36px;
-}
-
-.left-diagonal {
-  top: 48px;
-  left: 216px;
-  width: 97px;
-  height: 1px;
-  transform: rotate(45deg);
-  transform-origin: left center;
-}
-
-.left-star {
-  top: 107px;
-  left: 95px;
-  width: 14px;
-  height: 14px;
-}
-
-.weekly-label {
-  position: absolute;
-  z-index: 4;
-  top: 14px;
-  left: 744px;
-  width: 431px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 10px;
-  letter-spacing: 15px;
-  white-space: nowrap;
-}
-
-.category-label {
-  position: absolute;
-  z-index: 4;
-  top: 40px;
-  left: 36px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 24px;
-  letter-spacing: -1.92px;
-}
-
-.pixel-mark {
-  position: relative;
-  display: block;
-  width: 18px;
-  height: 18px;
-
-  i {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: #212121;
-  }
-
-  i:nth-child(1) { left: 0; top: 0; }
-  i:nth-child(2) { left: 6px; top: 6px; }
-  i:nth-child(3) { left: 12px; top: 12px; }
-  i:nth-child(4) { left: 12px; top: 0; }
-  i:nth-child(5) { left: 0; top: 12px; }
 }
 
 .video-ornament {

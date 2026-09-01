@@ -84,6 +84,7 @@ defineProps({ data: Object })
   z-index: 2;
   top: 100px;
   left: -11px;
+  box-sizing: border-box;
   width: 21px;
   height: 21px;
   border: 5px solid white;

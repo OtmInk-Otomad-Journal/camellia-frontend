@@ -10,6 +10,8 @@ declare module 'vue' {
     Avatar: typeof import('./components/Avatar.vue')['default']
     BackgroundIcons: typeof import('./components/BackgroundIcons.vue')['default']
     BackgroundImage: typeof import('./components/BackgroundImage.vue')['default']
+    BoardHeaderDecor: typeof import('./components/BoardHeaderDecor.vue')['default']
+    BoardLogoWatermark: typeof import('./components/BoardLogoWatermark.vue')['default']
     CalenSingle: typeof import('./components/CalenSingle.vue')['default']
     CountItem: typeof import('./components/CountItem.vue')['default']
     ExtraList: typeof import('./components/ExtraList.vue')['default']
