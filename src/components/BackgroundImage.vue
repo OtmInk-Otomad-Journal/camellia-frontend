@@ -1,16 +1,20 @@
 <script setup>
 import { data } from '../data/MainView_data.js'
+
+// accent：是否渲染右侧主题色斜带（back-accent）。默认渲染；
+// 副榜等不想出现斜带的板子传入 :accent="false"。
+defineProps({
+  accent: { type: Boolean, default: true }
+})
 </script>
 
 <template>
   <div class="background-stage" aria-hidden="true">
     <div class="back-color"></div>
     <div class="back-orb"></div>
-    <div class="back-accent"></div>
+    <div v-if="accent" class="back-accent"></div>
     <div class="back-model"></div>
-    <div class="back-squares">
-      <i></i><i></i><i></i><i></i><i></i><i></i>
-    </div>
+    <div class="back-squares"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
 </template>
 
@@ -34,8 +38,7 @@ import { data } from '../data/MainView_data.js'
   width: 1920px;
   height: 1080px;
   background-color: #e2e2e2;
-  background-image:
-    linear-gradient(90deg, #212121 1px, transparent 1px),
+  background-image: linear-gradient(90deg, #212121 1px, transparent 1px),
     linear-gradient(#212121 1px, transparent 1px),
     linear-gradient(
       45deg,

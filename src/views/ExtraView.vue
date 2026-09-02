@@ -7,6 +7,7 @@ import BackgroundImage from '../components/BackgroundImage.vue'
 import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
 import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
 import ExtraSingle from '../components/ExtraSingle.vue'
+import ExtraList from '../components/ExtraList.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -14,19 +15,28 @@ const boardRef = ref()
 const test_num = ref(0)
 let masterTimeline
 
+// embedded：作为子板嵌入到 /main（主榜/副榜）页面时开启。
+// 嵌入时不注册 window 全局函数、不重复处理 data，只通过 expose 提供动画接口给宿主板调用。
+const props = defineProps({
+  embedded: { type: Boolean, default: false }
+})
+
 function buildAnimation({ paused = false } = {}) {
   if (!boardRef.value) return
 
   masterTimeline?.kill()
   const q = gsap.utils.selector(boardRef.value)
-  const fullTime = Math.max(Number(data.value.full_time) || 10, 3)
   const resetTargets = q(
-    '.board-header-decor, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark, .ca-box, .extra-single, .calendar-ornament'
+    '.board-header-decor, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark, .video-outer, .video-outer-border, .whole-list, .extra-item, .ca-box, .extra-single, .calendar-ornament'
   )
 
   gsap.set(resetTargets, { clearProps: 'transform,opacity,clipPath,filter' })
-  const boxEl = q('.ca-box')[0]
-  if (boxEl) boxEl.scrollTop = 0
+  const listEl = q('.whole-list')[0]
+  if (listEl) listEl.scrollTop = 0
+  // 在入场位移介入前读取“干净”的可滚动距离（transform 不影响布局高度，
+  // 这里量到的就是最终值）。用它作滚动终点，避免 y:'max' 在 extra-item
+  // 位移把 scrollHeight 撑高的瞬间缓存到虚高终点。
+  const maxScroll = listEl ? listEl.scrollHeight - listEl.clientHeight : 0
 
   masterTimeline = gsap.timeline({ paused, defaults: { ease: 'expo.out' } })
   masterTimeline
@@ -44,21 +54,29 @@ function buildAnimation({ paused = false } = {}) {
       { duration: 0.45, scale: 0, rotation: -90, opacity: 0, ease: 'back.out(2)' },
       0.36
     )
-    .from(q('.ca-box'), { duration: 1, y: 2000 }, 0.3)
-    .from(q('.extra-single'), { duration: 1, y: 2000, stagger: 0.08 }, 0.4)
-    .from(
-      q('.calendar-ornament'),
-      { duration: 0.7, scaleX: 0, opacity: 0, transformOrigin: 'center' },
-      0.55
-    )
+    .from(q('.video-outer'), { duration: 1, x: 1000 }, 0)
+    .from(q('.video-outer-border'), { duration: 1, x: 1000 }, 0.05)
+    .from(q('.whole-list'), { duration: 1, x: -212.5, y: 1000 }, 0)
     .to(
-      q('.ca-box'),
+      q('.whole-list'),
       {
-        duration: Math.max(fullTime - 3, 0.1),
-        scrollTo: { y: 'max' },
+        // 停顿 2 秒后开始滚动（position: 2），持续到 (side_duration - 5) 秒处
+        duration: Math.max(Number(data.value.side_duration || 0) - 5, 0.1),
+        scrollTo: { y: maxScroll },
         ease: 'sine.inOut'
       },
       2
+    )
+    // 入场前先把 extra-item 隐藏（先不显示），等飞入动画开始再逐个出现；
+    // 否则面板滑入时 items 已以最终位置停在面板里，入场开始又跳回下方，动画是错的
+    .set(q('.extra-item'), { autoAlpha: 0 }, 0)
+    // 0.4s 起逐个从下方飞入。immediateRender: false 让位移只从 0.4s 开始生效，
+    // 滚动终点已按上面的 maxScroll 预计算，位移撑高 scrollHeight 不再影响它
+    .fromTo(
+      q('.extra-item'),
+      { translateY: 2000, autoAlpha: 0 },
+      { duration: 1, translateY: 0, autoAlpha: 1, stagger: 0.08, immediateRender: false },
+      0.4
     )
 
   return masterTimeline
@@ -68,24 +86,27 @@ function seek_frame(frame, fps) {
   masterTimeline?.seek(frame / fps, false)
 }
 
-//// 全局函数 统一写在这
-window['seek_frame'] = (frame, fps) => {
-  seek_frame(frame, fps)
-}
+//// 全局函数 统一写在这（仅独立路由时注册；嵌入 /main 时由主榜接管）
+if (!props.embedded) {
+  window['seek_frame'] = (frame, fps) => {
+    seek_frame(frame, fps)
+  }
 
-window['inject'] = async (obj) => {
-  await fun(obj)
-  await nextTick()
-  buildAnimation({ paused: true })
-}
+  window['inject'] = async (obj) => {
+    await fun(obj)
+    await nextTick()
+    buildAnimation({ paused: true })
+  }
 
-window['inject_wvc'] = async (obj) => {
-  await fun(obj)
-  await nextTick()
-  buildAnimation()?.play(0)
+  window['inject_wvc'] = async (obj) => {
+    await fun(obj)
+    await nextTick()
+    buildAnimation()?.play(0)
+  }
 }
 
 onMounted(async () => {
+  if (props.embedded) return
   await fun(data.value)
   await nextTick()
 })
@@ -96,18 +117,33 @@ function testAnimation() {
   buildAnimation()?.play(0)
 }
 
-window['test'] = testAnimation
-
 // 或按下T键触发
 function onKeydown(event) {
   if (event.key === 't' || event.key === 'T') {
     testAnimation()
   }
 }
-document.addEventListener('keydown', onKeydown)
+
+// 供嵌入 /main 时由主榜调用的动画接口
+function play() {
+  masterTimeline?.play(0)
+}
+
+function reset() {
+  masterTimeline?.kill()
+  masterTimeline = undefined
+}
+
+defineExpose({ buildAnimation, play, reset })
+
+if (!props.embedded) {
+  window['test'] = testAnimation
+  document.addEventListener('keydown', onKeydown)
+}
 
 onBeforeUnmount(() => {
   masterTimeline?.kill()
+  if (props.embedded) return
   document.removeEventListener('keydown', onKeydown)
   delete window.test
   delete window.inject
@@ -128,6 +164,8 @@ onBeforeUnmount(() => {
         <div class="extra-point"></div>
         <ExtraSingle :data="item" />
       </div>
+      <ExtraList :show_staff="data.show_staff" />
+      <div class="empty-reserve-2" v-if="!data.show_staff"></div>
       <div class="empty-reserve"></div>
     </div>
     <div class="video-outer-border"></div>
@@ -143,7 +181,7 @@ onBeforeUnmount(() => {
       >
       </canvas>
     </div>
-    <BackgroundImage />
+    <BackgroundImage :accent="false" />
   </div>
 </template>
 
@@ -161,58 +199,6 @@ onBeforeUnmount(() => {
 .test-button {
   position: absolute;
   z-index: 1000;
-}
-
-.ca-box {
-  position: absolute;
-  z-index: 2;
-  top: 197px;
-  left: 44px;
-  box-sizing: border-box;
-  width: 1880px;
-  height: 924px;
-  padding-left: 11px;
-  overflow: auto;
-  background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(33, 33, 33, 0.7));
-  background-position: 10px 0;
-  background-repeat: no-repeat;
-  background-size: 1px 100%;
-  padding-top: 40px;
-  margin-top: -40px;
-  mask-image: linear-gradient(to bottom, transparent 0px, black 40px);
-  padding-bottom: 131px;
-}
-
-.calendar-ornament {
-  position: absolute;
-  z-index: 4;
-  top: 1042px;
-  left: 554px;
-  display: flex;
-  align-items: center;
-  gap: 304px;
-  width: 812px;
-  height: 16px;
-
-  img {
-    width: 94px;
-    height: 16px;
-  }
-  span {
-    position: relative;
-    width: 16px;
-    height: 16px;
-  }
-  i {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: #212121;
-  }
-  i:last-child {
-    right: 0;
-    bottom: 0;
-  }
 }
 
 .preblur {
@@ -266,6 +252,7 @@ onBeforeUnmount(() => {
   width: 1280px;
   height: 1380px;
   padding-left: 11px;
+  padding-top: 40px;
   overflow-y: auto;
   overflow-x: hidden;
   background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(33, 33, 33, 0.7));
@@ -274,6 +261,7 @@ onBeforeUnmount(() => {
   background-size: 1px 100%;
   transform: rotate(12.02227669deg);
   transform-origin: top right;
+  mask-image: linear-gradient(167.97772331deg, transparent 250px, black 300px);
 }
 
 .extra-point {
@@ -299,6 +287,11 @@ onBeforeUnmount(() => {
 
 .empty-reserve {
   width: 100%;
-  height: 400px;
+  height: 80px;
+}
+
+.empty-reserve-2 {
+  width: 100%;
+  height: 320px;
 }
 </style>

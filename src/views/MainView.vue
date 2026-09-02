@@ -2,7 +2,6 @@
 import MainInfo from '../components/MainInfo.vue'
 import MainCounts from '../components/MainCounts.vue'
 import MainRank from '../components/MainRank.vue'
-import ExtraList from '../components/ExtraList.vue'
 import BackgroundImage from '../components/BackgroundImage.vue'
 // import BackgroundIcons from '../components/BackgroundIcons.vue'
 import { data, fun } from '../data/MainView_data.js'
@@ -15,6 +14,7 @@ import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
 import brandLogo from '../assets/otmink-next/logo.svg'
 import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
 import ornamentRight from '../assets/otmink-next/ornament-right.svg'
+import ExtraView from './ExtraView.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -23,10 +23,21 @@ const mainBoardRef = ref()
 const test_num = ref(0)
 let masterTimeline
 
+// 副榜层（ExtraView 以 embedded 预载在 /main 页内）
+const extraRef = ref()
+const extraVisible = ref(false)
+let extraStarted = false
+
 function buildAnimation({ paused = false } = {}) {
   if (!mainBoardRef.value) return
 
   masterTimeline?.kill()
+  // 是否有副榜（more_data 为非空数组）
+  const hasExtra = (data.value.more_data?.length ?? 0) > 0
+  // 重建时把已预载的副榜层复位并隐藏，保证整段可重复（重）播
+  extraVisible.value = false
+  extraStarted = false
+  extraRef.value?.reset?.()
   const q = gsap.utils.selector(mainBoardRef.value)
   const fullTime = Math.max(Number(data.value.full_time) || 20, 3)
   const exitAt = Math.max(fullTime - 1, 1.8)
@@ -103,20 +114,21 @@ function buildAnimation({ paused = false } = {}) {
     )
     .to(q('.main-progress'), { duration: fullTime, width: '100%', ease: 'none' }, 0)
 
-  if (data.value.more_data) {
-    const sideStart = Math.max(fullTime - Number(data.value.side_duration || 0), 1)
+  if (hasExtra) {
+    // 有副榜：主榜元素全部退场，只留背景（主/副榜背景一致，可无缝衔接）
     masterTimeline
-      .to(mainBoardRef.value, { duration: 1.2, filter: 'blur(100px)', scale: 1.25 }, sideStart)
-      .fromTo('.extra-board', { opacity: 0 }, { duration: 2, opacity: 1 }, sideStart)
+      .to(q('.main-left'), { duration: 0.9, x: -1920, ease: 'expo.inOut' }, exitAt)
+      .to(q('.main-right'), { duration: 0.85, x: 420, ease: 'expo.inOut' }, exitAt)
+      .to(q('.main-info'), { duration: 0.8, y: 280, ease: 'expo.inOut' }, exitAt)
       .to(
-        '.viewlist',
-        {
-          duration: Math.max(Number(data.value.side_duration || 0) - 5, 0.1),
-          scrollTo: { y: 'max' },
-          ease: 'sine.inOut'
-        },
-        sideStart + 2
+        q(
+          '.video-ornament, .back-accent, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark'
+        ),
+        { duration: 0.45, opacity: 0, ease: 'power2.in' },
+        exitAt + 0.18
       )
+    // 主榜走完后翻层显示副榜并开始动画
+    masterTimeline.eventCallback('onComplete', revealExtra)
   } else {
     masterTimeline
       .to(q('.main-left'), { duration: 0.9, x: -1920, ease: 'expo.inOut' }, exitAt)
@@ -133,6 +145,18 @@ function buildAnimation({ paused = false } = {}) {
   }
 
   return masterTimeline
+}
+
+// 主榜结束（cut 点）后，把已预载的副榜层翻到最上层并开始它的入场动画
+function revealExtra() {
+  if (extraStarted) return
+  extraStarted = true
+  const comp = extraRef.value
+  if (!comp?.buildAnimation) return
+  // 隐藏态下先把副榜从上次状态清理干净并预置好入场起始帧，避免翻层瞬间“闪全貌”
+  comp.buildAnimation?.({ paused: true })
+  extraVisible.value = true
+  comp.play?.()
 }
 
 function seek_frame(frame, fps, start_time) {
@@ -206,12 +230,6 @@ onBeforeUnmount(() => {
   <button v-if="test_num != 0" class="test-button" aria-label="重播动画" @click="testAnimation">
     重播动画
   </button>
-  <!-- <ExtraList
-    class="extra-list"
-    v-if="data.more_data"
-    :more_data="data.more_data"
-    :show_staff="data.show_staff"
-  /> -->
   <div ref="mainBoardRef" class="main-board">
     <BoardLogoWatermark />
     <BoardHeaderDecor :title="data.type == 'ytpmv' ? 'YTPMV' : '综合'" />
@@ -243,6 +261,10 @@ onBeforeUnmount(() => {
     <MainInfo />
     <TransitionImage />
     <BackgroundImage />
+  </div>
+  <!-- 副榜层：与主榜同页预载，主榜元素退干净后翻到最上层并开播 -->
+  <div v-if="data.more_data?.length" class="extra-stage" :class="{ 'extra-visible': extraVisible }">
+    <ExtraView ref="extraRef" :embedded="true" />
   </div>
   <!-- <img class="main-back" :src="data.cover_src" /> -->
   <!-- <img src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" /> -->
@@ -359,9 +381,17 @@ onBeforeUnmount(() => {
     bottom: 0;
   }
 }
-.extra-list {
+// 副榜层：覆盖整个 1920×1080 主榜画布，默认隐藏但保持挂载以预载资源
+.extra-stage {
   position: absolute;
-  z-index: 100;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  visibility: hidden;
+}
+
+.extra-stage.extra-visible {
+  visibility: visible;
 }
 .prevent {
   width: 100%;

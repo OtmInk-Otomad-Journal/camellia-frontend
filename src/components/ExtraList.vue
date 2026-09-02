@@ -1,23 +1,16 @@
 <script setup>
-import ExtraSingle from './ExtraSingle.vue'
 import StaffBox from './StaffBox.vue'
 import Avatar from './Avatar.vue'
 
 defineProps({
-  more_data: Array,
   show_staff: Boolean
 })
 </script>
 
 <template>
-  <div class="extra-board">
+  <div class="extra-board" v-if="show_staff">
     <div class="viewlist">
-      <div class="start-board">
-        <div class="side-end-title">副榜</div>
-        <div class="side-end-title-eng">MORE RANKING</div>
-      </div>
-      <ExtraSingle v-for="i in more_data" :key="i" :data="i" :id="'es' + i.ranking" />
-      <div class="end-board" v-if="show_staff">
+      <div class="end-board">
         <div class="staff-list">
           <div class="staff-single">
             <StaffBox job="现任主编">
@@ -113,7 +106,9 @@ defineProps({
               <Avatar path="./yl.jpg" />ErH_杋糖<br />
               <Avatar path="./bd.jpg" />坏枪
             </StaffBox>
+          </div>
 
+          <div class="staff-single">
             <StaffBox job="前端">
               <template #icon>
                 <svg
@@ -132,9 +127,6 @@ defineProps({
               <Avatar path="./vt.jpg" />昊通机械<br />
               <Avatar path="./bd.jpg" />坏枪 <br />
             </StaffBox>
-          </div>
-
-          <div class="staff-single">
             <StaffBox job="封面团队">
               <template #icon>
                 <svg
@@ -173,25 +165,6 @@ defineProps({
               </template>
               <Avatar path="./th.jpg" />thwy
             </StaffBox>
-
-            <StaffBox job="运行维护">
-              <template #icon>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="28px"
-                  viewBox="0 0 24 24"
-                  width="28px"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-                  />
-                </svg>
-              </template>
-              <Avatar path="./bd.jpg" />坏枪<br />
-              <Avatar path="./xb.jpg" />信标之光<br />
-              <Avatar path="./al.png" />艾了个拉<br />
-            </StaffBox>
           </div>
           <div class="staff-single">
             <StaffBox job="片头视频">
@@ -212,7 +185,24 @@ defineProps({
               <Avatar path="./bd.jpg" />坏枪<br />
               <Avatar path="./al.png" />艾了个拉
             </StaffBox>
-
+            <StaffBox job="运行维护">
+              <template #icon>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="28px"
+                  viewBox="0 0 24 24"
+                  width="28px"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zM7 19c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                  />
+                </svg>
+              </template>
+              <Avatar path="./bd.jpg" />坏枪<br />
+              <Avatar path="./xb.jpg" />信标之光<br />
+              <Avatar path="./al.png" />艾了个拉<br />
+            </StaffBox>
             <StaffBox job="数据审核">
               <template #icon>
                 <svg
@@ -232,7 +222,8 @@ defineProps({
               <Avatar path="./xk.jpg" />小刊啦<br />
               <Avatar path="./qsh.jpg" />秦始皇派蒙
             </StaffBox>
-
+          </div>
+          <div class="staff-single">
             <StaffBox job="引擎支持">
               <template #icon>
                 <svg
@@ -258,12 +249,6 @@ defineProps({
             </StaffBox>
           </div>
         </div>
-        <div class="logo-list">
-          <div class="otm-logo">
-            <img class="yzm" src="../assets/yzm.png" />
-          </div>
-          <!-- <div class="otm-text"></div> -->
-        </div>
       </div>
     </div>
   </div>
@@ -274,13 +259,11 @@ defineProps({
   width: 100%;
   height: 100%;
   padding: 0 10em;
-  overflow-y: scroll;
 }
 
 .extra-board {
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
 }
 
 ::-webkit-scrollbar {
@@ -322,11 +305,11 @@ defineProps({
 }
 
 .staff-list {
-  width: 60%;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-right: 6em;
 }
 
 .staff-single {

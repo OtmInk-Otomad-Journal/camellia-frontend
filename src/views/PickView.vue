@@ -113,34 +113,18 @@ function buildAnimation({ paused = false } = {}) {
       0.1
     )
 
-  if (data.value.more_data) {
-    const sideStart = Math.max(fullTime - Number(data.value.side_duration || 0), 1)
-    masterTimeline
-      .to(mainBoardRef.value, { duration: 1.2, filter: 'blur(100px)', scale: 1.25 }, sideStart)
-      .fromTo('.extra-board', { opacity: 0 }, { duration: 2, opacity: 1 }, sideStart)
-      .to(
-        '.viewlist',
-        {
-          duration: Math.max(Number(data.value.side_duration || 0) - 5, 0.1),
-          scrollTo: { y: 'max' },
-          ease: 'sine.inOut'
-        },
-        sideStart + 2
-      )
-  } else {
-    masterTimeline
-      .to(q('.main-left'), { duration: 0.9, x: -1920, ease: 'expo.inOut' }, exitAt)
-      .to(q('.main-right'), { duration: 0.85, x: 420, ease: 'expo.inOut' }, exitAt)
-      .to(q('.main-info'), { duration: 0.8, y: 280, ease: 'expo.inOut' }, exitAt)
-      .to(
-        q(
-          '.video-ornament, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark'
-        ),
-        { duration: 0.45, opacity: 0, ease: 'power2.in' },
-        exitAt + 0.18
-      )
-      .to(q('.transition-image'), { duration: 0.4, opacity: 1, ease: 'power1.in' }, fullTime - 0.4)
-  }
+  masterTimeline
+    .to(q('.main-left'), { duration: 0.9, x: -1920, ease: 'expo.inOut' }, exitAt)
+    .to(q('.main-right'), { duration: 0.85, x: 420, ease: 'expo.inOut' }, exitAt)
+    .to(q('.main-info'), { duration: 0.8, y: 280, ease: 'expo.inOut' }, exitAt)
+    .to(
+      q(
+        '.video-ornament, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark'
+      ),
+      { duration: 0.45, opacity: 0, ease: 'power2.in' },
+      exitAt + 0.18
+    )
+    .to(q('.transition-image'), { duration: 0.4, opacity: 1, ease: 'power1.in' }, fullTime - 0.4)
 
   return masterTimeline
 }

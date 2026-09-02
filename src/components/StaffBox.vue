@@ -29,20 +29,24 @@ defineProps({
   gap: 6px;
   min-width: 255px;
   padding: 5px 10px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   margin-bottom: 5px;
   /* background-color: var(--c-accent); */
   background-color: v-bind('data.dark_color');
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
+  transform: rotate(-12.02227669deg);
+  transform-origin: center right;
 }
 
 .staff-name {
   padding: 0 10px;
-  font-size: 1.5rem;
-  line-height: 2.8rem;
+  font-size: 1.5em;
+  line-height: 1.8em;
   font-weight: 500;
   text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.35);
+  transform: rotate(-12.02227669deg);
+  transform-origin: center right;
 }
 </style>
