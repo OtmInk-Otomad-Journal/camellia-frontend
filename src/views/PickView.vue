@@ -1,209 +1,112 @@
 <script setup>
-import PickInfo from '../components/PickInfo.vue'
 import MainInfo from '../components/MainInfo.vue'
+import MainCounts from '../components/MainCounts.vue'
+import MainRank from '../components/MainRank.vue'
+import ExtraList from '../components/ExtraList.vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
+// import BackgroundIcons from '../components/BackgroundIcons.vue'
 import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
-import { onMounted } from 'vue'
 import { ScrollToPlugin } from 'gsap/all'
-import BackgroundImage from '../components/BackgroundImage.vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import TransitionImage from '../components/TransitionImage.vue'
+import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
+import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
+import brandLogo from '../assets/otmink-next/logo.svg'
+import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
+import ornamentRight from '../assets/otmink-next/ornament-right.svg'
+import PickInfo from '../components/PickInfo.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
-// “全局”变量，既方便函数内调用，也方便外面调用。
-
-let tl_1 = gsap.timeline()
-let tl_2 = gsap.timeline()
-let tl_3 = gsap.timeline()
-let tl_4 = gsap.timeline()
-let tl_5 = gsap.timeline()
-let tl_6 = gsap.timeline()
-// let tls = []
-
 const videoRef = ref()
+const mainBoardRef = ref()
+const test_num = ref(0)
+let masterTimeline
 
-// 动画 使用css选择器
-function animate() {
-  tl_1.from('.video-box', {
-    duration: 1,
-    rotationX: 90,
-    ease: 'expo.out'
-  })
-  tl_1.to(
-    '.main-left',
-    {
-      duration: 1,
-      x: -1400,
-      ease: 'expo.in'
-    },
-    data.value.full_time - 1
-  ),
-    tl_1.to(
-      '.main-right',
-      {
-        duration: 1,
-        x: 550,
-        ease: 'expo.in'
-      },
-      data.value.full_time - 1
-    )
+function buildAnimation({ paused = false } = {}) {
+  if (!mainBoardRef.value) return
 
-  tl_2.from(
-    '.main-info',
-    {
-      duration: 0.8,
-      y: 50,
-      rotationX: 90,
-      ease: 'expo.out'
-    },
-    0
-  ),
-    tl_2.from(
-      '.main-left',
-      {
-        duration: 0.8,
-        x: -1440,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.pick-info',
-      {
-        duration: 0.8,
-        x: 550,
-        rotationX: 90,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.pick-picker-box .pick-icon',
-      {
-        delay: 0.1,
-        duration: 0.5,
-        x: -100,
-        y: 20,
-        scale: 0,
-        ease: 'back.out(1.0)',
-        rotateZ: 60
-      },
-      0
-    ),
-    tl_2.from(
-      '.pick-picker-box .pick-picker',
-      {
-        delay: 0.2,
-        duration: 0.5,
-        x: -100,
-        scale: 0,
-        ease: 'back.out(1.0)'
-      },
-      0
-    ),
-    tl_2.from(
-      '.pick-reason',
-      {
-        duration: 0.8,
-        delay: 0.3,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.cover',
-      {
-        duration: 0.7,
-        delay: 0.1,
-        x: 550,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.chip',
-      {
-        duration: 0.8,
-        delay: 0.4,
-        stagger: 0.06,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.uploader',
-      {
-        duration: 0.8,
-        delay: 0.4,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
-    ),
-    tl_2.from(
-      '.main-title',
-      {
-        duration: 0.8,
-        delay: 0.5,
-        y: 50,
-        opacity: 0,
-        ease: 'expo.out'
-      },
-      0
+  masterTimeline?.kill()
+  const q = gsap.utils.selector(mainBoardRef.value)
+  const fullTime = Math.max(Number(data.value.full_time) || 20, 3)
+  const exitAt = Math.max(fullTime - 1, 1.8)
+  const resetTargets = q(
+    '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .video-ornament, .main-info, .main-title, .chip, .uploader, .transition-image'
+  )
+
+  gsap.set(resetTargets, { clearProps: 'transform,opacity,clipPath,filter,zIndex' })
+  gsap.set(q('.main-progress'), { clearProps: 'width' })
+
+  masterTimeline = gsap.timeline({ paused, defaults: { ease: 'expo.out' } })
+  masterTimeline
+    .set(q('.transition-image'), { opacity: 0, zIndex: 20 }, 0)
+    .from(q('.back-accent'), { duration: 1.4, y: -180, opacity: 0 }, 0)
+    .from(
+      q('.back-squares i'),
+      { duration: 0.7, scale: 0.75, opacity: 0, stagger: 0.06, transformOrigin: '50% 50%' },
+      0.12
     )
-  tl_3.to(
-    '.main-progress',
-    {
-      duration: data.value.full_time,
-      width: '100%',
-      ease: 'linear'
-    },
-    0
-  )
-  tl_4.to('.pick-reason', {
-    duration: data.value.full_time,
-    scrollTo: { y: 'max' },
-    ease: 'sine.inOut'
-  })
-  // 过渡用图动画
-  tl_5.to('.transition-image', {
-    opacity: 0,
-    duration: 1
-  })
-  tl_5.to(
-    '.transition-image',
-    {
-      opacity: 1,
-      duration: 0.5
-    },
-    data.value.full_time - 0.5
-  )
-  tl_6.from('.logo', { duration: 0.75, x: -1000, ease: 'expo.out' })
-  tl_6.to(
-    '.logo',
-    {
-      duration: 1,
-      x: -1000,
-      ease: 'expo.in'
-    },
-    data.value.full_time - 1
-  )
+    .from(q('.logo-watermark'), { duration: 1, y: -90, opacity: 0 }, 0.05)
+    .from(q('.weekly-label'), { duration: 0.8, y: -24, opacity: 0 }, 0.18)
+    .from(q('.category-label'), { duration: 0.65, x: -90, opacity: 0 }, 0.12)
+    .from(q('.left-triangles'), { duration: 0.55, x: -60, opacity: 0 }, 0.2)
+    .from(q('.left-diagonal'), { duration: 0.65, scaleX: 0, opacity: 0, transformOrigin: 'left center' }, 0.24)
+    .from(q('.left-star'), { duration: 0.45, scale: 0, rotation: -90, opacity: 0, ease: 'back.out(2)' }, 0.36)
+    .from(
+      q('.video-box'),
+      { duration: 1, clipPath: 'inset(0 100% 0 0)', x: -80, transformOrigin: 'left center' },
+      0.1
+    )
+    .from(q('.main-rank'), { duration: 0.9, x: -320 }, 0.08)
+    .from(q('.rank-shadow'), { duration: 0.65, x: -70, opacity: 0 }, 0.32)
+    .from(q('.rank'), { duration: 0.7, scale: 0.72, opacity: 0, transformOrigin: 'left center', ease: 'back.out(1.4)' }, 0.3)
+    .from(q('.cap, .points, .rank-title'), { duration: 0.55, y: 42, opacity: 0, stagger: 0.08 }, 0.5)
+    .from(q('.brand-logo'), { duration: 0.75, x: 180, opacity: 0 }, 0.16)
+    .from(q('.count-item'), { duration: 0.75, x: 280, opacity: 0, stagger: 0.08 }, 0.28)
+    .from(q('.count-item .icon'), { duration: 0.4, scale: 0, stagger: 0.08, ease: 'back.out(2)' }, 0.54)
+    .from(q('.video-ornament'), { duration: 0.7, scaleX: 0, opacity: 0, transformOrigin: 'center' }, 0.58)
+    .from(q('.main-info'), { duration: 0.85, y: 280 }, 0.34)
+    .from(q('.main-title, .chip, .uploader'), { duration: 0.58, y: 38, opacity: 0, stagger: 0.07 }, 0.65)
+    .to(q('.main-progress'), { duration: fullTime, width: '100%', ease: 'none' }, 0)
+
+  if (data.value.more_data) {
+    const sideStart = Math.max(fullTime - Number(data.value.side_duration || 0), 1)
+    masterTimeline
+      .to(mainBoardRef.value, { duration: 1.2, filter: 'blur(100px)', scale: 1.25 }, sideStart)
+      .fromTo('.extra-board', { opacity: 0 }, { duration: 2, opacity: 1 }, sideStart)
+      .to(
+        '.viewlist',
+        {
+          duration: Math.max(Number(data.value.side_duration || 0) - 5, 0.1),
+          scrollTo: { y: 'max' },
+          ease: 'sine.inOut'
+        },
+        sideStart + 2
+      )
+  } else {
+    masterTimeline
+      .to(q('.main-left'), { duration: 0.9, x: -1920, ease: 'expo.inOut' }, exitAt)
+      .to(q('.main-right'), { duration: 0.85, x: 420, ease: 'expo.inOut' }, exitAt)
+      .to(q('.main-info'), { duration: 0.8, y: 280, ease: 'expo.inOut' }, exitAt)
+      .to(
+        q(
+          '.video-ornament, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark'
+        ),
+        { duration: 0.45, opacity: 0, ease: 'power2.in' },
+        exitAt + 0.18
+      )
+      .to(q('.transition-image'), { duration: 0.4, opacity: 1, ease: 'power1.in' }, fullTime - 0.4)
+  }
+
+  return masterTimeline
 }
 
-//// 全局函数 统一写在这
 function seek_frame(frame, fps, start_time) {
-  tl_1.seek(frame / fps)
-  tl_2.seek(frame / fps)
-  tl_3.seek(frame / fps)
-  tl_4.seek(frame / fps)
-  tl_5.seek(frame / fps)
-  tl_6.seek(frame / fps)
-  videoRef.value.currentTime = start_time + frame / fps
+  if (videoRef.value && Number.isFinite(start_time)) {
+    videoRef.value.currentTime = start_time + frame / fps
+  }
+  masterTimeline?.seek(frame / fps, false)
 }
 
 //// 全局函数 统一写在这
@@ -211,24 +114,18 @@ window['seek_frame'] = (frame, fps, start_time) => {
   seek_frame(frame, fps, start_time)
 }
 
-window['inject'] = (obj) => {
-  fun(obj).then(() => {
-    UpdateCanvasAttribute()
-    animate()
-  })
-  tl_1.pause()
-  tl_2.pause()
-  tl_3.pause()
-  tl_4.pause()
-  tl_5.pause()
-  tl_6.pause()
+window['inject'] = async (obj) => {
+  await fun(obj)
+  await nextTick()
+  UpdateCanvasAttribute()
+  buildAnimation({ paused: true })
 }
 
-window['inject_wvc'] = (obj) => {
-  fun(obj).then(() => {
-    UpdateCanvasAttribute()
-    animate()
-  })
+window['inject_wvc'] = async (obj) => {
+  await fun(obj)
+  await nextTick()
+  UpdateCanvasAttribute()
+  buildAnimation()?.play(0)
 }
 
 function UpdateCanvasAttribute() {
@@ -242,32 +139,44 @@ function UpdateCanvasAttribute() {
   })
 }
 
-onMounted(() => {
-  fun(data.value)
+onMounted(async () => {
+  await fun(data.value)
+  await nextTick()
+  UpdateCanvasAttribute()
 })
 
 // 测试专用函数
-
-var test_num = ref(0)
-window['test'] = () => {
-  if (test_num.value == 0) {
-    animate()
-    test_num.value += 1
-  }
-  tl_1.restart()
-  tl_2.restart()
-  tl_3.restart()
-  tl_4.restart()
-  tl_5.restart()
-  tl_6.restart()
+function testAnimation() {
+  test_num.value += 1
+  buildAnimation()?.play(0)
 }
+
+window['test'] = testAnimation
+
+onBeforeUnmount(() => {
+  masterTimeline?.kill()
+  delete window.test
+  delete window.inject
+  delete window.inject_wvc
+  delete window.seek_frame
+})
 </script>
 
 <template>
-  <img v-if="data.activity == 'wc'" class="logo" src="/WeeklyC.png" />
-  <button class="test-button" v-if="test_num != 0" onclick="test()">重播动画</button>
-  <div class="main-board">
+  <button v-if="test_num != 0" class="test-button" aria-label="重播动画" @click="testAnimation">
+    重播动画
+  </button>
+  <ExtraList
+    class="extra-list"
+    v-if="data.more_data"
+    :more_data="data.more_data"
+    :show_staff="data.show_staff"
+  />
+  <div ref="mainBoardRef" class="main-board">
+    <BoardLogoWatermark />
+    <BoardHeaderDecor title="PICK UP" />
     <div class="main-left">
+      <PickInfo :picker="data.picker" :reason="data.reason" />
       <div class="video-box" :style="{ background: data.theme_color }">
         <div v-if="data.prevent == 'true'" class="prevent">规避</div>
         <canvas
@@ -281,36 +190,30 @@ window['test'] = () => {
         >
         </canvas>
       </div>
-      <MainInfo special_text="PICK UP" />
     </div>
-    <div class="main-right">
-      <PickInfo :reason="data.reason" :picker="data.picker" />
-      <img class="cover" :src="data.cover_src" />
+    <div class="video-ornament" aria-hidden="true">
+      <img :src="ornamentLeft" alt="" />
+      <span><i></i><i></i></span>
+      <img :src="ornamentRight" alt="" />
     </div>
+    <MainInfo />
     <TransitionImage />
     <BackgroundImage />
   </div>
+  <!-- <img class="main-back" :src="data.cover_src" /> -->
+  <!-- <img src="https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp" /> -->
+  <!-- 请注意这个img是给background-image盗链服务的，平时使用时给它加上「display: none;」，直接background-image会403 -->
 </template>
 
 <style lang="scss" scoped>
-.logo {
-  width: 25rem;
-  position: absolute;
-  top: 0.5rem;
-  left: 2.5rem;
-  z-index: 16;
-  filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.5));
-}
 .main-board {
-  aspect-ratio: 16 / 9;
-  display: flex;
-  // width: 100vw;
-  // height: 100vh;
-  gap: 2rem;
-  padding: 3.5rem 5rem;
-  // background-image: url('https://i0.hdslb.com/bfs/new_dyn/7004c979872d2be6c2ddebfb06f47ff8456935358.jpg@.webp');
-  background-size: 100vw;
-  background-position: center;
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  color: #212121;
+  background: #e2e2e2;
+
 }
 
 .main-back {
@@ -327,65 +230,95 @@ window['test'] = () => {
   // mix-blend-mode: darken;
 }
 .video-box {
-  @include card;
-  width: auto;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 1280px;
+  height: 720px;
   overflow: hidden;
-  flex-shrink: 0;
-  position: relative;
+  background-color: black;
+
+  > * {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .preblur {
   filter: blur(50px) brightness(0.75);
 }
 
-.video-inner {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-position: center;
-  object-fit: contain;
-}
-
-.cover {
-  @include card;
-  width: auto;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  flex-shrink: 0;
-  object-fit: cover;
-}
-
-.main-left,
-.main-right {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  flex-grow: 1;
-}
-
 .main-left {
-  width: 0px;
+  position: absolute;
+  z-index: 2;
+  inset: 0;
 }
 
 .main-right {
-  flex-shrink: 0;
-  max-width: 26.875rem;
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 1636px;
+  width: 248px;
+  height: 800px;
+
+  .main-counts {
+    position: absolute;
+    top: 176px;
+    left: 0;
+  }
+}
+
+.brand-logo {
+  position: absolute;
+  top: 37px;
+  left: 50px;
+  width: 149px;
+  height: 113px;
+}
+
+.video-ornament {
+  position: absolute;
+  z-index: 4;
+  top: 772px;
+  left: 554px;
+  display: flex;
+  align-items: center;
+  gap: 304px;
+  width: 812px;
+  height: 16px;
+
+  img {
+    width: 94px;
+    height: 16px;
+  }
+
+  span {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+
+  i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #212121;
+  }
+
+  i:last-child {
+    right: 0;
+    bottom: 0;
+  }
 }
 .extra-list {
   position: absolute;
   z-index: 100;
-}
-
-.dplayer-controller {
-  display: none !important;
-}
-.dplayer-controller-mask {
-  display: none !important;
 }
 .prevent {
   width: 100%;
@@ -405,6 +338,6 @@ window['test'] = () => {
 // 测试按钮
 .test-button {
   position: absolute;
-  z-index: 20;
+  z-index: 1000;
 }
 </style>
