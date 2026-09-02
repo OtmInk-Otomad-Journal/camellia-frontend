@@ -50,7 +50,12 @@ defineProps({ data: Object })
   }
 }
 
-.ca-progress { font-size: 40px; font-weight: 700; letter-spacing: -3.2px; white-space: nowrap; }
+.ca-progress {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -3.2px;
+  white-space: nowrap;
+}
 
 .ca-title-box {
   position: absolute;
@@ -60,23 +65,41 @@ defineProps({ data: Object })
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  width: 465px;
+  width: 520px;
   height: 203px;
   overflow: hidden;
 }
 
-.ca-title { max-width: 465px; font-size: 64px; font-weight: 700; line-height: 1.08; letter-spacing: -5.12px; }
-.ca-subtitle { max-width: 465px; font-size: 36px; font-weight: 700; letter-spacing: -2.88px; }
+.ca-title {
+  max-width: 520px;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -5.12px;
+  // 最大两行
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: pre-wrap;
+}
+.ca-subtitle {
+  max-width: 520px;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -2.88px;
+}
 
 .cover {
   position: absolute;
   top: 0;
-  left: 912px;
+  left: 988px;
   width: 823px;
   height: 217px;
   overflow: hidden;
   object-fit: cover;
   clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
+  background: #212121;
 }
 
 .timeline-dot {

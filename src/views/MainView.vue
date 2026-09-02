@@ -50,8 +50,16 @@ function buildAnimation({ paused = false } = {}) {
     .from(q('.weekly-label'), { duration: 0.8, y: -24, opacity: 0 }, 0.18)
     .from(q('.category-label'), { duration: 0.65, x: -90, opacity: 0 }, 0.12)
     .from(q('.left-triangles'), { duration: 0.55, x: -60, opacity: 0 }, 0.2)
-    .from(q('.left-diagonal'), { duration: 0.65, scaleX: 0, opacity: 0, transformOrigin: 'left center' }, 0.24)
-    .from(q('.left-star'), { duration: 0.45, scale: 0, rotation: -90, opacity: 0, ease: 'back.out(2)' }, 0.36)
+    .from(
+      q('.left-diagonal'),
+      { duration: 0.65, scaleX: 0, opacity: 0, transformOrigin: 'left center' },
+      0.24
+    )
+    .from(
+      q('.left-star'),
+      { duration: 0.45, scale: 0, rotation: -90, opacity: 0, ease: 'back.out(2)' },
+      0.36
+    )
     .from(
       q('.video-box'),
       { duration: 1, clipPath: 'inset(0 100% 0 0)', x: -80, transformOrigin: 'left center' },
@@ -59,14 +67,40 @@ function buildAnimation({ paused = false } = {}) {
     )
     .from(q('.main-rank'), { duration: 0.9, x: -320 }, 0.08)
     .from(q('.rank-shadow'), { duration: 0.65, x: -70, opacity: 0 }, 0.32)
-    .from(q('.rank'), { duration: 0.7, scale: 0.72, opacity: 0, transformOrigin: 'left center', ease: 'back.out(1.4)' }, 0.3)
-    .from(q('.cap, .points, .rank-title'), { duration: 0.55, y: 42, opacity: 0, stagger: 0.08 }, 0.5)
+    .from(
+      q('.rank'),
+      {
+        duration: 0.7,
+        scale: 0.72,
+        opacity: 0,
+        transformOrigin: 'left center',
+        ease: 'back.out(1.4)'
+      },
+      0.3
+    )
+    .from(
+      q('.cap, .points, .rank-title'),
+      { duration: 0.55, y: 42, opacity: 0, stagger: 0.08 },
+      0.5
+    )
     .from(q('.brand-logo'), { duration: 0.75, x: 180, opacity: 0 }, 0.16)
     .from(q('.count-item'), { duration: 0.75, x: 280, opacity: 0, stagger: 0.08 }, 0.28)
-    .from(q('.count-item .icon'), { duration: 0.4, scale: 0, stagger: 0.08, ease: 'back.out(2)' }, 0.54)
-    .from(q('.video-ornament'), { duration: 0.7, scaleX: 0, opacity: 0, transformOrigin: 'center' }, 0.58)
+    .from(
+      q('.count-item .icon'),
+      { duration: 0.4, scale: 0, stagger: 0.08, ease: 'back.out(2)' },
+      0.54
+    )
+    .from(
+      q('.video-ornament'),
+      { duration: 0.7, scaleX: 0, opacity: 0, transformOrigin: 'center' },
+      0.58
+    )
     .from(q('.main-info'), { duration: 0.85, y: 280 }, 0.34)
-    .from(q('.main-title, .chip, .uploader'), { duration: 0.58, y: 38, opacity: 0, stagger: 0.07 }, 0.65)
+    .from(
+      q('.main-title, .chip, .uploader'),
+      { duration: 0.58, y: 38, opacity: 0, stagger: 0.07 },
+      0.65
+    )
     .to(q('.main-progress'), { duration: fullTime, width: '100%', ease: 'none' }, 0)
 
   if (data.value.more_data) {
@@ -152,6 +186,13 @@ function testAnimation() {
 
 window['test'] = testAnimation
 
+// 或按下T键触发
+document.addEventListener('keydown', (event) => {
+  if (event.key === 't' || event.key === 'T') {
+    testAnimation()
+  }
+})
+
 onBeforeUnmount(() => {
   masterTimeline?.kill()
   delete window.test
@@ -165,15 +206,15 @@ onBeforeUnmount(() => {
   <button v-if="test_num != 0" class="test-button" aria-label="重播动画" @click="testAnimation">
     重播动画
   </button>
-  <ExtraList
+  <!-- <ExtraList
     class="extra-list"
     v-if="data.more_data"
     :more_data="data.more_data"
     :show_staff="data.show_staff"
-  />
+  /> -->
   <div ref="mainBoardRef" class="main-board">
     <BoardLogoWatermark />
-    <BoardHeaderDecor title="综合" />
+    <BoardHeaderDecor :title="data.type == 'ytpmv' ? 'YTPMV' : '综合'" />
     <div class="main-left">
       <MainRank />
       <div class="video-box" :style="{ background: data.theme_color }">
@@ -216,7 +257,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
   color: #212121;
   background: #e2e2e2;
-
 }
 
 .main-back {

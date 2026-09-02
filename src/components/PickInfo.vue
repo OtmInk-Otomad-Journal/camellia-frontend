@@ -12,16 +12,22 @@ defineProps({
       <div class="pick-picker">{{ picker }}</div>
     </div>
     <div class="pick-reason">
-      {{ reason }}
+      <div class="pick-reason-inner">
+        {{ reason }}
+      </div>
     </div>
   </div>
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-  <defs>
-    <clipPath id="picker-box-clip">
-      <path xmlns="http://www.w3.org/2000/svg" d="M400 100H0V99.9102L99.9102 0H400V100ZM0 87.0303V62.6406L62.6406 0H87.0303L0 87.0303ZM0 36.1211V0H36.1211L0 36.1211Z" fill="#E83939"/>
-    </clipPath>
-  </defs>
-</svg>
+    <defs>
+      <clipPath id="picker-box-clip">
+        <path
+          xmlns="http://www.w3.org/2000/svg"
+          d="M400 100H0V99.9102L99.9102 0H400V100ZM0 87.0303V62.6406L62.6406 0H87.0303L0 87.0303ZM0 36.1211V0H36.1211L0 36.1211Z"
+          fill="#E83939"
+        />
+      </clipPath>
+    </defs>
+  </svg>
 </template>
 
 <style lang="scss" scoped>
@@ -65,12 +71,20 @@ defineProps({
   background: #303030;
   color: #fff;
   font-size: 24px;
-  line-height: 1.5;
+  line-height: 1.65;
+  box-sizing: border-box;
   padding: 20px;
-  overflow-y: auto;
 }
 
-.pick-reason::-webkit-scrollbar {
+.pick-reason-inner {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+.pick-reason-inner::-webkit-scrollbar {
   width: 0;
   display: none;
 }

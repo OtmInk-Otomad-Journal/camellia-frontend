@@ -1,14 +1,12 @@
 <script setup>
-import { data, fun } from '../data/Calendar_data.js'
+import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import CalenSingle from '../components/CalenSingle.vue'
 import BackgroundImage from '../components/BackgroundImage.vue'
 import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
 import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
-import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
-import ornamentRight from '../assets/otmink-next/ornament-right.svg'
+import ExtraSingle from '../components/ExtraSingle.vue'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -124,14 +122,26 @@ onBeforeUnmount(() => {
   </button>
   <div ref="boardRef" class="big-board">
     <BoardLogoWatermark class="calendar-watermark" />
-    <BoardHeaderDecor class="ca-header" title="音之墨小日历" />
-    <div class="ca-box">
-      <CalenSingle v-for="cad in data.more_data" :key="cad" :data="cad" />
+    <BoardHeaderDecor class="ca-header" title="副榜" />
+    <div class="whole-list">
+      <div class="extra-item" v-for="(item, index) in data.more_data" :key="index">
+        <div class="extra-point"></div>
+        <ExtraSingle :data="item" />
+      </div>
+      <div class="empty-reserve"></div>
     </div>
-    <div class="calendar-ornament" aria-hidden="true">
-      <img :src="ornamentLeft" alt="" />
-      <span><i></i><i></i></span>
-      <img :src="ornamentRight" alt="" />
+    <div class="video-outer-border"></div>
+    <div class="video-outer">
+      <canvas
+        :src="data.video_src"
+        :class="['video-inner', { preblur: data.prevent == 'true' }]"
+        ref="videoRef"
+        :key="data.video_src"
+        :start-time="Math.floor((data.start_time - data.front_reserved_time) * 1000)"
+        muted
+        video-capture
+      >
+      </canvas>
     </div>
     <BackgroundImage />
   </div>
@@ -205,9 +215,90 @@ onBeforeUnmount(() => {
   }
 }
 
+.preblur {
+  filter: blur(50px) brightness(0.75);
+}
+
+.video-inner {
+  background: black;
+  width: 1920px;
+  height: 1080px;
+  object-fit: cover;
+}
+
+.video-outer-border {
+  background-color: v-bind('data.dark_color');
+  z-index: 2;
+  width: 575px;
+  height: 1080px;
+  top: 0;
+  right: 10px;
+  position: absolute;
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.video-outer {
+  width: 575px;
+  height: 1080px;
+  background-color: #212121;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  overflow: hidden;
+  clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);
+  display: flex;
+  justify-content: center;
+}
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
   display: none;
+}
+
+.whole-list {
+  position: absolute;
+  z-index: 2;
+  top: 68px;
+  right: 400px;
+  box-sizing: border-box;
+  width: 1280px;
+  height: 1380px;
+  padding-left: 11px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(33, 33, 33, 0.7));
+  background-position: calc(100% - 10px) 0;
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  transform: rotate(12.02227669deg);
+  transform-origin: top right;
+}
+
+.extra-point {
+  box-sizing: border-box;
+  width: 21px;
+  height: 21px;
+  border: 5px solid white;
+  border-radius: 50%;
+  background-color: v-bind('data.light_color');
+  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05);
+  position: absolute;
+  right: 0;
+}
+
+.extra-item {
+  position: relative;
+  margin-bottom: 60px;
+  transform-origin: center right;
+  transform: rotate(-12.02227669deg);
+  display: flex;
+  align-items: center;
+}
+
+.empty-reserve {
+  width: 100%;
+  height: 400px;
 }
 </style>

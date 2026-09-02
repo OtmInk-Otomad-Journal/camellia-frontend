@@ -28,22 +28,13 @@ defineProps({
 .uploader {
   display: flex;
   align-items: center;
-  flex-direction: row;
-  gap: 1rem;
-  // height: 4rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.5);
+  gap: 8px;
 }
 
 .text {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  height: 2.25rem;
-  background-color: transparent;
+  gap: 8px;
 }
 
 .badge-repost {
@@ -62,11 +53,11 @@ defineProps({
 }
 
 .avatar {
-  width: 3rem;
-  height: 3rem;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   background-color: rgba(0, 0, 0, 0.15);
-  border-radius: 100rem;
+  border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -77,7 +68,10 @@ defineProps({
 }
 
 .name {
-  font-size: 1.5rem;
-  font-weight: bold;
+  color: black;
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: transparent;
 }
 </style>

@@ -8,23 +8,23 @@ const data = ref({
   more_data: [
     {
       color: '#66ccff',
-      progress: '进行中',
-      date: '11<m>月</m>23<m>日</m>',
-      title: '希望与梦想的兔兔',
+      progress: '还有',
+      date: '23<m>天</m>',
+      title: '希望与梦想',
       subtitle: 'Fibonacci Collab.',
       cover: './cover/231090115.png'
     },
     {
       color: '#66ccff',
-      progress: '进行中',
+      progress: '直到',
       date: '11<m>月</m>23<m>日</m>',
-      title: '希望与梦想的兔兔',
+      title: '第23届\n音MAD的兔兔',
       subtitle: 'Fibonacci Collab.',
       cover: './cover/231090115.png'
     },
     {
       color: '#66ccff',
-      progress: '进行中',
+      progress: '等到',
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
