@@ -12,7 +12,7 @@ const props = defineProps({
         <b>{{ data.score }}</b> CAP
       </div>
     </div>
-    <img class="cover" :src="data.cover" alt="Cover" />
+    <img class="cover" :src="data.cover_src" alt="Cover" />
     <div class="info">
       <div class="title-box">
         <div class="title">{{ data.title }}</div>
@@ -47,17 +47,18 @@ const props = defineProps({
 
 .score {
   width: 106px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   text-align-last: justify;
   font-size: 24px;
   margin-top: -36px;
   letter-spacing: -5%;
   color: #000000;
+  white-space: nowrap;
 }
 
 .cover {
   height: 148px;
-  border-left: 8px solid v-bind('data.dark_color');
+  border-left: 8px solid v-bind('data.light_color');
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background-color: #202020;

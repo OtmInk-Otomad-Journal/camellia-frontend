@@ -43,7 +43,7 @@ defineProps({
   width: 400px;
   height: 100px;
   right: 0;
-  background: v-bind('data.dark_color');
+  background: v-bind('data.light_color');
   clip-path: url(#picker-box-clip);
   color: #fff;
   font-weight: 700;

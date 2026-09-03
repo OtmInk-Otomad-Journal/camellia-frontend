@@ -37,7 +37,7 @@ defineProps({
   top: 14px;
   left: 744px;
   width: 431px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   font-size: 10px;
   letter-spacing: 15px;
   white-space: nowrap;
@@ -68,11 +68,26 @@ defineProps({
     background: #212121;
   }
 
-  i:nth-child(1) { top: 0; left: 0; }
-  i:nth-child(2) { top: 6px; left: 6px; }
-  i:nth-child(3) { top: 12px; left: 12px; }
-  i:nth-child(4) { top: 0; left: 12px; }
-  i:nth-child(5) { top: 12px; left: 0; }
+  i:nth-child(1) {
+    top: 0;
+    left: 0;
+  }
+  i:nth-child(2) {
+    top: 6px;
+    left: 6px;
+  }
+  i:nth-child(3) {
+    top: 12px;
+    left: 12px;
+  }
+  i:nth-child(4) {
+    top: 0;
+    left: 12px;
+  }
+  i:nth-child(5) {
+    top: 12px;
+    left: 0;
+  }
 }
 
 .left-triangles,

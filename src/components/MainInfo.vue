@@ -60,7 +60,7 @@ defineProps({
   background: #303030;
 
   h1 {
-    width: 912px;
+    width: 1580px;
     font-size: 48px;
     font-weight: 900;
     line-height: 1.17;

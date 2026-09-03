@@ -10,7 +10,7 @@ defineProps({ data: Object })
       <div class="ca-date" v-html="data.date"></div>
     </div>
     <div class="ca-title-box">
-      <div class="ca-title">{{ data.title }}</div>
+      <div class="ca-title" v-html="data.title"></div>
       <div class="ca-subtitle">{{ data.subtitle }}</div>
     </div>
     <img class="cover" :src="data.cover" alt="" />
@@ -40,6 +40,7 @@ defineProps({ data: Object })
   line-height: 1;
   letter-spacing: -5.12px;
   white-space: nowrap;
+  margin-left: 4px;
 
   m {
     font-family: 'HarmonyOS Sans SC', sans-serif;
@@ -47,6 +48,8 @@ defineProps({ data: Object })
     font-style: normal;
     font-weight: 700;
     letter-spacing: -3.2px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 }
 

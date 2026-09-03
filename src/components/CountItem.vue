@@ -90,7 +90,7 @@ defineProps({
   display: block;
   padding: 0 14px;
   color: #212121;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   font-size: 48px;
   font-weight: 500;
   line-height: 73px;

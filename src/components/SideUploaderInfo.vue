@@ -69,7 +69,7 @@ defineProps({
 
 .name {
   color: black;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   font-size: 20px;
   font-weight: 400;
   background-color: transparent;

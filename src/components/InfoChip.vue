@@ -1,5 +1,4 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="chip">
@@ -10,7 +9,7 @@
 <style lang="scss" scoped>
 .chip {
   color: white;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 1;

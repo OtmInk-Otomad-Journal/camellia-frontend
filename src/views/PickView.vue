@@ -123,6 +123,11 @@ function buildAnimation({ paused = false } = {}) {
       exitAt + 0.18
     )
     .to(q('.back-accent'), { duration: 0.8, opacity: 0, ease: 'expo.inOut' }, exitAt)
+    .to(
+      q('.back-squares i'),
+      { duration: 0.8, opacity: 0, stagger: 0.06, ease: 'expo.inOut' },
+      exitAt
+    )
 
   return masterTimeline
 }

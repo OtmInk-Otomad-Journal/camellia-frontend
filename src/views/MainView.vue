@@ -39,7 +39,10 @@ function buildAnimation({ paused = false } = {}) {
   extraRef.value?.reset?.()
   const q = gsap.utils.selector(mainBoardRef.value)
   const fullTime = Math.max(Number(data.value.full_time) || 20, 3)
-  const exitAt = Math.max(fullTime - 1, 1.8)
+  // 有副榜时主榜只显示「总时长 − side_duration」，剩余时段交给副榜（ExtraView）
+  const sideDuration = hasExtra ? Math.max(Number(data.value.side_duration) || 0, 0) : 0
+  const mainTime = Math.max(fullTime - sideDuration, 3)
+  const exitAt = Math.max(mainTime - 1, 1.8)
   const resetTargets = q(
     '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .video-ornament, .main-info, .main-title, .chip, .uploader'
   )
@@ -110,7 +113,7 @@ function buildAnimation({ paused = false } = {}) {
       { duration: 0.58, y: 38, opacity: 0, stagger: 0.07 },
       0.65
     )
-    .to(q('.main-progress'), { duration: fullTime, width: '100%', ease: 'none' }, 0)
+    .to(q('.main-progress'), { duration: mainTime, width: '100%', ease: 'none' }, 0)
 
   if (hasExtra) {
     // 有副榜：主榜元素全部退场，只留背景（主/副榜背景一致，可无缝衔接）
@@ -140,6 +143,11 @@ function buildAnimation({ paused = false } = {}) {
         exitAt + 0.18
       )
       .to(q('.back-accent'), { duration: 0.8, opacity: 0, ease: 'expo.inOut' }, exitAt)
+      .to(
+        q('.back-squares i'),
+        { duration: 0.8, opacity: 0, stagger: 0.06, ease: 'expo.inOut' },
+        exitAt
+      )
   }
 
   return masterTimeline

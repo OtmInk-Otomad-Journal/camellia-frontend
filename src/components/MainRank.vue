@@ -64,7 +64,7 @@ const rank = computed(() => String(data.value.ranking).padStart(2, '0'))
   position: absolute;
   top: 638px;
   left: 33px;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
   font-size: 96px;
   line-height: 1;
   letter-spacing: -4.8px;
