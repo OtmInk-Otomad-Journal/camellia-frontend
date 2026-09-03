@@ -1,7 +1,7 @@
 <script setup>
-import TransitionImage from '../components/TransitionImage.vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
 </script>
 
 <template>
-  <TransitionImage />
+  <BackgroundImage :accent="false"/>
 </template>

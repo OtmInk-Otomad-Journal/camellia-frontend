@@ -8,7 +8,6 @@ import { data, fun } from '../data/MainView_data.js'
 import { gsap } from 'gsap'
 import { ScrollToPlugin } from 'gsap/all'
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
-import TransitionImage from '../components/TransitionImage.vue'
 import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
 import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
 import brandLogo from '../assets/otmink-next/logo.svg'
@@ -42,7 +41,7 @@ function buildAnimation({ paused = false } = {}) {
   const fullTime = Math.max(Number(data.value.full_time) || 20, 3)
   const exitAt = Math.max(fullTime - 1, 1.8)
   const resetTargets = q(
-    '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .video-ornament, .main-info, .main-title, .chip, .uploader, .transition-image'
+    '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .video-ornament, .main-info, .main-title, .chip, .uploader'
   )
 
   gsap.set(resetTargets, { clearProps: 'transform,opacity,clipPath,filter,zIndex' })
@@ -50,7 +49,6 @@ function buildAnimation({ paused = false } = {}) {
 
   masterTimeline = gsap.timeline({ paused, defaults: { ease: 'expo.out' } })
   masterTimeline
-    .set(q('.transition-image'), { opacity: 0, zIndex: 20 }, 0)
     .from(q('.back-accent'), { duration: 1.4, y: -180, opacity: 0 }, 0)
     .from(
       q('.back-squares i'),
@@ -141,7 +139,7 @@ function buildAnimation({ paused = false } = {}) {
         { duration: 0.45, opacity: 0, ease: 'power2.in' },
         exitAt + 0.18
       )
-      .to(q('.transition-image'), { duration: 0.4, opacity: 1, ease: 'power1.in' }, fullTime - 0.4)
+      .to(q('.back-accent'), { duration: 0.8, opacity: 0, ease: 'expo.inOut' }, exitAt)
   }
 
   return masterTimeline
@@ -259,7 +257,6 @@ onBeforeUnmount(() => {
       <img :src="ornamentRight" alt="" />
     </div>
     <MainInfo />
-    <TransitionImage />
     <BackgroundImage />
   </div>
   <!-- 副榜层：与主榜同页预载，主榜元素退干净后翻到最上层并开播 -->
