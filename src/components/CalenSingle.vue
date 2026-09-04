@@ -14,6 +14,7 @@ defineProps({ data: Object })
       <div class="ca-subtitle">{{ data.subtitle }}</div>
     </div>
     <img class="cover" :src="data.cover" alt="" />
+    <div class="cover-border" />
   </div>
 </template>
 
@@ -89,7 +90,7 @@ defineProps({ data: Object })
 .ca-subtitle {
   max-width: 520px;
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -2.88px;
 }
 
@@ -103,6 +104,17 @@ defineProps({ data: Object })
   object-fit: cover;
   clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
   background: #212121;
+  z-index: 1;
+}
+
+.cover-border {
+  position: absolute;
+  top: 0;
+  left: 974px;
+  width: 823px;
+  height: 217px;
+  background-color: v-bind('data.color');
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .timeline-dot {
