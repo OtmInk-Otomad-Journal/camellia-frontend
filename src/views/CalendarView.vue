@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
 .calendar-ornament {
   position: absolute;
   z-index: 4;
-  top: 1042px;
+  top: 108px;
   left: 554px;
   display: flex;
   align-items: center;

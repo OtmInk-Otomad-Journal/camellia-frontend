@@ -4,7 +4,7 @@ const data = ref({
   duration: 100,
   start_time: 108.7501565,
   full_time: 10,
-  web_prefix: 'http://localhost:7213/',
+  web_prefix: '',
   more_data: [
     {
       color: '#66ccff',
@@ -12,7 +12,7 @@ const data = ref({
       date: '23<m>天</m>',
       title: '希望与梦想',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -20,7 +20,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '第23届\n音MAD的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -28,7 +28,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -36,7 +36,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -44,7 +44,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -52,7 +52,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -60,7 +60,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     },
     {
       color: '#66ccff',
@@ -68,7 +68,7 @@ const data = ref({
       date: '11<m>月</m>23<m>日</m>',
       title: '希望与梦想的兔兔',
       subtitle: 'Fibonacci Collab.',
-      cover: './cover/231090115.png'
+      cover: './missing.webp'
     }
   ]
 })
