@@ -62,14 +62,14 @@ const props = defineProps({
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background-color: #202020;
-  margin-left: 8px;
+  margin-left: 24px;
   // 裁剪右下角
   clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
 }
 
 .title {
   font-family: 'HarmonyOS Sans SC', sans-serif;
-  font-size: 40px;
+  font-size: 32px;
   color: #000000;
   font-weight: 700;
   // 最大两行，超出省略
@@ -82,8 +82,8 @@ const props = defineProps({
 
 .title-box {
   display: flex;
-  align-items: center;
   height: 98px;
+  margin-top: 4px;
 }
 
 .info {
@@ -101,6 +101,7 @@ const props = defineProps({
   display: flex;
   align-items: center;
   gap: 16px;
+
   > * + * {
     padding-left: 16px;
     border-left: 1px solid rgba(0, 0, 0, 0.5);

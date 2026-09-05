@@ -20,11 +20,9 @@ defineProps({
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0">
     <defs>
       <clipPath id="picker-box-clip">
-        <path
-          xmlns="http://www.w3.org/2000/svg"
-          d="M400 100H0V99.9102L99.9102 0H400V100ZM0 87.0303V62.6406L62.6406 0H87.0303L0 87.0303ZM0 36.1211V0H36.1211L0 36.1211Z"
-          fill="#E83939"
-        />
+        <path xmlns="http://www.w3.org/2000/svg"
+          d="M0 0H15L0 15ZM30 0H45L0 45V30ZM60 0H75L0 75V60ZM90 0H105L5 100H0V90ZM120 0H400V100H20Z"
+          fill="#E83939" />
       </clipPath>
     </defs>
   </svg>
@@ -73,7 +71,6 @@ defineProps({
   font-size: 24px;
   line-height: 1.65;
   box-sizing: border-box;
-  padding: 20px;
 }
 
 .pick-reason-inner {
@@ -82,6 +79,7 @@ defineProps({
   overflow-y: auto;
   box-sizing: border-box;
   text-align: justify;
+  padding: 14px 20px;
 }
 
 .pick-reason-inner::-webkit-scrollbar {
