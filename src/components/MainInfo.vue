@@ -38,6 +38,7 @@ defineProps({
   font-weight: 900;
   font-style: italic;
 }
+
 .main-progress {
   position: absolute;
   top: 0;
@@ -62,7 +63,7 @@ defineProps({
   h1 {
     width: 1580px;
     font-size: 48px;
-    font-weight: 900;
+    font-weight: bold;
     line-height: 1.17;
     text-overflow: ellipsis;
     overflow: hidden;

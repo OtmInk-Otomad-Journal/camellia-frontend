@@ -29,7 +29,7 @@ const rank = computed(() => String(data.value.ranking).padStart(2, '0'))
 
 .rank {
   position: absolute;
-  top: 128px;
+  top: 180px;
   left: 16px;
   color: v-bind('data.light_color');
   font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
@@ -41,14 +41,14 @@ const rank = computed(() => String(data.value.ranking).padStart(2, '0'))
 
 .rank-shadow {
   position: absolute;
-  top: 92px;
+  top: 140px;
   left: -58px;
   color: transparent;
   font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
   font-size: 470px;
   line-height: 1;
   letter-spacing: -23.5px;
-  -webkit-text-stroke: 1px rgba(33, 33, 33, 0.08);
+  -webkit-text-stroke: 1px rgba(33, 33, 33, 0.2);
 }
 
 .rank-title {

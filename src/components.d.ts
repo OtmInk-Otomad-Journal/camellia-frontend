@@ -22,6 +22,7 @@ declare module 'vue' {
     MainInfo: typeof import('./components/MainInfo.vue')['default']
     MainRank: typeof import('./components/MainRank.vue')['default']
     PickInfo: typeof import('./components/PickInfo.vue')['default']
+    RepostBadge: typeof import('./components/RepostBadge.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideInfoChip: typeof import('./components/SideInfoChip.vue')['default']

@@ -4,7 +4,7 @@ defineProps({ data: Object })
 
 <template>
   <div class="extra-single">
-    <span class="timeline-dot" :style="{ backgroundColor: data.color }"></span>
+    <span class="timeline-dot"></span>
     <div class="ca-time">
       <span class="ca-progress">{{ data.progress }}</span>
       <div class="ca-date" v-html="data.date"></div>
@@ -37,7 +37,7 @@ defineProps({ data: Object })
 
 .ca-date {
   font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
-  font-size: 128px;
+  font-size: 96px;
   line-height: 1;
   letter-spacing: -5.12px;
   white-space: nowrap;
@@ -49,13 +49,13 @@ defineProps({ data: Object })
     font-style: normal;
     font-weight: 700;
     letter-spacing: -3.2px;
-    margin-left: 2px;
+    margin-left: -10px;
     margin-right: 2px;
   }
 }
 
 .ca-progress {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -3.2px;
   white-space: nowrap;
@@ -76,10 +76,9 @@ defineProps({ data: Object })
 
 .ca-title {
   max-width: 520px;
-  font-size: 64px;
+  font-size: 48px;
   font-weight: 700;
   line-height: 1.08;
-  letter-spacing: -5.12px;
   // 最大两行
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -87,6 +86,7 @@ defineProps({ data: Object })
   overflow: hidden;
   white-space: pre-wrap;
 }
+
 .ca-subtitle {
   max-width: 520px;
   font-size: 36px;
@@ -125,8 +125,7 @@ defineProps({ data: Object })
   box-sizing: border-box;
   width: 21px;
   height: 21px;
-  border: 5px solid white;
   border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(33, 33, 33, 0.05);
+  background-color: v-bind('data.color');
 }
 </style>
