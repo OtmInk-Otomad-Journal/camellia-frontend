@@ -195,6 +195,10 @@ onBeforeUnmount(() => {
   background: #e2e2e2;
 }
 
+.ca-header :deep(.left-diagonal) {
+  display: none;
+}
+
 // 测试按钮
 .test-button {
   position: absolute;
