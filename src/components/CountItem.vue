@@ -1,58 +1,89 @@
 <script setup>
+import { data } from '../data/MainView_data.js'
+
 defineProps({
   icon: String,
   title: String,
-  count: Number
+  count: [Number, String]
 })
 </script>
 
 <template>
   <div class="count-item">
-    <div class="icon">
-      <slot></slot>
-    </div>
-    <div class="right">
+    <div class="count-head">
       <span class="title">{{ title }}</span>
+    </div>
+    <div class="count-value">
       <span class="count">{{ count }}</span>
+      <span class="icon" :style="{ '--icon-mask': `url(${icon})` }" aria-hidden="true"></span>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .count-item {
-  @include card;
-  @include acrylic;
-  display: flex;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: center;
+  position: relative;
   width: 100%;
-  padding: 1.1rem 1.875rem;
+  height: 86px;
+  overflow: visible;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: -0.5px;
+    left: 0;
+    height: 1px;
+    background: #929292;
+    content: '';
+  }
 }
 
-.right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+.count-head {
+  height: 23px;
+  color: v-bind('data.light_color');
 }
 
 .title {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'HarmonyOS Sans SC', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: -1px;
+}
+
+.count-value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 45px;
+  margin-top: 8px;
 }
 
 .count {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: -0.2em;
+  display: block;
+  flex: 1;
+  min-width: 0;
+  color: #212121;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 45px;
+  white-space: nowrap;
 }
 
 .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
+  display: block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  background: v-bind('data.light_color');
+  mask-image: var(--icon-mask);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-image: var(--icon-mask);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 </style>

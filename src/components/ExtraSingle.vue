@@ -1,6 +1,4 @@
 <script setup>
-import { NewspaperFolding } from '@icon-park/vue-next'
-
 const props = defineProps({
   data: Object
 })
@@ -8,129 +6,115 @@ const props = defineProps({
 
 <template>
   <div class="extra-single">
-    <div class="rightI">
-      <h1 class="side-title">{{ props.data.title }}</h1>
-      <div class="side-chips">
-        <SideInfoChip :single_data="props.data">av{{ props.data.aid }}</SideInfoChip>
-        <SideInfoChip :single_data="props.data">{{ props.data.pubtime }}</SideInfoChip>
+    <div class="left-number">
+      <div class="rank">{{ data.ranking }}</div>
+      <div class="score">
+        <b>{{ data.score }}</b> CAP
       </div>
-      <div class="bottom">
-        <div class="rank">
-          <newspaper-folding style="display: inline-flex; align-items: center" theme="outline" />{{
-            props.data.ranking
-          }}
-        </div>
-        <div class="points">
-          <span>{{ props.data.score }}</span>
-          <span>POINTS</span>
-        </div>
-      </div>
-      <SideUploaderInfo :data="props.data" />
     </div>
-    <div class="cover-mask"></div>
-    <img class="cover" :src="props.data.cover_src" />
+    <img class="cover" :src="data.cover_src" alt="Cover" />
+    <div class="info">
+      <div class="title-box">
+        <div class="title">{{ data.title }}</div>
+      </div>
+      <SideUploaderInfo :data="data" class="side-up" />
+      <div class="chips">
+        <InfoChip>av{{ data.aid }}</InfoChip>
+        <InfoChip>{{ data.pubtime }}</InfoChip>
+        <InfoChip v-if="data.score_add">{{ data.score_add }}</InfoChip>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .extra-single {
-  @include card;
-  @include acrylic;
   position: relative;
-  display: flex;
-  flex-grow: 1;
   width: 100%;
-  max-height: 200px;
-  padding: 1.25rem 1.5rem;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  // background-image: linear-gradient(90deg, #fff 33%, transparent);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.18);
+  transform-origin: center right;
+  display: flex;
+  flex-direction: row;
+}
+
+.rank {
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 144px;
+  letter-spacing: -4%;
+  color: #000000;
+  min-width: 112px;
+  margin-top: -24px;
+}
+
+.score {
+  width: 106px;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
+  text-align-last: justify;
+  font-size: 24px;
+  margin-top: -36px;
+  letter-spacing: -5%;
+  color: #000000;
+  white-space: nowrap;
 }
 
 .cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  height: 148px;
+  border-left: 8px solid v-bind('data.light_color');
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  flex-shrink: 0;
-  border-radius: 0.5rem;
-  opacity: 0.4;
+  background-color: #202020;
+  margin-left: 24px;
+  // 裁剪右下角
+  clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%);
 }
 
-.cover-mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(90deg, rgb(233, 233, 233), transparent);
+.title {
+  font-family: 'HarmonyOS Sans SC', sans-serif;
+  font-size: 32px;
+  color: #000000;
+  font-weight: 700;
+  // 最大两行，超出省略
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
 }
 
-.rightI {
+.title-box {
+  display: flex;
+  height: 98px;
+  margin-top: 4px;
+}
+
+.info {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 16px;
+  flex-grow: 1;
+  margin-right: 48px;
+}
 
-  h1 {
-    font-size: 2rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
+.chips {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 
-  .side-chips {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .bottom {
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
-    background-color: transparent;
-  }
-
-  .rank {
-    display: flex;
-    font-family: Montserrat, sans-serif;
-    font-size: 4.5rem;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    margin-bottom: -0.1em;
-    min-width: 10rem;
-    gap: 0.15em;
-    line-height: 1;
-
-    .i-icon {
-      font-size: 0.9em;
-      margin-top: -0.06em;
-    }
-  }
-
-  .points {
-    display: flex;
-    gap: 0.5rem;
-    font-family: Montserrat, sans-serif;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
+  > * + * {
+    padding-left: 16px;
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
   }
 }
 
-.uploader {
+.chip {
+  color: black !important;
+}
+
+.side-up {
   position: absolute;
-  right: 1.5rem;
-  bottom: 1.25rem;
-}
-
-.side-title {
-  margin-bottom: 0.5rem;
+  bottom: 0;
+  left: -20px;
 }
 </style>

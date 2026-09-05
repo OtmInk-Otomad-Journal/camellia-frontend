@@ -1,7 +1,12 @@
 <script setup>
-import TransitionImage from '../components/TransitionImage.vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
 </script>
 
 <template>
-  <TransitionImage />
+  <BackgroundImage :accent="false" />
 </template>
+<style>
+.back-squares {
+  display: none;
+}
+</style>

@@ -1,152 +1,213 @@
 <script setup>
 import { data, fun } from '../data/Calendar_data.js'
 import { gsap } from 'gsap'
-import { onMounted } from 'vue'
 import { ScrollToPlugin } from 'gsap/all'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import CalenSingle from '../components/CalenSingle.vue'
+import BackgroundImage from '../components/BackgroundImage.vue'
+import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
+import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
+import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
+import ornamentRight from '../assets/otmink-next/ornament-right.svg'
+
 gsap.registerPlugin(ScrollToPlugin)
 
-// “全局”变量，既方便函数内调用，也方便外面调用。
+const boardRef = ref()
+const test_num = ref(0)
+let masterTimeline
 
-let tl_1 = gsap.timeline()
+function buildAnimation({ paused = false } = {}) {
+  if (!boardRef.value) return
 
-// 动画 使用css选择器
-function animate() {
-  tl_1.from('.ca-header', {
-    duration: 1,
-    y: -300,
-    ease: 'expo.out'
-  })
-  tl_1.from(
-    '.extra-single',
-    {
-      duration: 1,
-      x: 2000,
-      stagger: 0.08,
-      ease: 'expo.out'
-    },
-    0.4
+  masterTimeline?.kill()
+  const q = gsap.utils.selector(boardRef.value)
+  const fullTime = Math.max(Number(data.value.full_time) || 10, 3)
+  const resetTargets = q(
+    '.board-header-decor, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .logo-watermark, .ca-box, .extra-single, .calendar-ornament'
   )
-  tl_1.from(
-    '.ca-box',
-    {
-      duration: 1,
-      y: 2000,
-      ease: 'expo.out'
-    },
-    0.3
-  )
-  tl_1.to(
-    '.ca-box',
-    {
-      duration: data.value.full_time - 3, // 预留 3 秒给 STAFF
-      scrollTo: { y: 'max' },
-      ease: 'sine.inOut'
-    },
-    2
-  )
+
+  gsap.set(resetTargets, { clearProps: 'transform,opacity,clipPath,filter' })
+  const boxEl = q('.ca-box')[0]
+  if (boxEl) boxEl.scrollTop = 0
+
+  masterTimeline = gsap.timeline({ paused, defaults: { ease: 'expo.out' } })
+  masterTimeline
+    .from(q('.logo-watermark'), { duration: 1, y: -90, opacity: 0 }, 0.05)
+    .from(q('.weekly-label'), { duration: 0.8, y: -24, opacity: 0 }, 0.18)
+    .from(q('.category-label'), { duration: 0.65, x: -90, opacity: 0 }, 0.12)
+    .from(q('.left-triangles'), { duration: 0.55, x: -60, opacity: 0 }, 0.2)
+    .from(
+      q('.left-diagonal'),
+      { duration: 0.65, scaleX: 0, opacity: 0, transformOrigin: 'left center' },
+      0.24
+    )
+    .from(
+      q('.left-star'),
+      { duration: 0.45, scale: 0, rotation: -90, opacity: 0, ease: 'back.out(2)' },
+      0.36
+    )
+    .from(q('.ca-box'), { duration: 1, y: 2000 }, 0.3)
+    .from(q('.extra-single'), { duration: 1, y: 2000, stagger: 0.08 }, 0.4)
+    .from(
+      q('.calendar-ornament'),
+      { duration: 0.7, scaleX: 0, opacity: 0, transformOrigin: 'center' },
+      0.55
+    )
+    .to(
+      q('.ca-box'),
+      {
+        duration: Math.max(fullTime - 3, 0.1),
+        scrollTo: { y: 'max' },
+        ease: 'sine.inOut'
+      },
+      2
+    )
+
+  return masterTimeline
+}
+
+function seek_frame(frame, fps) {
+  masterTimeline?.seek(frame / fps, false)
 }
 
 //// 全局函数 统一写在这
-function seek_frame(frame, fps, start_time) {
-  tl_1.seek(frame / fps)
+window['seek_frame'] = (frame, fps) => {
+  seek_frame(frame, fps)
 }
 
-//// 全局函数 统一写在这
-window['seek_frame'] = (frame, fps, start_time) => {
-  seek_frame(frame, fps, start_time)
+window['inject'] = async (obj) => {
+  await fun(obj)
+  await nextTick()
+  buildAnimation({ paused: true })
 }
 
-window['inject'] = (obj) => {
-  fun(obj).then(() => {
-    animate()
-  })
-  tl_1.pause()
+window['inject_wvc'] = async (obj) => {
+  await fun(obj)
+  await nextTick()
+  buildAnimation()?.play(0)
 }
 
-window['inject_wvc'] = (obj) => {
-  fun(obj).then(() => {
-    animate()
-  })
-}
-
-onMounted(() => {
-  fun(data.value)
+onMounted(async () => {
+  await fun(data.value)
+  await nextTick()
 })
 
 // 测试专用函数
-
-var test_num = ref(0)
-window['test'] = () => {
-  if (test_num.value == 0) {
-    // animate()
-    test_num.value += 1
-  }
-  tl_1.restart()
+function testAnimation() {
+  test_num.value += 1
+  buildAnimation()?.play(0)
 }
+
+window['test'] = testAnimation
+
+// 或按下T键触发
+function onKeydown(event) {
+  if (event.key === 't' || event.key === 'T') {
+    testAnimation()
+  }
+}
+document.addEventListener('keydown', onKeydown)
+
+onBeforeUnmount(() => {
+  masterTimeline?.kill()
+  document.removeEventListener('keydown', onKeydown)
+  delete window.test
+  delete window.inject
+  delete window.inject_wvc
+  delete window.seek_frame
+})
 </script>
 
 <template>
-  <div class="big-board">
-    <div class="ca-header">音之墨小日历</div>
+  <button v-if="test_num != 0" class="test-button" aria-label="重播动画" @click="testAnimation">
+    重播动画
+  </button>
+  <div ref="boardRef" class="big-board">
+    <BoardLogoWatermark class="calendar-watermark" />
+    <BoardHeaderDecor class="ca-header" title="音之墨小日历" />
     <div class="ca-box">
       <CalenSingle v-for="cad in data.more_data" :key="cad" :data="cad" />
     </div>
-    <img class="big-bag" src="../assets/background_model_1.png" />
-    <img class="big-back" src="../assets/Background.png" />
+    <div class="calendar-ornament" aria-hidden="true">
+      <img :src="ornamentLeft" alt="" />
+      <span><i></i><i></i></span>
+      <img :src="ornamentRight" alt="" />
+    </div>
+    <BackgroundImage />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .big-board {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-.big-bag {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  mix-blend-mode: overlay;
-  z-index: -20;
-  top: 0;
-  left: 0;
-}
-.big-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0.75;
-  top: 0;
-  left: 0;
-  z-index: -21;
-}
-.ca-header {
-  width: 100%;
-  font-size: 4rem;
-  margin-top: 2rem;
-  font-weight: bolder;
-  text-align: center;
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  color: #212121;
+  background: #e2e2e2;
 }
 
-.ca-box {
-  @include card;
-  margin: 2rem 15rem;
-  padding: 0 2rem 2rem 2rem;
-  overflow: scroll;
-  flex-grow: 1;
-}
 // 测试按钮
 .test-button {
   position: absolute;
-  z-index: 20;
+  z-index: 1000;
+}
+
+.ca-box {
+  position: absolute;
+  z-index: 2;
+  top: 197px;
+  left: 44px;
+  box-sizing: border-box;
+  width: 1880px;
+  height: 924px;
+  padding-left: 11px;
+  overflow: auto;
+  background-image: linear-gradient(rgba(33, 33, 33, 0.7), rgba(33, 33, 33, 0.7));
+  background-position: 10px 0;
+  background-repeat: no-repeat;
+  background-size: 1px 100%;
+  padding-top: 40px;
+  margin-top: -40px;
+  mask-image: linear-gradient(to bottom, transparent 0px, black 40px);
+  padding-bottom: 131px;
+}
+
+.calendar-ornament {
+  position: absolute;
+  z-index: 4;
+  top: 108px;
+  left: 554px;
+  display: flex;
+  align-items: center;
+  gap: 304px;
+  width: 812px;
+  height: 16px;
+
+  img {
+    width: 94px;
+    height: 16px;
+  }
+  span {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
+  i {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #212121;
+  }
+  i:last-child {
+    right: 0;
+    bottom: 0;
+  }
 }
 
 ::-webkit-scrollbar {
-  width: 0; /* Safari,Chrome 隐藏滚动条 */
-  height: 0; /* Safari,Chrome 隐藏滚动条 */
-  display: none; /* 移动端、pad 上Safari，Chrome，隐藏滚动条 */
+  width: 0;
+  height: 0;
+  display: none;
 }
 </style>

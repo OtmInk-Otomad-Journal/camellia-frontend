@@ -17,32 +17,46 @@ defineProps({
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .staff-box {
-  min-width: 50px;
-  background-color: transparent;
+  position: relative;
+  min-width: 0;
+  width: 100%;
+}
+
+.staff-box + .staff-box::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: rgba(33, 33, 33, 0.18);
 }
 
 .staff-job {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-width: 255px;
-  padding: 5px 10px;
-  border-radius: 8px;
-  margin-bottom: 5px;
-  /* background-color: var(--c-accent); */
-  background-color: v-bind('data.dark_color');
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
+  gap: 10px;
+  height: 42px;
+  color: v-bind('data.dark_color');
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  :deep(svg) {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .staff-name {
-  padding: 0 10px;
-  font-size: 1.5rem;
-  line-height: 2.8rem;
+  padding-top: 4px;
+  color: #212121;
+  font-family: 'Outfit', 'HarmonyOS Sans SC', sans-serif;
+  font-size: 23px;
+  line-height: 36px;
   font-weight: 500;
-  text-shadow: 0px 2px 2px rgba(255, 255, 255, 0.35);
 }
 </style>
