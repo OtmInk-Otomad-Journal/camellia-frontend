@@ -10,7 +10,7 @@ import { ScrollToPlugin } from 'gsap/all'
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import BoardHeaderDecor from '../components/BoardHeaderDecor.vue'
 import BoardLogoWatermark from '../components/BoardLogoWatermark.vue'
-import brandLogo from '../assets/otmink-next/logo.svg'
+import capStar from '../assets/otmink-next/cap-star.svg'
 import ornamentLeft from '../assets/otmink-next/ornament-left.svg'
 import ornamentRight from '../assets/otmink-next/ornament-right.svg'
 import ExtraView from './ExtraView.vue'
@@ -44,7 +44,7 @@ function buildAnimation({ paused = false } = {}) {
   const mainTime = Math.max(fullTime - sideDuration, 3)
   const exitAt = Math.max(mainTime - 1, 1.8)
   const resetTargets = q(
-    '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .video-ornament, .main-info, .main-title, .chip, .uploader'
+    '.main-board, .main-left, .main-right, .back-accent, .back-squares i, .logo-watermark, .weekly-label, .category-label, .left-triangles, .left-diagonal, .left-star, .video-box, .main-rank, .rank, .rank-shadow, .cap, .points, .rank-title, .brand-logo, .count-item, .count-item .icon, .video-ornament, .main-info, .main-title, .chip, .uploader'
   )
 
   gsap.set(resetTargets, { clearProps: 'transform,opacity,clipPath,filter,zIndex' })
@@ -243,20 +243,20 @@ onBeforeUnmount(() => {
       <MainRank />
       <div class="video-box" :style="{ background: data.theme_color }">
         <div v-if="data.prevent == 'true'" class="prevent">规避</div>
-        <canvas
-          :src="data.video_src"
-          :class="['video-inner', { preblur: data.prevent == 'true' }]"
-          ref="videoRef"
-          :key="data.video_src"
-          :start-time="Math.floor((data.start_time - data.front_reserved_time) * 1000)"
-          muted
-          video-capture
-        >
+        <canvas :src="data.video_src" :class="['video-inner', { preblur: data.prevent == 'true' }]" ref="videoRef"
+          :key="data.video_src" :start-time="Math.floor((data.start_time - data.front_reserved_time) * 1000)" muted
+          video-capture>
         </canvas>
       </div>
     </div>
     <div class="main-right">
-      <img class="brand-logo" :src="brandLogo" alt="OtmInk" />
+      <div class="brand-logo data-header">
+        <span class="data-outline" aria-hidden="true">DATA</span>
+        <div class="data-label">
+          <span class="data-star" :style="{ '--data-star-mask': `url(${capStar})` }" aria-hidden="true"></span>
+          <span>[ DATA ]</span>
+        </div>
+      </div>
       <MainCounts />
     </div>
     <div class="video-ornament" aria-hidden="true">
@@ -299,6 +299,7 @@ onBeforeUnmount(() => {
   filter: blur(100px);
   // mix-blend-mode: darken;
 }
+
 .video-box {
   position: absolute;
   top: 40px;
@@ -339,17 +340,52 @@ onBeforeUnmount(() => {
 
   .main-counts {
     position: absolute;
-    top: 176px;
+    top: 270px;
     left: 0;
   }
 }
 
-.brand-logo {
+.data-header {
   position: absolute;
-  top: 37px;
-  left: 50px;
-  width: 149px;
-  height: 113px;
+  top: 47px;
+  left: 0;
+  width: 248px;
+  height: 224px;
+}
+
+.data-outline {
+  position: absolute;
+  top: 0;
+  left: -8.5px;
+  color: transparent;
+  font-family: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  font-size: 256px;
+  font-weight: 400;
+  line-height: 224px;
+  letter-spacing: -12.8px;
+  -webkit-text-stroke: 1px rgba(33, 33, 33, 0.2);
+}
+
+.data-label {
+  position: absolute;
+  top: 152px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.8px;
+}
+
+.data-star {
+  width: 18px;
+  height: 18px;
+  background: v-bind('data.light_color');
+  mask: var(--data-star-mask) center / contain no-repeat;
+  -webkit-mask: var(--data-star-mask) center / contain no-repeat;
 }
 
 .video-ornament {
@@ -386,6 +422,7 @@ onBeforeUnmount(() => {
     bottom: 0;
   }
 }
+
 // 副榜层：覆盖整个 1920×1080 主榜画布，默认隐藏但保持挂载以预载资源
 .extra-stage {
   position: absolute;
@@ -398,6 +435,7 @@ onBeforeUnmount(() => {
 .extra-stage.extra-visible {
   visibility: visible;
 }
+
 .prevent {
   width: 100%;
   height: 100%;
@@ -413,6 +451,7 @@ onBeforeUnmount(() => {
   left: 0;
   z-index: 1;
 }
+
 // 测试按钮
 .test-button {
   position: absolute;

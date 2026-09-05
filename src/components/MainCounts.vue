@@ -19,7 +19,7 @@ import starIcon from '../assets/otmink-next/star.svg'
 .main-counts {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 48px;
   width: 248px;
 }
 </style>
